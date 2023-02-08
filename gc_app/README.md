@@ -12,6 +12,20 @@ yarn dev
 pnpm dev
 ```
 
+## For dev:
+
+To setup development with Next.js, run this command
+```bash
+npm install next react react-dom
+# or
+or
+# or
+yarn add next react react-dom
+#or
+pnpm add next react react-dom 
+```
+Now you should be able to run the above ```npm run dev``` code.
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
