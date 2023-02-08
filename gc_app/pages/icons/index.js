@@ -1,3 +1,3 @@
-import Phone from './phone.png';
+import phone from './phone.png';
 
-export { Phone };
+export { phone };

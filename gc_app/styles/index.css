@@ -2,8 +2,10 @@
 	color: black;
 	background-color: rgb(211, 211, 211);
 	width: 25vw;
-	max-height: 30vw;
+	max-height: 55vh;
 	border-radius: 15px;
+	min-width: 250px;
+	min-height: 420px;
 }
 .container {
 	padding: 10px;
@@ -12,9 +14,26 @@
 .photo-container {
 	border-radius: 15px;
 	width: 100%;
-	padding-bottom: 65%;
+	max-height: 30vh;
 	background-color: rgb(5, 161, 15);
 	margin-bottom: 10px;
+	overflow: hidden;
+	min-height: 225px;
+}
+.mainimage {
+	width: 100%;
+	object-fit: cover;
+	border-radius: 15px;
+}
+.telephone {
+	border-radius: 50%;
+}
+.phoneicon {
+	width: 100%;
+	height: 95%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	filter: invert(1);
 }
 
 .text-container {
@@ -41,6 +60,7 @@
 	margin-right: 10px;
 }
 .info {
+	min-height: 100px;
 	text-align: center;
 	justify-content: center;
 	margin-top: 10px;

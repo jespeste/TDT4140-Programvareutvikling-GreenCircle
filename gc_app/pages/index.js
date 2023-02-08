@@ -2,10 +2,10 @@ import Head from 'next/head';
 import { Inter } from '@next/font/google';
 import styles from '@/styles/Home.module.css';
 import { Annonse } from './components';
-import { Phone } from './icons';
+import { phone } from './icons';
+import { hammer } from './images';
 
 const inter = Inter({ subsets: ['latin'] });
-
 export default function Home() {
 	return (
 		<>
@@ -18,11 +18,12 @@ export default function Home() {
 			<main className={styles.main}>
 				<div>
 					<Annonse
+						image={hammer}
 						tool="Hammer"
 						name="Marrti Harrma"
 						location="Trondheim"
 						description="bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla blabla bla bla blabla blabla bla bla bla bla blabla bla bla bla bla blabla bla blaaa"
-						phoneicon={Phone}
+						phoneicon={phone}
 					></Annonse>
 				</div>
 			</main>

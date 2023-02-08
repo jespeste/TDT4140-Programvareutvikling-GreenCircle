@@ -5,10 +5,21 @@ const Annonse = (props) => {
 	if (props.description.length > 150) {
 		let description = props.description.split(1, 148) + '...';
 	}
+	function callTelephone() {
+		console.log('calledTelephone');
+	}
+	function sendMessage() {
+		console.log('sentMessage');
+	}
+	function seeMore() {
+		console.log('seeMore');
+	}
 	return (
 		<div className="maincontainer">
 			<div className="container">
-				<div className="photo-container"></div>
+				<div className="photo-container">
+					<img className="mainimage" src={props.image.src} alt="" />
+				</div>
 				<div className="text-container">
 					<div className="title">
 						<h1>{props.tool}</h1>
@@ -25,13 +36,13 @@ const Annonse = (props) => {
 				<div className="info">
 					<div className="contact">
 						<button type="button" className="telephone">
-							Telefon
+							<img className="phoneicon" src={props.phoneicon.src} onClick={callTelephone} />
 						</button>
-						<button type="button" className="messagebutton">
+						<button type="button" className="messagebutton" onClick={sendMessage}>
 							Send melding
 						</button>
 					</div>
-					<button type="button" className="seemorebutton">
+					<button type="button" className="seemorebutton" onClick={seeMore}>
 						Se mer
 					</button>
 				</div>
