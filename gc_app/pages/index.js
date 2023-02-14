@@ -1,12 +1,34 @@
 import Head from 'next/head';
 import { Inter } from '@next/font/google';
 import styles from '@/styles/Home.module.css';
-import { Annonse } from './components';
+import { Annonse, Annonsecontainer, Annonseside } from './components';
 import { phone } from './icons';
 import { hammer } from './images';
 
 const inter = Inter({ subsets: ['latin'] });
 export default function Home() {
+	function annonseClicked(data) {
+		console.log(data);
+	}
+	const myUser = {
+		name: 'Marrti Harrma',
+		telephone: '48181451',
+		email: 'larsengo@stud.ntnu.no',
+		rating: '5',
+		annonser: []
+	};
+	const myAnnonse = {
+		image: hammer,
+		title: 'Hammer',
+		name: 'Marrti Harrma',
+		location: 'Trondheim',
+		description:
+			'bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla blabla bla bla blabla blabla bla bla bla bla blabla bla bla bla bla blabla bla blaaa',
+		phoneicon: phone,
+		owner: myUser
+	};
+	myUser.annonser.push(myAnnonse);
+	let annonser = [myAnnonse, myAnnonse, myAnnonse, myAnnonse, myAnnonse, myAnnonse, myAnnonse];
 	return (
 		<>
 			<Head>
@@ -16,15 +38,9 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className={styles.main}>
+				<Annonseside data={myAnnonse}></Annonseside>
 				<div>
-					<Annonse
-						image={hammer}
-						tool="Hammer"
-						name="Marrti Harrma"
-						location="Trondheim"
-						description="bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla blabla bla bla blabla blabla bla bla bla bla blabla bla bla bla bla blabla bla blaaa"
-						phoneicon={phone}
-					></Annonse>
+					<Annonsecontainer data={annonser} annonseClicked={annonseClicked}></Annonsecontainer>
 				</div>
 			</main>
 		</>
