@@ -1,5 +1,6 @@
 //Denne må være her hvis du skal ha interaktivitet atm
 "use client"
+
 import './homepage.css';
 export default function HomePage() {
   const someStuff = ['hei','hallo','ok'];

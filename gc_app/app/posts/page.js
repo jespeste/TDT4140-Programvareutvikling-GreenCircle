@@ -1,17 +1,12 @@
+//"use client"
 import pb from '../lib/pocketbase';
 
 async function getPosts(){
-    
-    //const Pocketbase = require('pocketbase/cjs');
-    //const db = new Pocketbase('http://127.0.0.1:8090');
-    //const data = await db.records.getList('posts');
+    const data = await pb.collection('posts').getList();
 
-    
-    const res = await fetch('http://127.0.0.1:8090/api/collections/posts/records?page=1');
-    const data = await res.json();
     console.log(data);
     console.log("Fetched");
-    return data?.items; 
+    return data.items; 
 }
 
 export default async function PostsPage(){
