@@ -15,6 +15,10 @@ button {
     float: left;
 }
   
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .navbarE a {
     display: block;
     color: white;

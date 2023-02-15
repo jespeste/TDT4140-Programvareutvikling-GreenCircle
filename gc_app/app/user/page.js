@@ -1,5 +1,5 @@
 
 
 export default function User(){
-    return <p>User Page</p>
+    return <h1 className="text-3xl font-bold underline">User Page</h1>
 }
