@@ -2,7 +2,7 @@ import pb from '../lib/pocketbase';
 import Annonseside from './Annonseside';
 
 async function getPosts() {
-	const data = await pb.collection('users').getList();
+	const data = await pb.collection('annonser').getList();
 	console.log(data);
 	console.log('Posts');
 	return data.items;
@@ -31,7 +31,9 @@ export default async function Annonsepage() {
 	};
 	return (
 		<div>
-			<Annonseside data={myAnnonse} mordi={posts}></Annonseside>
+			{posts.map((post) => {
+				return <Annonseside data={post} ></Annonseside>
+			})}
 			<h1>{} Her nede!</h1>
 		</div>
 	);
