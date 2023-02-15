@@ -4,7 +4,6 @@ import './index.js';
 
 const Annonsecontainer = (data) => {
 	let items = data.data;
-
 	function annonseClicked(dat) {
 		return data.annonseClicked(dat);
 	}

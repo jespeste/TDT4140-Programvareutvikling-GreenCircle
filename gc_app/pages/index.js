@@ -1,14 +1,15 @@
+import React from 'react';
 import Head from 'next/head';
-import { Inter } from '@next/font/google';
 import styles from '@/styles/Home.module.css';
-import { Annonse, Annonsecontainer, Annonseside } from './components';
+import { Annonsecontainer, Annonseside } from './components';
 import { phone } from './icons';
 import { hammer } from './images';
 
-const inter = Inter({ subsets: ['latin'] });
 export default function Home() {
+	const ref = React.useRef(null);
 	function annonseClicked(data) {
-		console.log(data);
+		ref.current.style.display = 'inherit';
+		console.log();
 	}
 	const myUser = {
 		name: 'Marrti Harrma',
@@ -24,8 +25,9 @@ export default function Home() {
 		location: 'Trondheim',
 		description:
 			'bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla blabla bla bla blabla blabla bla bla bla bla blabla bla bla bla bla blabla bla blaaa',
-		phoneicon: phone,
-		owner: myUser
+		owner: myUser,
+		numfavourites: 0,
+		phoneicon: phone
 	};
 	myUser.annonser.push(myAnnonse);
 	let annonser = [myAnnonse, myAnnonse, myAnnonse, myAnnonse, myAnnonse, myAnnonse, myAnnonse];
@@ -38,7 +40,9 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className={styles.main}>
-				<Annonseside data={myAnnonse}></Annonseside>
+				<div ref={ref} style={{ display: 'none' }}>
+					<Annonseside data={myAnnonse}></Annonseside>
+				</div>
 				<div>
 					<Annonsecontainer data={annonser} annonseClicked={annonseClicked}></Annonsecontainer>
 				</div>
