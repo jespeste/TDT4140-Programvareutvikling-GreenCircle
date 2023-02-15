@@ -1,0 +1,212 @@
+/* Tilhører Annonseobject */
+.maincontainer {
+	color: black;
+	background-color: rgb(243, 253, 255);
+	width: 350px;
+	max-height: 55vh;
+	border-radius: 15px;
+	min-width: 250px;
+	min-height: 420px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.container {
+	padding: 10px;
+	width: 100%;
+}
+.photo-container {
+	border-radius: 15px;
+	width: 100%;
+	max-height: 30vh;
+	background-color: rgb(5, 161, 15);
+	margin-bottom: 10px;
+	overflow: hidden;
+	min-height: 225px;
+}
+.mainimage {
+	width: 100%;
+	object-fit: cover;
+	border-radius: 15px;
+}
+.telephone {
+	border-radius: 50%;
+}
+.phoneicon {
+	width: 100%;
+	height: 95%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	filter: invert(1);
+}
+
+.text-container {
+	font-family: sans-serif;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.title {
+	margin-bottom: 5px;
+}
+.person {
+	margin-bottom: 3px;
+}
+.description {
+	max-height: 55px;
+	overflow-y: hidden;
+	min-height: 55px;
+}
+.contact {
+	display: flex;
+	justify-content: space-between;
+}
+.telephone {
+	margin-right: 10px;
+}
+.info {
+	min-height: 100px;
+	text-align: center;
+	justify-content: center;
+	margin-top: 15px;
+	display: flex;
+	justify-content: space-between;
+}
+
+button {
+	background-color: black;
+	border-radius: 15px;
+	border: none;
+	height: 30px;
+	text-align: center;
+	justify-content: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	transition: 0.5s;
+}
+button:hover {
+	background-color: rgb(5, 161, 15);
+	cursor: pointer;
+}
+
+/* Tilhører annonsecontainer */
+.outercontainer {
+	position: absolute;
+	width: 50vw;
+	background-color: aliceblue;
+}
+.annonsecontainer {
+	margin: 5px;
+	display: grid;
+	grid-template-columns: auto auto;
+	place-items: center;
+	gap: 10px;
+}
+
+/* Tilhører annonseside */
+.annonseside {
+	background-color: white;
+	width: 100vw;
+	min-height: 100vh;
+	display: grid;
+	grid: 70% 30%;
+}
+
+.innerannonseside {
+	width: 70vw;
+	min-height: 100vh;
+	margin: auto;
+	grid: auto auto;
+}
+
+.annonseinfo {
+	color: black;
+}
+.bilde {
+	min-height: 70vh;
+	max-height: 70vh;
+	overflow: hidden;
+	border-radius: 0px 0px 10px 10px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+.favouriteButton {
+	font-size: large;
+	height: 50px;
+	width: 200px;
+	font-weight: bolder;
+	background-color: transparent;
+	color: rgb(5, 161, 15);
+	border: 3px solid rgb(5, 161, 15);
+	transition: 0.5s;
+}
+.favouriteButton:hover {
+	background-color: rgb(160, 196, 163);
+}
+
+.favourite {
+	margin-bottom: 10px;
+	width: 100%;
+}
+.profilinfo {
+	width: 30vw;
+	min-height: 50vw;
+	float: right;
+}
+
+.morradi {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.bitch {
+	grid: auto;
+}
+
+.annonseTittel {
+	font: bold;
+	color: black;
+}
+
+.annonseLocation {
+	font: bold;
+	color: black;
+}
+
+.divider {
+	font-family: sans-serif;
+	margin-top: 10px;
+	gap: 10px;
+	display: grid;
+	justify-content: space-between;
+	grid-template-columns: auto auto;
+}
+.profilepicture {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	background-color: rgb(5, 161, 15);
+}
+
+.profileinfo2 {
+	color: black;
+	font-size: xx-large;
+	font-weight: bold;
+	display: grid;
+	grid-template-columns: auto auto;
+	justify-content: space-evenly;
+}
+.name {
+	margin: auto;
+}
+
+.profilecontact {
+	margin-top: 10px;
+	display: grid;
+	height: 50px;
+	grid-template-columns: auto auto;
+	gap: 20px;
+}
+
+.tlf,
+.mail {
+	height: 40px;
+	font-size: large;
+}
