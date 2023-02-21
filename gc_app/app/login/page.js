@@ -10,8 +10,6 @@ export default function Page() {
 	const { register, handleSubmit } = useForm();
 	const router = useRouter();
 
-	console.log(register('email'));
-
 	async function login(data) {
 		setLoading(true);
 		try {
@@ -21,44 +19,43 @@ export default function Page() {
 		}
 		setLoading(false);
 		if (pb.authStore.isValid) {
-			router.push('/annonse');
+			router.push('/user');
 		}
 	}
 
 	return (
 		<div className="root">
-			{/* <h2>Logget inn: {pb.authStore.isValid.toString()}</h2> */}
-			{isLoading && <p>Loading</p>}
-
-			<form onSubmit={handleSubmit(login)}>
-				<div className="container">
-					<h1>Logg inn</h1>
-					<div className="innercontainer">
-						<div className="username">
-							E-post:
-							<input type="text" placeholder="email" {...register('email')} />
+			{isLoading && <div className="loader"></div>}
+			{!isLoading && (
+				<form onSubmit={handleSubmit(login)}>
+					<div className="container">
+						<h1 className="title">Logg inn</h1>
+						<div className="innercontainer">
+							<div className="username">
+								E-post:
+								<input type="text" placeholder="email" {...register('email')} />
+							</div>
+							<div className="password">
+								Passord:
+								<input type="password" placeholder="password" {...register('password')} />
+							</div>
+							<div>
+								<button className="loginbutton" type="submit" disabled={isLoading}>
+									Logg inn
+								</button>
+							</div>
 						</div>
-						<div className="password">
-							Passord:
-							<input type="password" placeholder="password" {...register('password')} />
-						</div>
-						<div>
-							<button className="loginbutton" type="submit" disabled={isLoading}>
-								Logg inn
-							</button>
+						<div className="innercontainer">
+							<div className="register">
+								Ikke bruker?
+								<button className="registerbutton" type="submit" disabled={isLoading}>
+									Lag profil
+								</button>
+							</div>
 						</div>
 					</div>
-
-					<div className="innercontainer">
-						<div className="register">
-							Ikke bruker?
-							<button className="registerbutton" type="submit" disabled={isLoading}>
-								Lag profil
-							</button>
-						</div>
-					</div>
-				</div>
-			</form>
+				</form>
+			)}
 		</div>
 	);
 }
