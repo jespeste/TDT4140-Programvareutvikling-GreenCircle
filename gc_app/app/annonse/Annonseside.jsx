@@ -9,9 +9,11 @@ export default function Annonseside(props) {
 		console.log('addToFavourites');
 	}
 	return (
-		<div className="annonseside">
+		<div className="bg-white w-screen h-screen grid 70 30">
 			<div className="innerannonseside">
-				<div className="bilde">{/* <img src={data.image} alt="" className="morradi" /> */}</div>
+				<div className="bilde">
+					<img src={data.image} alt="" className="morradi" />
+				</div>
 				<div className="divider">
 					<div className="annonseinfo">
 						<div className="favourite">

@@ -1,10 +1,12 @@
+'use client';
 import React from 'react';
-import './index.js.js';
+import './annonse.css';
 
 export default function Annonse(props) {
-	if (props.data.description.length > 150) {
-		let description = props.data.description.split(1, 148) + '...';
-	}
+	let owner = props.data[0];
+	let data = props.data[1];
+	const phone_icon = 'http://127.0.0.1:8090/api/files/images/n3xr4wdlooslg5h/phone_Ng547uwK8o.png';
+	const telephoneHref = 'tel:+' + owner.phone;
 	function callTelephone() {
 		console.log('calledTelephone');
 	}
@@ -12,33 +14,38 @@ export default function Annonse(props) {
 		console.log('sentMessage');
 	}
 	function seeMore() {
-		return props.annonseClicked(props.data);
+		return props.annonseClicked(props.data[1]);
 	}
 	return (
 		<div className="maincontainer">
 			<div className="container">
 				<div className="photo-container">
-					<img className="mainimage" src={props.data.image.src} alt="" />
+					<img className="mainimage" src={data.picture} alt="" />
 				</div>
 				<div className="text-container">
 					<div className="title">
-						<h1>{props.data.title}</h1>
+						<h1>{data.title}</h1>
 					</div>
 					<div className="person">
 						<h4>
-							{props.data.name}, {props.data.location}
+							{owner.name}, {owner.location}
 						</h4>
 					</div>
 					<div className="description">
-						<p>{props.data.description}</p>
+						<p>{data.description}</p>
 					</div>
 				</div>
 				<div className="info">
 					<div className="contact">
 						<button type="button" className="telephone">
-							<img className="phoneicon" src={props.data.phoneicon.src} onClick={callTelephone} />
+							<img className="phoneicon" src={phone_icon} onClick={callTelephone} />
 						</button>
-						<button type="button" className="messagebutton" onClick={sendMessage}>
+						<button
+							type="button"
+							className="messagebutton"
+							onClick={sendMessage}
+							href={telephoneHref}
+						>
 							Send melding
 						</button>
 					</div>
