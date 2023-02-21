@@ -31,6 +31,7 @@ export default function Register() {
     async function createUser(user){
         try {
             const record = await pb.collection('users').create(user);
+            alert("User Created.")
         } catch (e) {
             alert(e);
         }

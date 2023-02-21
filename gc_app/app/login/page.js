@@ -47,16 +47,19 @@ export default function Page() {
 							</div>
 						</div>
 						<div className="innercontainer">
-							<div className="register">
+							{/* <div className="register">
 								Ikke bruker?
 								<button className="registerbutton" type="submit" disabled={isLoading}>
 									Lag profil
 								</button>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</form>
 			)}
+            <br />
+
+            <h2>Ikke bruker?</h2>
             <Register/>
 		</div>
 	);
