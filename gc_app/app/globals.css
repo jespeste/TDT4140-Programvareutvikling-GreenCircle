@@ -1,18 +1,18 @@
 button {
-    color: white;
-    background-color: black;
+	color: white;
+	background-color: black;
 }
 .navbar {
-    list-style-type: none;
-    margin: auto;
-    text-align: center;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  
+	list-style-type: none;
+	margin: auto;
+	text-align: center;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
 .navbarE {
-    float: left;
+	float: left;
 }
   
 @tailwind base;
@@ -20,14 +20,14 @@ button {
 @tailwind utilities;
 
 .navbarE a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  /* Change the link color to #111 (black) on hover */
-  .navbarE a:hover {
-    background-color: #111;
-  }
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.navbarE a:hover {
+	background-color: #111;
+}
