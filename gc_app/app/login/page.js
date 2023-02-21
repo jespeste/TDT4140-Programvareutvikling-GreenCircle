@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './login.css';
+import Register from "./registration"
 
 export default function Page() {
 	const [isLoading, setLoading] = useState();
@@ -46,16 +47,20 @@ export default function Page() {
 							</div>
 						</div>
 						<div className="innercontainer">
-							<div className="register">
+							{/* <div className="register">
 								Ikke bruker?
 								<button className="registerbutton" type="submit" disabled={isLoading}>
 									Lag profil
 								</button>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</form>
 			)}
+            <br />
+
+            <h2>Ikke bruker?</h2>
+            <Register/>
 		</div>
 	);
 }
