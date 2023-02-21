@@ -15,6 +15,7 @@ export default function RootLayout({
               <li className='navbarE'><Link href="/user">User</Link></li>
               <li className='navbarE'><Link href="/">Home</Link></li>
               <li className='navbarE'><Link href="/posts">Posts</Link></li>
+              <li>className ='navbarE'</li><Link href ="/best1still">best1still</Link>
             </ul>
           </nav>
           {children}

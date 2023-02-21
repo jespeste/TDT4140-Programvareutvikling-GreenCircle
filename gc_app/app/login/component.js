@@ -1,3 +1,3 @@
 export default function SaysHi(){
-    return <h2>Hi!</h2>
+    return <h2>H!</h2>
 }

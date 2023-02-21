@@ -2,11 +2,15 @@
 "use client"
 
 import './homepage.css';
+import { best1still } from './best1still/anotha';
+
 export default function HomePage() {
   const someStuff = ['hei','hallo','ok'];
 
   function handleClick(){
     console.log("hello");
+    return best1still();
+
   }
 
   return (
@@ -20,6 +24,9 @@ export default function HomePage() {
         <button onClick={handleClick}>Yes</button>
         <div>
         <a href="/login">Link moment</a>
+        </div>
+        <div>
+          <a href='/anotha'>best1still</a>
         </div>
       </>
     );
