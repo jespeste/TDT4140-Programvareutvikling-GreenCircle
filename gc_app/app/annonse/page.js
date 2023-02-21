@@ -11,24 +11,6 @@ async function getPosts() {
 export default async function Annonsepage() {
 	const posts = await getPosts();
 	console.log(posts);
-	const myUser = {
-		name: 'Marrti Harrma',
-		telephone: '48181451',
-		email: 'larsengo@stud.ntnu.no',
-		rating: '5',
-		annonser: []
-	};
-	const myAnnonse = {
-		image: 'imagesrc',
-		title: 'Hammer',
-		name: 'Marrti Harrma',
-		location: 'Trondheim',
-		description:
-			'bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla blabla bla bla blabla blabla bla bla bla bla blabla bla bla bla bla blabla bla blaaa',
-		owner: myUser,
-		numfavourites: 0,
-		phoneicon: 'phonesrc'
-	};
 	return (
 		<div>
 			{posts.map((post) => {
