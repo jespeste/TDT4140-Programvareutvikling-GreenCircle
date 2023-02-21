@@ -9,7 +9,6 @@ export default function Page() {
 	const [isLoading, setLoading] = useState();
 	const { register, handleSubmit } = useForm();
 	const router = useRouter();
-	let registration = true;
 
 	async function login(data) {
 		setLoading(true);
