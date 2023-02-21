@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
 							<li className="navbarE">
 								<Link href="/annonse">Annonse</Link>
 							</li>
-              <li className='navbarE'><Link href="/magnsu">magnsu-test</Link></li>
 						</ul>
 					</nav>
 					{children}
