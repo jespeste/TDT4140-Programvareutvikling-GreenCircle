@@ -1,0 +1,110 @@
+.root {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	font-family: sans-serif;
+}
+.loader {
+	border: 30px solid #f3f3f3; /* Light grey */
+	border-top: 30px solid #15b12f; /* Blue */
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.container {
+	border-radius: 10px;
+	background-color: rgba(129, 196, 102, 0.778);
+	height: 500px;
+	width: 800px;
+}
+.title {
+	margin-bottom: 80px;
+	font-size: 50px;
+	margin-left: 20px;
+	padding-top: 20px;
+}
+
+.innercontainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	font-size: 40px;
+	margin-bottom: 90px;
+}
+
+.username {
+	width: 450px;
+	display: grid;
+	grid-template-columns: 200px 250px;
+	justify-content: space-around;
+	margin-bottom: 20px;
+}
+
+.password {
+	width: 450px;
+	display: grid;
+	grid-template-columns: 200px 250px;
+	justify-content: space-around;
+	margin-bottom: 20px;
+}
+.loginbutton {
+	font-weight: bold;
+	background-color: #15b12f;
+	border-radius: 6px;
+	border-width: 0;
+	box-sizing: border-box;
+	color: black;
+	cursor: pointer;
+	font-size: 100%;
+	height: 55px;
+	line-height: 1.15;
+	margin: 12px 0 0;
+	outline: none;
+	overflow: hidden;
+	padding: 0 25px;
+	position: relative;
+	text-align: center;
+	text-transform: none;
+	transform: translateZ(0);
+	transition: all 0.2s, box-shadow 0.08s ease-in;
+	touch-action: manipulation;
+	width: 100%;
+}
+
+.loginbutton:disabled {
+	cursor: default;
+}
+
+.loginbutton:hover {
+	background-color: #20bf53;
+}
+.registerbutton {
+	background-color: transparent;
+	text-decoration: underline;
+	border: none;
+	color: black;
+	font-weight: 600;
+	font-size: 20px;
+}
+.registerbutton:hover {
+	cursor: pointer;
+}
+.register {
+	font-weight: bold;
+	color: black;
+	font-size: 20px;
+}
