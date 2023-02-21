@@ -16,13 +16,14 @@ export default function Annonsecontainer(props) {
 		return props.annonse(data);
 	}
 	return (
-		<div className="outercontainer">
+		<div className="outercontainer" >
 			<div className="annonsecontainer">
 				{tuples.map((tuple) => {
 					return (
 						<div>
 							<Annonse key={tuple[1].id} data={tuple} annonseClicked={annonseClicked}></Annonse>
 						</div>
+						
 					);
 				})}
 			</div>

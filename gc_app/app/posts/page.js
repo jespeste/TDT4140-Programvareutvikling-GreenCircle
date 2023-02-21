@@ -24,6 +24,10 @@ export default async function PostsPage() {
 					return <li key={post.id}>{post.name}</li>;
 				})}
 			</ul>
+			<div>
+				<h1>heihei</h1>
+			</div>
 		</div>
+		
 	);
 }
