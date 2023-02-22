@@ -1,6 +1,6 @@
 import React from 'react';
-import { Annonse } from './index.js.js';
-import './index.js.js';
+import Annonse from './Annonse';
+import './annonsecontainer.css';
 
 export default function Annonsecontainer(props) {
 	function annonseClicked(data) {
@@ -9,8 +9,8 @@ export default function Annonsecontainer(props) {
 	return (
 		<div className="outercontainer">
 			<div className="annonsecontainer">
-				{props.data.map((item) => {
-					return <Annonse data={item} annonseClicked={annonseClicked}></Annonse>;
+				{props.data.map((tuple) => {
+					return <Annonse data={tuple[0]}></Annonse>;
 				})}
 			</div>
 		</div>

@@ -1,9 +1,10 @@
 'use client';
 import React from 'react';
-import './annonse.css';
+import './annonseside.css';
 
 export default function Annonseside(props) {
-	let data = props.data;
+	let data = props.data[0][0];
+	let owner = props.data[0][1];
 	function addToFavourites() {
 		console.log(props.mordi);
 		console.log('addToFavourites');
@@ -11,7 +12,9 @@ export default function Annonseside(props) {
 	return (
 		<div className="annonseside">
 			<div className="innerannonseside">
-				<div className="bilde">{/* <img src={data.image} alt="" className="morradi" /> */}</div>
+				<div className="bilde">
+					<img src={data.image} alt="" className="morradi" />
+				</div>
 				<div className="divider">
 					<div className="annonseinfo">
 						<div className="favourite">
@@ -35,8 +38,10 @@ export default function Annonseside(props) {
 					<div className="profilinfo">
 						<div className="profile">
 							<div className="profileinfo2">
-								<div className="profilepicture"></div>
-								<div className="name">{data.owner.lastName}</div>
+								<div className="profilepicture">
+									<img className="avatar" src={owner.avatar}></img>
+								</div>
+								<div className="name">{owner.firstName + ' ' + owner.lastName}</div>
 							</div>
 							<div className="profilecontact">
 								<button className="tlf">Call me</button>

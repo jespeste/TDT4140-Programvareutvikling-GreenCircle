@@ -1,10 +1,10 @@
 import React from 'react';
-import './index.js.js';
+import pb from '../lib/pocketbase';
+import './annonse.css';
 
 export default function Annonse(props) {
-	if (props.data.description.length > 150) {
-		let description = props.data.description.split(1, 148) + '...';
-	}
+	let data = props.data[0];
+	let owner = props.data[1];
 	function callTelephone() {
 		console.log('calledTelephone');
 	}
@@ -18,31 +18,31 @@ export default function Annonse(props) {
 		<div className="maincontainer">
 			<div className="container">
 				<div className="photo-container">
-					<img className="mainimage" src={props.data.image.src} alt="" />
+					<img className="mainimage" src={data.image} alt="" />
 				</div>
 				<div className="text-container">
 					<div className="title">
-						<h1>{props.data.title}</h1>
+						<h1>{data.title}</h1>
 					</div>
 					<div className="person">
 						<h4>
-							{props.data.name}, {props.data.location}
+							{owner.firstName + ' ' + owner.lastName}, {data.location}
 						</h4>
 					</div>
 					<div className="description">
-						<p>{props.data.description}</p>
+						<p>{data.description}</p>
 					</div>
 				</div>
 				<div className="info">
 					<div className="contact">
 						<button type="button" className="telephone">
-							<img className="phoneicon" src={props.data.phoneicon.src} onClick={callTelephone} />
+							<img className="phoneicon" />
 						</button>
-						<button type="button" className="messagebutton" onClick={sendMessage}>
+						<button type="button" className="messagebutton">
 							Send melding
 						</button>
 					</div>
-					<button type="button" className="seemorebutton" onClick={seeMore}>
+					<button type="button" className="seemorebutton">
 						Se mer
 					</button>
 				</div>
