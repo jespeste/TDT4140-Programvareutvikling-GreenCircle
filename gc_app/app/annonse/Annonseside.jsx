@@ -38,7 +38,7 @@ export default function Annonseside(props) {
 						<div className="profile">
 							<div className="profileinfo2">
 								<div className="profilepicture"></div>
-								<div className="name">{data.owner.name}</div>
+								<div className="name">{data.owner.lastName}</div>
 							</div>
 							<div className="profilecontact">
 								<button className="tlf">Call me</button>

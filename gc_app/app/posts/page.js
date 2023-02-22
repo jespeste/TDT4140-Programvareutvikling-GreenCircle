@@ -3,6 +3,7 @@ import pb from '../lib/pocketbase';
 
 async function getPosts() {
 	//try {
+	console.log("hei")
 	const data = await pb.collection('posts').getList();
 	console.log(data);
 	console.log('Fetched');
