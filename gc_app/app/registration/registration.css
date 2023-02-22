@@ -15,12 +15,13 @@
 	width: 450px;
 	margin-left: 60px;
 	margin-bottom: -10px;
+	font-weight: bold;
 }
 h3 {
 	margin-top: 10px;
 	font-weight: bold;
 	font-size: 40px;
-	margin-left: 10px;
+	margin-left: 20px;
 }
 
 .inputfield {
@@ -32,11 +33,11 @@ h3 {
 	gap: 10px;
 	grid-template-columns: 200px 250px;
 	justify-content: space-between;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 	font-size: 20px;
 }
 .centereditems {
-	margin-top: -40px;
+	margin-top: -25px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
