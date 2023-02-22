@@ -1,12 +1,14 @@
 'use client';
-import React from 'react';
+import React, {useState} from 'react';
 import './annonse.css';
 
 export default function Search() {
 	
-
 	return (
-        <div>test</div>
-		
+		<div>
+        	<div>test</div>
+			<input placeholder='Search'></input>
+		</div>
+
 	);
 }
