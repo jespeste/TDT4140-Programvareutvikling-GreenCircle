@@ -16,15 +16,15 @@ async function getPosts(post_ids) {
 		let post = await getPost(post_ids[i]);
 		posts.push(post);
 	}
-	console.log(posts);
 	return posts;
 }
 
 export default function User() {
 	pb.autoCancellation(false);
 	const user = getUser();
-	const posts = getPosts(user.postings);
-	const favs = getPosts(user.favourites);
+	console.log(user);
+	// const posts = getPosts(user.postings).then((data) => recordToList(data));
+	// const favs = getPosts(user.favourites);
 	return (
 		<div className="root">
 			<div className="name">
@@ -34,9 +34,9 @@ export default function User() {
 				<img src={user.avatar}></img>
 			</div>
 			{user.verified && <div className="verified"></div>}
-			{user.emailVisibility && <div className="email">{user.email}</div>}
-			<div className="posts">{/* <Annonsecontainer data={posts} /> */}</div>
-			<div className="favourites">{/* <Annonsecontainer data={favs} /> */}</div>
+			<div className="email">{user.email}</div>
+			<div className="posts"></div>
+			<div className="favourites"></div>
 			{user.telephone == '' && <div className="telephone">{user.telephone} </div>}
 		</div>
 	);
