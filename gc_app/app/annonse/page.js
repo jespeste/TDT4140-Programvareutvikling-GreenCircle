@@ -1,8 +1,8 @@
 import pb from '../lib/pocketbase';
 import Annonseside from './Annonseside';
 import Annonse from './Annonse';
-import Annonsecontainer from './Annonsecontainer';
 import Search from './Search';
+import PostList from './PostList';
 
 async function getPosts() {
 	const posts = await pb.collection('posts').getList();
@@ -20,7 +20,7 @@ export default async function Annonsepage() {
 	return (
 	<div>
 		<Search></Search>
-		<Annonsecontainer posts={posts} users={users}></Annonsecontainer>
+		<PostList posts={posts} users={users}></PostList>
 		
 	</div>
 	);

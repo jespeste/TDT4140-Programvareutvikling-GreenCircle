@@ -92,19 +92,6 @@ button:hover {
 	cursor: pointer;
 }
 
-/* Tilhører annonsecontainer */
-.outercontainer {
-	position: absolute;
-	width: 50vw;
-	background-color: aliceblue;
-}
-/* /*  */
-.annonsecontainer {
-	display: grid;
-	grid-template-columns: auto auto;
-	place-items: center;
-	gap: 10px;
-}
 
 /* Tilhører annonseside */
 .innerannonseside {

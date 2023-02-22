@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
 import Annonse from './Annonse';
-import './annonse.css';
+import './postList.css';
 
-export default function Annonsecontainer(props) {
+export default function postList(props) {
 	let tuples = [];
 	for (let i = 0; i < props.posts.length; i++) {
 		let tuple = [];
@@ -16,8 +16,7 @@ export default function Annonsecontainer(props) {
 		return props.annonse(data);
 	}
 	return (
-		<div className="outercontainer" >
-			<div className="annonsecontainer">
+			<div className="postscontainer">
 				{tuples.map((tuple) => {
 					return (
 						<div>
@@ -27,6 +26,5 @@ export default function Annonsecontainer(props) {
 					);
 				})}
 			</div>
-		</div>
 	);
 }
