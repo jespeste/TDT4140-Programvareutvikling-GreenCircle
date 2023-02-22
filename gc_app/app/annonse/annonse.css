@@ -17,13 +17,14 @@
 	border-radius: 15px;
 	width: 330px;
 	max-height: 30vh;
-	background-color: rgb(5, 161, 15);
+	background-color: rgb(123, 161, 126);
 	overflow: hidden;
 	min-height: 225px;
 }
 .mainimage {
 	object-fit: cover;
 	border-radius: 15px;
+	width: 100%;
 }
 .telephone {
 	border-radius: 50%;
