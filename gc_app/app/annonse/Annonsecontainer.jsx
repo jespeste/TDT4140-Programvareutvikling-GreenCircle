@@ -1,8 +1,8 @@
 import React from 'react';
-import { Annonse } from './index.js.js';
-import './index.js.js';
+import Annonse from './Annonse';
 
 export default function Annonsecontainer(props) {
+	console.log(props.data);
 	function annonseClicked(data) {
 		return props.data.annonseClicked(data);
 	}
