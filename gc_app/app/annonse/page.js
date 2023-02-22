@@ -9,18 +9,18 @@ async function getPosts() {
 	return posts.items;
 }
 
-async function getUsers() {
-	const users = await pb.collection('brukere').getList();
-	return users.items;
-}
+// async function getUsers() {
+// 	// const users = await pb.collection('brukere').getList();
+// 	return users.items;
+// }
 
 export default async function Annonsepage() {
-	const posts = await getPosts();
-	const users = await getUsers();
+	// const posts = await getPosts();
+	// const users = await getUsers();
 	return (
 	<div>
-		<Search></Search>
-		<PostList posts={posts} users={users}></PostList>
+		{/* <Search></Search> */}
+		{/* <PostList posts={posts}></PostList> */}
 		
 	</div>
 	);
