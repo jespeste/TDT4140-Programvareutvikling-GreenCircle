@@ -1,22 +1,27 @@
 import pb from '../lib/pocketbase';
 import Annonseside from './Annonseside';
+import Annonse from './Annonse';
+import Search from './Search';
+import PostList from './PostList';
 
 async function getPosts() {
-	const data = await pb.collection('annonser').getList();
-	console.log(data);
-	console.log('Posts');
-	return data.items;
+	const posts = await pb.collection('posts').getList();
+	return posts.items;
+}
+
+async function getUsers() {
+	const users = await pb.collection('brukere').getList();
+	return users.items;
 }
 
 export default async function Annonsepage() {
 	const posts = await getPosts();
-	console.log(posts);
+	const users = await getUsers();
 	return (
-		<div>
-			{posts.map((post) => {
-				return <Annonseside data={post} ></Annonseside>
-			})}
-			<h1>{} Her nede!</h1>
-		</div>
+	<div>
+		<Search></Search>
+		<PostList posts={posts} users={users}></PostList>
+		
+	</div>
 	);
 }

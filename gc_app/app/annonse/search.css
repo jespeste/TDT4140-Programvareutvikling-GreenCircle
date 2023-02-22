@@ -1,0 +1,24 @@
+.input {
+    width: 80%;
+    height: 36px;
+    /* margin-left: auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    border-width: 1px;
+    border-radius: 8px;
+    background-color: rgb(231, 231, 231);
+
+   
+
+
+}
+/* input {
+    width: 80%;
+    height: 36px;
+    margin-left: auto;
+    margin-right: auto;
+    place-items: center;
+} */
