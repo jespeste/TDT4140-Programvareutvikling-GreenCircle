@@ -2,7 +2,7 @@
 "use client"
 
 import './homepage.css';
-import { best1still } from './best1still/anotha';
+import { best1still } from './login/anotha';
 
 export default function HomePage() {
   const someStuff = ['hei','hallo','ok'];
