@@ -1,11 +1,9 @@
-import Register from './registration';
-
-import './registrations.css';
+import Registration from './registration';
 
 export default function Page() {
 	return (
 		<div className="root">
-			<Register></Register>
+			<Registration></Registration>
 		</div>
 	);
 }
