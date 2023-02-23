@@ -26,6 +26,9 @@ export default function RootLayout({ children }) {
 							<li className="navbarE">
 								<Link href="/annonse">Annonse</Link>
 							</li>
+							<li className='navbarE'>
+								<Link href="/createpost">Lag Annonse</Link>
+							</li>
 							<li className="navbarE">
 								<button onClick={logOut}>Logg ut</button>
 							</li>
