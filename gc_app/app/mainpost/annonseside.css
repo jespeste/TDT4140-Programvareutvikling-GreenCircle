@@ -20,7 +20,7 @@
 	min-height: 70vh;
 	max-height: 70vh;
 	overflow: hidden;
-	border-radius: 0px 0px 10px 10px;
+	border-radius: 10px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 .favouriteButton {
@@ -106,8 +106,41 @@
 	gap: 20px;
 }
 
+button {
+	background-color: black;
+	border-radius: 15px;
+	border: none;
+	height: 35px;
+	text-align: center;
+	justify-content: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	transition: 0.5s;
+}
+
+button:hover {
+	cursor: pointer;
+	background-color: rgb(5, 161, 15);
+}
 .tlf,
 .mail {
 	height: 40px;
 	font-size: large;
+}
+
+.goBack {
+	margin-right: -40px;
+	position: absolute;
+	width: 100px;
+	height: 50px;
+}
+
+.goBack:hover {
+	cursor: pointer;
+}
+
+.link {
+	color: white;
+	text-decoration: none;
+	font-size: 25px;
 }

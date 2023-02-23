@@ -10,7 +10,7 @@ export default function Annonsecontainer(props) {
 		<div className="outercontainer">
 			<div className="annonsecontainer">
 				{props.data.map((tuple) => {
-					return <Annonse data={tuple[0]}></Annonse>;
+					return <Annonse id={tuple[0][0].id} data={tuple[0]}></Annonse>;
 				})}
 			</div>
 		</div>

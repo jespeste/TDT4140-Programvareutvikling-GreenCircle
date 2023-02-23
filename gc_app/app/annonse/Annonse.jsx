@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Link from 'next/link';
 import './annonse.css';
 
 export default function Annonse(props) {
@@ -48,8 +49,10 @@ export default function Annonse(props) {
 							Send melding
 						</button>
 					</div>
-					<button type="button" className="seemorebutton" onClick={seeMore}>
-						Se mer
+					<button type="button" className="seemorebutton">
+						<Link href="/mainpost" className="link">
+							Se mer
+						</Link>
 					</button>
 				</div>
 			</div>
