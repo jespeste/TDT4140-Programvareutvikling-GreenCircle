@@ -1,8 +1,13 @@
 /* eslint-disable @next/next/no-head-element */
+'use client';
+import pb from './lib/pocketbase';
 import Link from 'next/link';
 import './globals.css';
 
 export default function RootLayout({ children }) {
+	function logOut() {
+		pb.authStore.clear();
+	}
 	return (
 		<html>
 			<body>
@@ -20,6 +25,9 @@ export default function RootLayout({ children }) {
 							</li>
 							<li className="navbarE">
 								<Link href="/annonse">Annonse</Link>
+							</li>
+							<li className="navbarE">
+								<button onClick={logOut}>Logg ut</button>
 							</li>
 						</ul>
 					</nav>
