@@ -1,0 +1,38 @@
+.searchbar {
+	width: 60vw;
+	height: 40px;
+	margin-left: 100px;
+	margin-bottom: 50px;
+	border: 2px solid black;
+	border-radius: 5px;
+	font-size: 20px;
+	line-height: 3;
+}
+
+.bigcontainer {
+	display: flex;
+	flex-direction: column;
+}
+.makeAccount {
+	margin-top: -4px;
+	height: 50px;
+	border-radius: 10px;
+	margin-right: 90px;
+	border: 3px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+}
+.makeAccount:hover {
+	cursor: pointer;
+}
+
+.onerow {
+	margin-top: 50px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}

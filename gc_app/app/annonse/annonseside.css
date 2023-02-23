@@ -1,0 +1,113 @@
+.annonseside {
+	background-color: white;
+	width: 100vw;
+	height: 100%;
+	display: grid;
+	grid: 70% 30%;
+}
+
+.innerannonseside {
+	width: 70vw;
+	height: 100%;
+	margin: auto;
+	grid: auto auto;
+}
+
+.annonseinfo {
+	color: black;
+}
+.bilde {
+	min-height: 70vh;
+	max-height: 70vh;
+	overflow: hidden;
+	border-radius: 0px 0px 10px 10px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+.favouriteButton {
+	font-size: large;
+	height: 50px;
+	width: 200px;
+	font-weight: bolder;
+	background-color: transparent;
+	color: rgb(5, 161, 15);
+	border: 3px solid rgb(5, 161, 15);
+	transition: 0.5s;
+}
+.favouriteButton:hover {
+	background-color: rgb(160, 196, 163);
+}
+
+.favourite {
+	margin-bottom: 10px;
+	width: 100%;
+}
+.profilinfo {
+	width: 30vw;
+	min-height: 50vw;
+	float: right;
+}
+
+.morradi {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.bitch {
+	grid: auto;
+}
+
+.annonseTittel {
+	font: bold;
+	color: black;
+}
+
+.annonseLocation {
+	font: bold;
+	color: black;
+}
+
+.divider {
+	font-family: sans-serif;
+	margin-top: 10px;
+	gap: 10px;
+	display: grid;
+	justify-content: space-between;
+	grid-template-columns: auto auto;
+}
+.profilepicture {
+	overflow: hidden;
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	background-color: rgb(5, 161, 15);
+}
+.avatar {
+	width: 100%;
+}
+
+.profileinfo2 {
+	color: black;
+	font-size: xx-large;
+	font-weight: bold;
+	display: grid;
+	grid-template-columns: auto auto;
+	justify-content: space-evenly;
+}
+.name {
+	margin: auto;
+	font-size: 20px;
+}
+
+.profilecontact {
+	margin-top: 10px;
+	display: grid;
+	height: 50px;
+	grid-template-columns: auto auto;
+	gap: 20px;
+}
+
+.tlf,
+.mail {
+	height: 40px;
+	font-size: large;
+}
