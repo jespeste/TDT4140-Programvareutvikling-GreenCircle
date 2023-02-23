@@ -1,44 +1,50 @@
+'use client';
 import React from 'react';
-import './index.js.js';
+import './annonse.css';
 
 export default function Annonse(props) {
-	if (props.data.description.length > 150) {
-		let description = props.data.description.split(1, 148) + '...';
-	}
-	function callTelephone() {
-		console.log('calledTelephone');
-	}
-	function sendMessage() {
-		console.log('sentMessage');
-	}
+	const PHONEICON =
+		'http://127.0.0.1:8090/api/files/0ntieiylnsgmw2q/le6f34par706jch/phone_jGAryoagIa.png';
+	let data = props.data[0];
+	let owner = props.data[1];
+	let phonestring = 'tel:' + owner.telephone;
+	let messagestring = 'sms:' + owner.telephone;
 	function seeMore() {
-		return props.annonseClicked(props.data);
+		console.log('seemore');
 	}
 	return (
 		<div className="maincontainer">
 			<div className="container">
 				<div className="photo-container">
-					<img className="mainimage" src={props.data.image.src} alt="" />
+					<img className="mainimage" src={data.image} alt="" />
 				</div>
 				<div className="text-container">
 					<div className="title">
-						<h1>{props.data.title}</h1>
+						<h1>{data.title}</h1>
 					</div>
 					<div className="person">
 						<h4>
-							{props.data.name}, {props.data.location}
+							{owner.firstName + ' ' + owner.lastName}, {data.location}
 						</h4>
 					</div>
 					<div className="description">
-						<p>{props.data.description}</p>
+						<p>{data.description}</p>
 					</div>
 				</div>
 				<div className="info">
 					<div className="contact">
-						<button type="button" className="telephone">
-							<img className="phoneicon" src={props.data.phoneicon.src} onClick={callTelephone} />
+						<button
+							type="button"
+							className="telephone"
+							onClick={() => (window.location = phonestring)}
+						>
+							<img className="phoneicon" src={PHONEICON} />
 						</button>
-						<button type="button" className="messagebutton" onClick={sendMessage}>
+						<button
+							type="button"
+							className="messagebutton"
+							onClick={() => (window.location.href = messagestring)}
+						>
 							Send melding
 						</button>
 					</div>

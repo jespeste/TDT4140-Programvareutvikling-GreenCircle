@@ -19,9 +19,6 @@ export default function RootLayout({ children }) {
 								<Link href="/">Home</Link>
 							</li>
 							<li className="navbarE">
-								<Link href="/posts">Posts</Link>
-							</li>
-							<li className="navbarE">
 								<Link href="/annonse">Annonse</Link>
 							</li>
 							<li className='navbarE'>
