@@ -1,16 +1,41 @@
+/* Whole navbar */
 .navbar {
     background-color: #B6D4BC;
+    list-style-type: none;
+	margin: auto;
+	text-align: center;
+	padding: 0;
+	overflow: hidden;
+}
+nav {
+    background-color: rgb(154, 109, 73);
 }
 ul {
-    background-color: #B6D4BC;
+    /* background-color: #B6D4BC; */
     height: 48px;
     margin: 0;
     
 }
-li:hover {
-    background-color: #38583B;
+
+/* Navbar element */
+.navbarE {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.navbarE a:hover {
+    color: aqua;
+}
+
+button {
+    /* background-color: rgb(79, 105, 91); */
+    border-radius: 6px;
+    float: right;
 
 }
-.navbarE {
-    background-color: #B6D4BC;
+#button {
+    background-color: rgb(58, 88, 78);
+    /* background-color: rgb(79, 105, 91); */
+
 }
+
+#greenCircleE {}

@@ -26,8 +26,8 @@ export default function Navbar() {
                 <li className="navbarE">
                     <Link href="/annonse">Annonse</Link>
                 </li>
-                <li className="navbarE">
-                    <button onClick={logOut}>Logg ut</button>
+                <li className="navbarE" id='greenCircleE'>
+                    <button id="button" onClick={logOut}>Logg ut</button>
                 </li>
             </ul>
         </nav>
