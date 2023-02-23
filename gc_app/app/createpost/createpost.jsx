@@ -26,19 +26,19 @@ export default function CreatePost() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		var post = new Post(true, title, description, url, getOwner());
+		var post = new Post(true, title, description, url, getOwner(),0);
 		createPost(post);
 	};
 
 	function getOwner(){
-		const owner = pb.authStore.model;
+		const owner = pb.authStore.model.id;
 		return owner;
 	}
 
 	async function createPost(post) {
 		try {
 			const record = await pb.collection('posts').create(post);
-			alert('User Created.');
+			alert('Post created.');
 		} catch (e) {
 			alert(e);
 		}
