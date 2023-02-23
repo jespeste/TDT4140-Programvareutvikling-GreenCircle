@@ -11,7 +11,7 @@ export default function Navbar() {
 	return (
         <nav>
             <ul className="navbar">
-                <li className="navbarE">
+                <li className="navbarE" id="greenCircle">
                     <Link href="/">GreenCircle</Link>
                 </li>
                 <li className="navbarE">
@@ -26,9 +26,10 @@ export default function Navbar() {
                 <li className="navbarE">
                     <Link href="/annonse">Annonse</Link>
                 </li>
-                <li className="navbarE" id='greenCircleE'>
-                    <button id="button" onClick={logOut}>Logg ut</button>
-                </li>
+                {/* <li className="navbarE" id='logout'>
+                    <button onClick={logOut}>Logg ut</button>
+                    <Link href="/">Logout</Link>
+                </li> */}
             </ul>
         </nav>
 		
