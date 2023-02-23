@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import './annonseside.css';
+import Link from 'next/link';
 
 export default function Annonseside(props) {
 	let data = props.data[0][0];
@@ -13,6 +14,11 @@ export default function Annonseside(props) {
 	}
 	return (
 		<div className="annonseside">
+			<button className="goBack">
+				<Link href="/annonse" className="link">
+					Tilbake
+				</Link>
+			</button>
 			<div className="innerannonseside">
 				<div className="bilde">
 					<img src={data.image} alt="" className="morradi" />
