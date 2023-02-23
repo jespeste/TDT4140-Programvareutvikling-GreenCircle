@@ -1,18 +1,16 @@
+'use client';
 import React from 'react';
-import pb from '../lib/pocketbase';
 import './annonse.css';
 
 export default function Annonse(props) {
+	const PHONEICON =
+		'http://127.0.0.1:8090/api/files/0ntieiylnsgmw2q/le6f34par706jch/phone_jGAryoagIa.png';
 	let data = props.data[0];
 	let owner = props.data[1];
-	function callTelephone() {
-		console.log('calledTelephone');
-	}
-	function sendMessage() {
-		console.log('sentMessage');
-	}
+	let phonestring = 'tel:' + owner.telephone;
+	let messagestring = 'sms:' + owner.telephone;
 	function seeMore() {
-		return props.annonseClicked(props.data);
+		console.log('seemore');
 	}
 	return (
 		<div className="maincontainer">
@@ -35,14 +33,22 @@ export default function Annonse(props) {
 				</div>
 				<div className="info">
 					<div className="contact">
-						<button type="button" className="telephone">
-							<img className="phoneicon" />
+						<button
+							type="button"
+							className="telephone"
+							onClick={() => (window.location = phonestring)}
+						>
+							<img className="phoneicon" src={PHONEICON} />
 						</button>
-						<button type="button" className="messagebutton">
+						<button
+							type="button"
+							className="messagebutton"
+							onClick={() => (window.location.href = messagestring)}
+						>
 							Send melding
 						</button>
 					</div>
-					<button type="button" className="seemorebutton">
+					<button type="button" className="seemorebutton" onClick={seeMore}>
 						Se mer
 					</button>
 				</div>

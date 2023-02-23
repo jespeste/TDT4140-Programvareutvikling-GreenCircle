@@ -61,7 +61,13 @@
 	justify-content: space-between;
 }
 .telephone {
+	width: 35px;
+	height: 35px;
 	margin-right: 10px;
+}
+.phoneicon {
+	margin-top: -3px;
+	height: 100%;
 }
 .info {
 	min-height: 100px;
@@ -76,7 +82,7 @@ button {
 	background-color: black;
 	border-radius: 15px;
 	border: none;
-	height: 30px;
+	height: 35px;
 	text-align: center;
 	justify-content: center;
 	padding-left: 10px;
@@ -86,4 +92,9 @@ button {
 button:hover {
 	background-color: rgb(5, 161, 15);
 	cursor: pointer;
+}
+
+.messagebutton,
+.seemorebutton {
+	height: 35px;
 }

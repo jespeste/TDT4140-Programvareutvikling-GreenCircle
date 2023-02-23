@@ -1,7 +1,6 @@
 'use client';
 import pb from '../lib/pocketbase';
 import './user.css';
-import Annonsecontainer from '../annonse/Annonsecontainer';
 
 function getUser() {
 	return pb.authStore.model;
