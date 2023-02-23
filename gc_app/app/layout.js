@@ -3,16 +3,17 @@
 import pb from './lib/pocketbase';
 import Link from 'next/link';
 import './globals.css';
+import Navbar from './navbar/Navbar';
 
 export default function RootLayout({ children }) {
-	function logOut() {
-		pb.authStore.clear();
-	}
+	// function logOut() {
+	// 	pb.authStore.clear();
+	// }
 	return (
 		<html>
 			<body>
 				<main>
-					<nav>
+					{/* <nav>
 						<ul className="navbar">
 							<li className="navbarE">
 								<Link href="/login">Login</Link>
@@ -30,7 +31,9 @@ export default function RootLayout({ children }) {
 								<button onClick={logOut}>Logg ut</button>
 							</li>
 						</ul>
-					</nav>
+					</nav> */}
+					<Navbar></Navbar>
+					
 					{children}
 				</main>
 			</body>
