@@ -1,4 +1,4 @@
-button {
+/* button {
 	color: white;
 	background-color: black;
 }
@@ -13,12 +13,12 @@ button {
 
 .navbarE {
 	float: left;
-}
-/*   
+} */
+
 @tailwind base;
 @tailwind components;
-@tailwind utilities; */
-
+@tailwind utilities; 
+/* 
 .navbarE a {
 	display: block;
 	color: white;
@@ -28,6 +28,6 @@ button {
 }
 
 /* Change the link color to #111 (black) on hover */
-.navbarE a:hover {
+/* .navbarE a:hover {
 	background-color: #111;
-}
+}  */

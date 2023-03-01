@@ -14,13 +14,13 @@ export default function Annonse(props) {
 		console.log('seemore');
 	}
 	return (
-		<div className="maincontainer">
+		<div className="bg-blue">
 			<div className="container">
 				<div className="photo-container">
 					<img className="mainimage" src={data.image} alt="" />
 				</div>
 				<div className="text-container">
-					<div className="title">
+					<div className="text-blue">
 						<h1>{data.title}</h1>
 					</div>
 					<div className="person">
