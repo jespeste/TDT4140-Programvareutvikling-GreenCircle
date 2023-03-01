@@ -14,23 +14,27 @@ export default function RootLayout({ children }) {
 				<main>
 					<nav>
 						<ul className="navbar">
-							<li className="navbarE">
-								<Link href="/login">Login</Link>
-							</li>
-							<li className="navbarE">
-								<Link href="/user">User</Link>
-							</li>
+							{pb.authStore.token != '' && (
+								<li className="navbarE">
+									<Link href="/user">Bruker</Link>
+								</li>
+							)}
+							{pb.authStore.token == '' && (
+								<li className="navbarE">
+									<Link href="/login">Bruker</Link>
+								</li>
+							)}
 							<li className="navbarE">
 								<Link href="/">Home</Link>
 							</li>
 							<li className="navbarE">
 								<Link href="/annonse">Annonse</Link>
 							</li>
-							<li className='navbarE'>
+							<li className="navbarE">
 								<Link href="/createpost">Lag Annonse</Link>
 							</li>
-							<li className="navbarE">
-								<button onClick={logOut}>Logg ut</button>
+							<li className="navbarE" onClick={logOut}>
+								<Link href="/login">Logg ut</Link>
 							</li>
 						</ul>
 					</nav>

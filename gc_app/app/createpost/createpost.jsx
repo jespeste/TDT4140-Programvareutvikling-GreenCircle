@@ -89,7 +89,7 @@ export default function CreatePost() {
 					/>
 					<NativeSelect
 						label="Velg kategori"
-						allowDeselect
+						allowdeselect
 						data={data}
 						onChange={(event) => setValue(event.currentTarget.value)}
 						value={value}
