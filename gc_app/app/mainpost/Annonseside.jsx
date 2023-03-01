@@ -6,6 +6,7 @@ import Link from 'next/link';
 export default function Annonseside(props) {
 	let data = props.data[0][0];
 	let owner = props.data[0][1];
+	console.log(data.is_listing);
 	let mailstring = 'mailto:' + owner.email;
 	let phonestring = 'tel:' + owner.telephone;
 	function addToFavourites() {
@@ -20,6 +21,8 @@ export default function Annonseside(props) {
 				</Link>
 			</button>
 			<div className="innerannonseside">
+				{data.is_listing && <div className=" w-28 h-28 text-green-600">Til leie</div>}
+				{!data.is_listing && <div className=" w-28 h-28 text-red-600">Ønskes lånt</div>}
 				<div className="bilde">
 					<img src={data.image} alt="" className="morradi" />
 				</div>
