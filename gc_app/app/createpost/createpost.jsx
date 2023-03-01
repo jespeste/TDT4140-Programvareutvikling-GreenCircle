@@ -5,6 +5,7 @@ import { TextInput } from '@mantine/core';
 import { Textarea } from '@mantine/core';
 import { Button } from '@mantine/core';
 import { Checkbox } from '@mantine/core';
+import { NativeSelect } from '@mantine/core';
 
 import { createStyles } from '@mantine/core';
 import { useState } from 'react';
@@ -15,6 +16,18 @@ export default function CreatePost() {
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [checked, setChecked] = useState(false);
+	const [value, setValue] = useState('');
+	const data = [
+		{ value: null, label: 'Ingen kategori' },
+		{ value: 'Småelektrisk', label: 'Småelektrisk' },
+		{ value: 'Håndverktøy', label: 'Håndverktøy' },
+		{ value: 'Spikerpistol og kompressor', label: 'Spikerpistol og kompressor' },
+		{ value: 'Storelektrisk', label: 'Storelektrisk' },
+		{ value: 'Målevertøy', label: 'Målevertøy' },
+		{ value: 'Lim og festemidler', label: 'Lim og festemidler' },
+		{ value: 'Maling', label: 'Maling' },
+		{ value: 'Verktøyoppbevaring', label: 'Verktøyoppbevaring' }
+	];
 
 	const useStyles = createStyles((theme) => ({
 		container: {
@@ -28,7 +41,7 @@ export default function CreatePost() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		var post = new Post(checked, title, description, url, getOwner(), 0);
+		var post = new Post(checked, title, description, url, getOwner(), 0, value);
 		createPost(post);
 	};
 
@@ -74,6 +87,13 @@ export default function CreatePost() {
 						autosize
 						minRows={2}
 					/>
+					<NativeSelect
+						label="Velg kategori"
+						allowDeselect
+						data={data}
+						onChange={(event) => setValue(event.currentTarget.value)}
+						value={value}
+					></NativeSelect>
 					<Checkbox
 						label="Ønskes lånt"
 						checked={checked}

@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function Annonseside(props) {
 	let data = props.data[0][0];
 	let owner = props.data[0][1];
-	console.log(data.is_listing);
+	console.log(data.category);
 	let mailstring = 'mailto:' + owner.email;
 	let phonestring = 'tel:' + owner.telephone;
 	function addToFavourites() {
@@ -35,6 +35,7 @@ export default function Annonseside(props) {
 							<p>{data.numfavourites} har lagt til som favoritt</p>
 						</div>
 						<div>
+							{data.category != '' && <div>Kategori: {data.category}</div>}
 							<div className="annonseTittel">
 								<h1>{data.title}</h1>
 							</div>
