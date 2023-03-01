@@ -14,7 +14,7 @@ export default function Annonse(props) {
 		console.log('seemore');
 	}
 	return (
-		<div className="bg-blue">
+		<div className="text-blue">
 			<div className="container">
 				<div className="photo-container">
 					<img className="mainimage" src={data.image} alt="" />
