@@ -42,7 +42,7 @@ export default function Registration() {
 	}
 
 	function login() {
-		router.push('/login');
+		router.push('/');
 	}
 
 	return (

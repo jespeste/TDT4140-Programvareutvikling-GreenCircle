@@ -8,6 +8,7 @@ function getUser() {
 
 async function getPostsFromUser(user_id) {
 	let posts = await pb.collection('posts').getList();
+	return posts.items;
 }
 
 async function getPosts() {
@@ -17,7 +18,8 @@ async function getPosts() {
 
 export default function User() {
 	pb.autoCancellation(false);
-	const user = getUser();
+	let user = getUser();
+
 	return (
 		<div className="root">
 			<div className="name">
