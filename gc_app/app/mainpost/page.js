@@ -1,5 +1,6 @@
 import pb from '../lib/pocketbase';
 import Annonseside from './Annonseside';
+import Navbar from '../Navbar';
 import './main.css';
 
 async function getPosts() {
@@ -26,6 +27,7 @@ export default async function Annonsepage() {
 
 	return (
 		<div className="bigcontainer">
+			<Navbar></Navbar>
 			<Annonseside data={list[0]}></Annonseside>
 		</div>
 	);

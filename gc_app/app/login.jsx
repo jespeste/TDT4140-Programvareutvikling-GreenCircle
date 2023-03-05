@@ -1,5 +1,5 @@
 'use client';
-import pb from '../lib/pocketbase';
+import pb from './lib/pocketbase';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -19,7 +19,7 @@ export default function Login() {
 		}
 		setLoading(false);
 		if (pb.authStore.isValid) {
-			router.push('/user');
+			router.push('/homepage');
 		}
 	}
 	function reggie() {

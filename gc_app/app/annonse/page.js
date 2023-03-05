@@ -1,5 +1,6 @@
 import pb from '../lib/pocketbase';
 import Annonsecontainer from './Annonsecontainer';
+import Navbar from '../Navbar';
 
 import './main.css';
 
@@ -27,6 +28,7 @@ export default async function Annonsepage() {
 
 	return (
 		<div className="bigcontainer">
+			<Navbar></Navbar>
 			<div className="onerow">
 				<input type="text" className="searchbar" placeholder="Søk etter motorsag eller skrujern!" />
 				<div className="makeAccount">Søk!</div>

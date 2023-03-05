@@ -36,13 +36,14 @@ export default function Registration() {
 		try {
 			const record = await pb.collection('users').create(user);
 			alert('User Created.');
+			router.push('/homepage');
 		} catch (e) {
 			alert(e);
 		}
 	}
 
 	function login() {
-		router.push('/login');
+		router.push('/');
 	}
 
 	return (
