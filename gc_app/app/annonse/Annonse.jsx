@@ -10,6 +10,7 @@ export default function Annonse(props) {
 	let owner = props.data[1];
 	let phonestring = 'tel:' + owner.telephone;
 	let messagestring = 'sms:' + owner.telephone;
+
 	function seeMore() {
 		console.log('seemore');
 	}
@@ -27,9 +28,7 @@ export default function Annonse(props) {
 						<h1>{data.title}</h1>
 					</div>
 					<div className="person">
-						<h4>
-							{owner.firstName + ' ' + owner.lastName}, {data.location}
-						</h4>
+						<h4>{owner.firstName + ' ' + owner.lastName}</h4>
 					</div>
 					<div className="description">
 						<p>{data.description}</p>

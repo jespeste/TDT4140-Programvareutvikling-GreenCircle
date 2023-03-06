@@ -3,6 +3,7 @@ import pb from './lib/pocketbase';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Loader from './Loader';
 import './login.css';
 
 export default function Login() {
@@ -27,7 +28,7 @@ export default function Login() {
 	}
 	return (
 		<div className="root">
-			{isLoading && <div className="loader"></div>}
+			{isLoading && <Loader></Loader>}
 			{!isLoading && (
 				<form onSubmit={handleSubmit(login)}>
 					<div className="container">

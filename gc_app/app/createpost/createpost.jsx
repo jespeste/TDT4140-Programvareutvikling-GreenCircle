@@ -17,6 +17,9 @@ export default function CreatePost() {
 	const [description, setDescription] = useState('');
 	const [checked, setChecked] = useState(false);
 	const [value, setValue] = useState('');
+	const [lat, setLat] = useState(null);
+	const [long, setLong] = useState(null);
+	const geolocationAPI = navigator.geolocation;
 	const data = [
 		{ value: null, label: 'Ingen kategori' },
 		{ value: 'Småelektrisk', label: 'Småelektrisk' },
@@ -41,7 +44,8 @@ export default function CreatePost() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		var post = new Post(checked, title, description, url, getOwner(), 0, value);
+		let location = '' + lat + ',' + long;
+		var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
 		createPost(post);
 	};
 
@@ -59,6 +63,23 @@ export default function CreatePost() {
 		}
 	}
 
+	const getUserCoordinates = () => {
+		if (!geolocationAPI) {
+			console.log('Geolocation API is not available in your browser!');
+		} else {
+			geolocationAPI.getCurrentPosition(
+				(position) => {
+					const { coords } = position;
+					setLat(coords.latitude);
+					setLong(coords.longitude);
+				},
+				(error) => {
+					console.log('Something went wrong getting your position!');
+				}
+			);
+		}
+	};
+	getUserCoordinates();
 	return (
 		<div className="root">
 			<Container size={200} px={10} className={classes.container}>
@@ -89,7 +110,6 @@ export default function CreatePost() {
 					/>
 					<NativeSelect
 						label="Velg kategori"
-						allowDeselect
 						data={data}
 						onChange={(event) => setValue(event.currentTarget.value)}
 						value={value}
