@@ -6,9 +6,9 @@ import { Textarea } from '@mantine/core';
 import { Button } from '@mantine/core';
 import { Checkbox } from '@mantine/core';
 import { NativeSelect } from '@mantine/core';
-
 import { createStyles } from '@mantine/core';
 import { useState } from 'react';
+
 import Post from './Post';
 
 export default function CreatePost() {
@@ -17,6 +17,7 @@ export default function CreatePost() {
 	const [description, setDescription] = useState('');
 	const [checked, setChecked] = useState(false);
 	const [value, setValue] = useState('');
+	const [address, setAddress] = useState('');
 	const [lat, setLat] = useState(null);
 	const [long, setLong] = useState(null);
 	const geolocationAPI = navigator.geolocation;
@@ -31,6 +32,10 @@ export default function CreatePost() {
 		{ value: 'Maling', label: 'Maling' },
 		{ value: 'Verktøyoppbevaring', label: 'Verktøyoppbevaring' }
 	];
+	const APP = {
+		TOKEN: 'pk.3e21916e151f4d42374fdc631eded07a',
+		SEARCHURL: 'https://eu1.locationiq.com/v1/search?',
+	}
 
 	const useStyles = createStyles((theme) => ({
 		container: {
@@ -44,8 +49,28 @@ export default function CreatePost() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		let location = '' + lat + ',' + long;
-		var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
+		if(!lat && !long && address === ''){
+			let location = '' + lat + ',' + long;
+			var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
+		} else {
+			let urlSearch = `${APP.SEARCHURL}key=${APP.TOKEN}&q=${address}&format=json`;
+			fetch(urlSearch)
+			.then(resp => {
+				if(!resp.ok) throw new Error(resp.statusText);
+				return resp.json();
+			}).then(data => {
+				console.log(data[0].lat);
+				console.log(data[0].lon);
+				setLat(data[0].lat);
+				setLong(data[0].lon);
+			})
+			.catch(err=>{
+				console.error(err);
+			})
+			let location = '' + lat + ',' + long;
+			console.log(location);
+			var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
+		}
 		createPost(post);
 	};
 
@@ -99,6 +124,11 @@ export default function CreatePost() {
 						placeholder="Tittel"
 						label="Tittel"
 						withAsterisk
+					/>
+					<TextInput
+						value={address}
+						onChange={(event) => setAddress(event.target.value)}
+						label="Adresse"
 					/>
 					<Textarea
 						value={description}
