@@ -128,7 +128,7 @@ export default function CreatePost() {
 					<TextInput
 						value={address}
 						onChange={(event) => setAddress(event.target.value)}
-						label="Adresse"
+						label="Adresse (Default er din lokasjon)"
 					/>
 					<Textarea
 						value={description}
