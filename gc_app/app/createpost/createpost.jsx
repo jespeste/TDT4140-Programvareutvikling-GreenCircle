@@ -50,6 +50,7 @@ export default function CreatePost() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if(!lat && !long && address === ''){
+			getUserCoordinates();
 			let location = '' + lat + ',' + long;
 			var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
 		} else {
@@ -63,15 +64,21 @@ export default function CreatePost() {
 				console.log(data[0].lon);
 				setLat(data[0].lat);
 				setLong(data[0].lon);
+				let location = '' + data[0].lat + ',' + data[0].lon;
+				console.log(location);
+				var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
+				createPost(post);
 			})
 			.catch(err=>{
 				console.error(err);
 			})
-			let location = '' + lat + ',' + long;
-			console.log(location);
-			var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
+			console.log(lat + "Yo wassup");
+			console.log(long);
+			// let location = '' + lat + ',' + long;
+			// console.log(location);
+			// var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
+			// createPost(post);
 		}
-		createPost(post);
 	};
 
 	function getOwner() {
@@ -104,7 +111,6 @@ export default function CreatePost() {
 			);
 		}
 	};
-	getUserCoordinates();
 	return (
 		<div className="root">
 			<Container size={200} px={10} className={classes.container}>
