@@ -4,10 +4,12 @@ import './annonseside.css';
 import Link from 'next/link';
 import { useState, useRef } from 'react';
 import Loader from '../Loader';
+import pb from 'app/lib/pocketbase';
 
 export default function Annonseside(props) {
-	let data = props.data[0][0];
-	let owner = props.data[0][1];
+	console.log(props.data);
+	let data = props.data;
+	let owner = props.data.expand.owner;
 	let mailstring = 'mailto:' + owner.email;
 	let phonestring = 'tel:' + owner.telephone;
 	const [location, setLocation] = useState('');

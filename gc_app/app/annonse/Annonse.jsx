@@ -52,7 +52,7 @@ export default function Annonse(props) {
 						</button>
 					</div>
 					<button type="button" className="seemorebutton">
-						<Link href="/mainpost" className="link">
+						<Link href={`/mainpost/${data.id}`} className="link">
 							Se mer
 						</Link>
 					</button>
