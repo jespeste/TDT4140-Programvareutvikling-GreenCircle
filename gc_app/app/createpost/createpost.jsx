@@ -34,8 +34,8 @@ export default function CreatePost() {
 	];
 	const APP = {
 		TOKEN: 'pk.3e21916e151f4d42374fdc631eded07a',
-		SEARCHURL: 'https://eu1.locationiq.com/v1/search?',
-	}
+		SEARCHURL: 'https://eu1.locationiq.com/v1/search?'
+	};
 
 	const useStyles = createStyles((theme) => ({
 		container: {
@@ -49,30 +49,31 @@ export default function CreatePost() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if(!lat && !long && address === ''){
+		if (!lat && !long && address === '') {
 			getUserCoordinates();
 			let location = '' + lat + ',' + long;
 			var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
 		} else {
 			let urlSearch = `${APP.SEARCHURL}key=${APP.TOKEN}&q=${address}&format=json`;
 			fetch(urlSearch)
-			.then(resp => {
-				if(!resp.ok) throw new Error(resp.statusText);
-				return resp.json();
-			}).then(data => {
-				console.log(data[0].lat);
-				console.log(data[0].lon);
-				setLat(data[0].lat);
-				setLong(data[0].lon);
-				let location = '' + data[0].lat + ',' + data[0].lon;
-				console.log(location);
-				var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
-				createPost(post);
-			})
-			.catch(err=>{
-				console.error(err);
-			})
-			console.log(lat + "Yo wassup");
+				.then((resp) => {
+					if (!resp.ok) throw new Error(resp.statusText);
+					return resp.json();
+				})
+				.then((data) => {
+					console.log(data[0].lat);
+					console.log(data[0].lon);
+					setLat(data[0].lat);
+					setLong(data[0].lon);
+					let location = '' + data[0].lat + ',' + data[0].lon;
+					console.log(location);
+					var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
+					createPost(post);
+				})
+				.catch((err) => {
+					console.error(err);
+				});
+			console.log(lat + 'Yo wassup');
 			console.log(long);
 			// let location = '' + lat + ',' + long;
 			// console.log(location);
@@ -89,6 +90,9 @@ export default function CreatePost() {
 	async function createPost(post) {
 		try {
 			const record = await pb.collection('posts').create(post);
+			let user = pb.authStore.model;
+			user.posts.push(record.id);
+			const userRecord = await pb.collection('users').update(user.id, user);
 			alert('Post created.');
 		} catch (e) {
 			alert(e);
