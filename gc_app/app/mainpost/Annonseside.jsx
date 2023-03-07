@@ -4,6 +4,11 @@ import './annonseside.css';
 import Link from 'next/link';
 import { useState, useRef } from 'react';
 import Loader from '../Loader';
+import pb from '../lib/pocketbase';
+
+function getUser() {
+	return pb.authStore.model;
+}
 
 export default function Annonseside(props) {
 	let data = props.data[0][0];
@@ -67,8 +72,12 @@ export default function Annonseside(props) {
 		iframeRef.current.style = { visibility: 'visible' };
 		setLoaded(true);
 	}
-	function addToFavourites() {
-		console.log('addToFavourites');
+
+	async function addToFavourites() {
+		let user = getUser();
+		const postId = props.data[0][0].id;
+		user.favourites.push(postId);
+		const record = await pb.collection('users').update(user.id, data);
 	}
 
 	return (
@@ -90,7 +99,6 @@ export default function Annonseside(props) {
 							<button className="favouriteButton" onClick={addToFavourites}>
 								&#9829; Legg til favoritt
 							</button>
-							<p>{data.numfavourites} har lagt til som favoritt</p>
 						</div>
 						<div>
 							{data.category != '' && <div>Kategori: {data.category}</div>}
