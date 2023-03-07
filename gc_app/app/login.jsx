@@ -12,6 +12,7 @@ export default function Login() {
 	const router = useRouter();
 
 	async function login(data) {
+		pb.authStore.clear();
 		setLoading(true);
 		try {
 			const authData = await pb.collection('users').authWithPassword(data.email, data.password);
