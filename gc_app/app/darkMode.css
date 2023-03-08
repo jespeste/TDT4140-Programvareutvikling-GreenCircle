@@ -1,4 +1,12 @@
 body {
-    background-color: black;
-    color: aliceblue;
+    --background-color: black;
+    --color: aliceblue;
+}
+
+[data-theme="darkMode"] {
+    background-color: brown;
+}
+
+:root {
+    main-color: black; 
 }

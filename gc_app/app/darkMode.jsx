@@ -9,9 +9,9 @@ function DarkMode() {
         setIsDarkMode(!isDarkMode);
     }
     return (
-        <div className={isDarkMode ? "dark-mode" : ""}>
+        <div className={isDarkMode ? "darkMode" : ""}>
             <button onClick={handleDarkModeToggle}>
-                {isDarkMode ? "" : "dark-mode"}
+                {isDarkMode ? "Light Mode" : "Dark Mode"}
             </button>
 
         </div>
