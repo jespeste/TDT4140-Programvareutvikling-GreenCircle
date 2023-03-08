@@ -1,13 +1,11 @@
 'use client';
 import React from 'react';
 import './annonseside.css';
-import Link from 'next/link';
 import { useState, useRef } from 'react';
 import Loader from '../Loader';
 import pb from 'app/lib/pocketbase';
 
 export default function Annonseside(props) {
-	console.log(props.data);
 	let data = props.data;
 	let owner = props.data.expand.owner;
 	let mailstring = 'mailto:' + owner.email;
@@ -75,12 +73,14 @@ export default function Annonseside(props) {
 		const record = await pb.collection('users').update(user.id, user);
 	}
 
+	function goBack() {
+		window.history.back();
+	}
+
 	return (
 		<div className="annonseside">
-			<button className="goBack">
-				<Link href="/annonse" className="link">
-					Tilbake
-				</Link>
+			<button className="goBack" onClick={goBack}>
+				Tilbake
 			</button>
 			<div className="innerannonseside">
 				{data.is_listing && <div className=" w-28 h-28 text-green-600">Til leie</div>}
