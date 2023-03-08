@@ -1,6 +1,8 @@
 'use client';
 import Link from 'next/link';
 import pb from './lib/pocketbase';
+import DarkMode from './DarkMode';
+
 
 export default function Navbar() {
 	function logOut() {
@@ -26,6 +28,7 @@ export default function Navbar() {
 						Logg ut
 					</Link>
 				</li>
+				
 			</ul>
 		</nav>
 	);
