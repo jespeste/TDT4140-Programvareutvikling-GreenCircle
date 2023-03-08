@@ -69,8 +69,10 @@ export default function Annonseside(props) {
 		iframeRef.current.style = { visibility: 'visible' };
 		setLoaded(true);
 	}
-	function addToFavourites() {
-		console.log('addToFavourites');
+	async function addToFavourites() {
+		let user = pb.authStore.model;
+		user.favourites.push(props.data.id);
+		const record = await pb.collection('users').update(user.id, user);
 	}
 
 	return (
