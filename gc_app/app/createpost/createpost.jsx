@@ -49,10 +49,11 @@ export default function CreatePost() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if (!lat && !long && address === '') {
+		if (address === '') {
 			getUserCoordinates();
 			let location = '' + lat + ',' + long;
 			var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
+			createPost(post);
 		} else {
 			let urlSearch = `${APP.SEARCHURL}key=${APP.TOKEN}&q=${address}&format=json`;
 			fetch(urlSearch)
@@ -138,13 +139,13 @@ export default function CreatePost() {
 					<TextInput
 						value={address}
 						onChange={(event) => setAddress(event.target.value)}
-						label="Adresse (Default er din lokasjon)"
+						label="Adresse"
 					/>
 					<Textarea
 						value={description}
 						onChange={(event) => setDescription(event.target.value)}
 						placeholder=""
-						label="Autosize with no rows limit"
+						label="Beskrivelse"
 						autosize
 						minRows={2}
 					/>
