@@ -4,6 +4,8 @@ import './annonseside.css';
 import { useState, useRef } from 'react';
 import Loader from '../Loader';
 import pb from 'app/lib/pocketbase';
+import ReportPopUp from '../report/ReportForm';
+
 
 export default function Annonseside(props) {
 	let data = props.data;
@@ -108,6 +110,9 @@ export default function Annonseside(props) {
 							</div>
 							<div className="beskrivelse">
 								<p> {data.description}</p>
+							</div>
+							<div className="favourite">
+								<ReportPopUp reporter={owner} reportedUser={undefined} reportedPost={data}/>
 							</div>
 						</div>
 					</div>

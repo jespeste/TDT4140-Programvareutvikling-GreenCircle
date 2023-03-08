@@ -144,7 +144,7 @@ export default function CreatePost() {
 						value={description}
 						onChange={(event) => setDescription(event.target.value)}
 						placeholder=""
-						label="Autosize with no rows limit"
+						label="Beskrivelse av utstyret"
 						autosize
 						minRows={2}
 					/>

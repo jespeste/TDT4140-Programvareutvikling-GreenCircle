@@ -5,6 +5,7 @@ import pb from '../lib/pocketbase';
 import Annonsecontainer from '../annonse/Annonsecontainer';
 import { useState } from 'react';
 import { Switch } from '@mantine/core';
+import ReportPopUp from '../report/ReportForm';
 
 function getUser() {
 	return pb.authStore.model;
@@ -45,6 +46,11 @@ export default function User(props) {
 				<div className="profilecontact">
 					<button className="tlf">Telefon</button>
 					<button className="mail">E-post</button>
+				</div>
+				<div className="favourite">
+					{/* TODO: the reporter should be the active user, whereas the reportedUser should be the user displayed on the page.
+					Currently the both reporter and reportedUser is always set to the active user. */}
+					<ReportPopUp reporter={getUser()} reportedUser={getUser()} reportedPost={undefined}/>
 				</div>
 			</div>
 			<div className="posts">
