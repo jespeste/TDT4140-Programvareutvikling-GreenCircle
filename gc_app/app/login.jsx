@@ -23,6 +23,7 @@ export default function Login() {
 		if (pb.authStore.isValid) {
 			router.push('/homepage');
 		}
+		console.log(pb.authStore.model);
 	}
 	function reggie() {
 		router.push('/registration');
