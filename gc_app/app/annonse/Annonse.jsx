@@ -6,14 +6,11 @@ import './annonse.css';
 export default function Annonse(props) {
 	const PHONEICON =
 		'http://127.0.0.1:8090/api/files/0ntieiylnsgmw2q/le6f34par706jch/phone_jGAryoagIa.png';
-	let data = props.data[0];
-	let owner = props.data[1];
+	let data = props.data;
+	let owner = props.data.expand.owner;
 	let phonestring = 'tel:' + owner.telephone;
 	let messagestring = 'sms:' + owner.telephone;
 
-	function seeMore() {
-		console.log('seemore');
-	}
 	return (
 		<div className="maincontainer">
 			{data.is_listing && <div>Ønskes lånt</div>}

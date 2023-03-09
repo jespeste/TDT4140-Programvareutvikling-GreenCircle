@@ -1,30 +1,32 @@
+'use client'
 import pb from '../lib/pocketbase';
 import Annonsecontainer from './Annonsecontainer';
 import Navbar from '../Navbar';
-
+import { useState, useEffect } from 'react';
 import './main.css';
 
-async function getPosts() {
-	const data = await pb.collection('posts').getList();
-	return data.items;
-}
+export default function Annonsepage() {
+	const [posts, setPostList] = useState([]); 
+	
+	const fetchPosts = async () => {
+		try {
+			const data = await pb.collection('posts').getList(1,100,{ 
+				'$autoCancel': true,
+				 expand: 'owner'
+			});
+			console.log(data);
+			setPostList(data.items);
 
-async function getUsers() {
-	const users = await pb.collection('users').getList();
-	return users.items;
-}
 
-export default async function Annonsepage() {
-	const posts = await getPosts();
-	const users = await getUsers();
-	let list = [];
-	for (let i = 0; i < posts.length; i++) {
-		let tuple = [];
-		let post = posts[i];
-		let owner = users.filter((user) => user.id == post.owner).find((user) => user);
-		tuple.push([post, owner]);
-		list.push(tuple);
+
+		} catch (err){
+			console.log(err.isAbort);
+		}
 	}
+
+	useEffect(()=>{
+		fetchPosts();
+	}, [])
 
 	return (
 		<div className="bigcontainer">
@@ -33,7 +35,7 @@ export default async function Annonsepage() {
 				<input type="text" className="searchbar" placeholder="Søk etter motorsag eller skrujern!" />
 				<div className="makeAccount">Søk!</div>
 			</div>
-			<Annonsecontainer data2={posts} data={list} />
+			<Annonsecontainer data={posts}/>
 		</div>
 	);
 }

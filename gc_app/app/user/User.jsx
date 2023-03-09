@@ -13,20 +13,21 @@ function getUser() {
 
 export default function User(props) {
 	const user = getUser();
+	// post.owner === user.id
 	let posts = props.posts.filter((post) => post.owner === user.id);
 	let favourites = props.posts.filter((post) => user.favourites.includes(post.id));
 	let postsList = [];
 	let favoritesList = [];
-	for (let i = 0; i < posts.length; i++) {
-		let tuple = [];
-		tuple.push([posts[i], user]);
-		postsList.push(tuple);
-	}
-	for (let i = 0; i < favourites.length; i++) {
-		let tuple = [];
-		tuple.push([favourites[i], user]);
-		favoritesList.push(tuple);
-	}
+	// for (let i = 0; i < posts.length; i++) {
+	// 	let tuple = [];
+	// 	tuple.push([posts[i], user]);
+	// 	postsList.push(tuple);
+	// }
+	// for (let i = 0; i < favourites.length; i++) {
+	// 	let tuple = [];
+	// 	tuple.push([favourites[i], user]);
+	// 	favoritesList.push(tuple);
+	// }
 	const [show, setShow] = useState(false);
 	function changeView() {
 		setShow(!show);
@@ -61,8 +62,8 @@ export default function User(props) {
 					offLabel={'Dine annonser'}
 					size="xl"
 				></Switch>
-				{!show && <Annonsecontainer data={postsList}></Annonsecontainer>}
-				{show && <Annonsecontainer data={favoritesList}></Annonsecontainer>}
+				{!show && <Annonsecontainer data={posts}></Annonsecontainer>}
+				{show && <Annonsecontainer data={favourites}></Annonsecontainer>}
 			</div>
 		</div>
 	);
