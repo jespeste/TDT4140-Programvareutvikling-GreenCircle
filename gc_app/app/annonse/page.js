@@ -20,7 +20,7 @@ export default function Annonsepage() {
 			const data = await pb.collection('posts').getList(1,100,{ 
 				'$autoCancel': true,
 				expand: 'owner',
-				filter: `title~"${search}"`
+				filter: `title~"${search}" || description~"${search}"`
 			});
 			setPostList(data.items);
 		} catch (err){
