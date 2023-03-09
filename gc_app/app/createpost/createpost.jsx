@@ -68,7 +68,7 @@ export default function CreatePost() {
 					setLong(data[0].lon);
 					let location = '' + data[0].lat + ',' + data[0].lon;
 					console.log(location);
-					var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
+					var post = new Post(!checked, title, description, url, getOwner(), 0, value, location);
 					createPost(post);
 				})
 				.catch((err) => {
