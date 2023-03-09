@@ -3,7 +3,9 @@ import Navbar from '../Navbar';
 import pb from '../lib/pocketbase';
 
 async function getPosts() {
-	const record = await pb.collection('posts').getList();
+	const record = await pb.collection('posts').getList(1,100,{
+		expand: 'owner'
+	});
 	return record.items;
 }
 
