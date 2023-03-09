@@ -21,6 +21,10 @@ export default function Navbar() {
 				<li className="navbarE">
 					<Link href="/user">Bruker</Link>
 				</li>
+				{/* TODO: the /reports button on the navbar should only be visible when the active user is an admin. */}
+				<li className="navbarE">
+					<Link href="/reports">Rapporter</Link>
+				</li>
 				<li className="navbarE">
 					<Link href="/" onClick={logOut}>
 						Logg ut
