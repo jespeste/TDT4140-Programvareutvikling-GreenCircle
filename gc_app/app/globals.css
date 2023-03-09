@@ -31,3 +31,12 @@ button {
 .navbarE a:hover {
 	background-color: #111;
 }
+
+.dark {
+	background-color: black;
+	color: #fff;
+}
+.light {
+	background-color: #fff;
+	color: black;
+}

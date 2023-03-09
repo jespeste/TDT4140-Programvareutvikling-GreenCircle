@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { NativeSelect } from '@mantine/core';
 import './main.css';
 
+
 export default function Annonsepage() {
 	const [posts, setPostList] = useState([]); 
 	const [search, setSearch] = useState('');

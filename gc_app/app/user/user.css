@@ -42,7 +42,7 @@
 .name {
 	display: flex;
 	width: 300px;
-	color: black;
+	/* color: black; */
 	font-size: xx-large;
 	font-weight: bold;
 }
