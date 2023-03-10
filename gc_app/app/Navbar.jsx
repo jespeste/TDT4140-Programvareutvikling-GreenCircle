@@ -28,7 +28,7 @@ export default function Navbar() {
 						Logg ut
 					</Link>
 				</li>
-				<DarkMode></DarkMode>
+				{/* <DarkMode></DarkMode> */}
 				
 			</ul>
 		</nav>

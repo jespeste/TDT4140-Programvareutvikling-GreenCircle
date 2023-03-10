@@ -3,6 +3,7 @@
 import './homepage.css';
 import Navbar from '../Navbar';
 import pb from '../lib/pocketbase';
+import DarkMode from '../DarkMode';
 
 // export async function getServerSideProps(){
 //   const record = await pb.collection('icons');
@@ -55,6 +56,7 @@ export default function HomePage() {
 	return (
 		<div id="homeWrap">
 			<Navbar></Navbar>
+			<DarkMode></DarkMode>
 			<h1 id="homeHeader">Velkommen til greencircle</h1>
 			<p id="homeDescription">
 				Vi er en utleieplattform hvor du kan leie ut dine verktøy og redskaper, og i tillegg leie
