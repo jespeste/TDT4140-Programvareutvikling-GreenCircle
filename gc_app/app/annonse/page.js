@@ -10,9 +10,10 @@ export default function Annonsepage() {
 	const [posts, setPostList] = useState([]); 
 	const [search, setSearch] = useState('');
 	const [filter, setFilter] = useState('');
-	
+	const [category, setCategory] = useState('');
+
 	const categories = [
-		{ value: '', label: 'Ingen kategori' },
+		{ value: '', label: 'Alle verktøy' },
 		{ value: 'Småelektrisk', label: 'Småelektrisk' },
 		{ value: 'Håndverktøy', label: 'Håndverktøy' },
 		{ value: 'Spikerpistol og kompressor', label: 'Spikerpistol og kompressor' },
@@ -28,7 +29,7 @@ export default function Annonsepage() {
 			const data = await pb.collection('posts').getList(1,100,{ 
 				'$autoCancel': true,
 				expand: 'owner',
-				filter: `(title~"${search}" || description~"${search}") && category="${filter}"`
+				filter: `(title~"${search}" || description~"${search}") ${category}`
 			});
 			setPostList(data.items);
 		} catch (err){
@@ -37,8 +38,13 @@ export default function Annonsepage() {
 	}
 
 	useEffect(()=>{
+		if (filter !== ''){
+			setCategory(`&& category="${filter}"`);
+		} else {
+			setCategory('');
+		}
 		fetchPosts();
-	}, [search, filter])
+	}, [search, filter, category])
 	
 	return (
 		<div className="bigcontainer">
