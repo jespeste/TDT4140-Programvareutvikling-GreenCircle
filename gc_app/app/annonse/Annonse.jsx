@@ -13,8 +13,10 @@ export default function Annonse(props) {
 
 	return (
 		<div className="maincontainer">
-			{data.is_listing && <div>Ønskes lånt</div>}
-			{!data.is_listing && <div>Til leie</div>}
+			<div className="tag">
+				{data.is_listing && <div className="red">Ønskes lånt</div>}
+				{!data.is_listing && <div className="green">Til leie</div>}
+			</div>
 			{data.category != '' && <div>{data.category}</div>}
 			<div className="container">
 				<div className="photo-container">

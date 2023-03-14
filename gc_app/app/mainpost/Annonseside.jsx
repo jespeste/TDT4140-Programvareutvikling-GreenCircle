@@ -6,7 +6,6 @@ import Loader from '../Loader';
 import pb from 'app/lib/pocketbase';
 import ReportPopUp from '../report/ReportForm';
 
-
 export default function Annonseside(props) {
 	let data = props.data;
 	let owner = props.data.expand.owner;
@@ -85,8 +84,10 @@ export default function Annonseside(props) {
 				Tilbake
 			</button>
 			<div className="innerannonseside">
-				{data.is_listing && <div className=" w-28 h-28 text-green-600">Til leie</div>}
-				{!data.is_listing && <div className=" w-28 h-28 text-red-600">Ønskes lånt</div>}
+				<div className="tag">
+					{!data.is_listing && <div className="green">Til leie</div>}
+					{data.is_listing && <div className="red">Ønskes lånt</div>}
+				</div>
 				<div className="bilde">
 					<img src={data.image} alt="" className="morradi" />
 				</div>
@@ -112,7 +113,7 @@ export default function Annonseside(props) {
 								<p> {data.description}</p>
 							</div>
 							<div className="favourite">
-								<ReportPopUp reporter={owner} reportedUser={undefined} reportedPost={data}/>
+								<ReportPopUp reporter={owner} reportedUser={undefined} reportedPost={data} />
 							</div>
 						</div>
 					</div>
