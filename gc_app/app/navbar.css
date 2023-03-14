@@ -1,0 +1,26 @@
+.navbar {
+	list-style-type: none;
+	text-align: center;
+	overflow: hidden;
+	background-color: #333;
+	width: 100vw;
+	margin-top: -11px;
+	margin-left: -10px;
+}
+
+.navbarE {
+	float: left;
+}
+
+.navbarE a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+.navbarE a:hover {
+	background-color: #111;
+}

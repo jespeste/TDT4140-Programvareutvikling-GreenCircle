@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import pb from './lib/pocketbase';
+import './navbar.css';
 
 export default function Navbar() {
 	function logOut() {
