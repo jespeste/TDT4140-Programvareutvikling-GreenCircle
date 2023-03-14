@@ -46,6 +46,10 @@ export default function CreatePost(props) {
 	}));
 	const { classes } = useStyles();
 
+	const closePopup = () => {
+		props.setPopUp(false);
+	}
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if (address === '') {
@@ -164,7 +168,7 @@ export default function CreatePost(props) {
 					<Button type="submit" color="green" radius="lg">
 						Lag annonse
 					</Button>
-					<Button type='button' color="red" radius="md">
+					<Button type='button' color="red" radius="md" onClick={closePopup}>
 						Lukk
 					</Button>
 				</form>
