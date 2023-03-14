@@ -54,6 +54,11 @@ export default function Annonsepage() {
 		setPopUp(true);
 	}
 
+	const setPopUpClose = () => {
+		setPopUp(false);
+		console.log("updated");
+	}
+
 	return (
 		<div className="bigcontainer">
 			<Navbar></Navbar>
@@ -73,7 +78,7 @@ export default function Annonsepage() {
 			<div className='popup'>
 				<div className='outercontainer'>
 					<div className='reportcontainer'>
-						{popUp && <CreatePost setPopUp={setPopUp}/>}
+						{popUp && <CreatePost setPopUpClose={setPopUpClose}/>}
 					</div>
 				</div>
 			</div>

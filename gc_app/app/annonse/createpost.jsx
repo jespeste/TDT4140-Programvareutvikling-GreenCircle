@@ -57,7 +57,7 @@ export default function CreatePost(props) {
 			let location = '' + lat + ',' + long;
 			var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
 			createPost(post);
-			props.setPopUp(false);
+			props.setPopUpClose();
 		} else {
 			let urlSearch = `${APP.SEARCHURL}key=${APP.TOKEN}&q=${address}&format=json`;
 			fetch(urlSearch)
@@ -74,13 +74,13 @@ export default function CreatePost(props) {
 					console.log(location);
 					var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
 					createPost(post);
+					props.setPopUpClose();
 				})
 				.catch((err) => {
 					console.error(err);
 				});
 			console.log(lat + 'Yo wassup');
 			console.log(long);
-			props.setPopUp(false);
 			// let location = '' + lat + ',' + long;
 			// console.log(location);
 			// var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
