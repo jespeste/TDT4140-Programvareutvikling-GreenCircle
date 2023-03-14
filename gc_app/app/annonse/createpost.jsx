@@ -47,7 +47,7 @@ export default function CreatePost(props) {
 	const { classes } = useStyles();
 
 	const closePopup = () => {
-		props.setPopUp(false);
+		props.setPopUpClose();
 	}
 
 	const handleSubmit = (event) => {
@@ -57,7 +57,6 @@ export default function CreatePost(props) {
 			let location = '' + lat + ',' + long;
 			var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
 			createPost(post);
-			props.setPopUpClose();
 		} else {
 			let urlSearch = `${APP.SEARCHURL}key=${APP.TOKEN}&q=${address}&format=json`;
 			fetch(urlSearch)
@@ -74,7 +73,6 @@ export default function CreatePost(props) {
 					console.log(location);
 					var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
 					createPost(post);
-					props.setPopUpClose();
 				})
 				.catch((err) => {
 					console.error(err);
@@ -100,6 +98,7 @@ export default function CreatePost(props) {
 			user.posts.push(record.id);
 			const userRecord = await pb.collection('users').update(user.id, user);
 			alert('Post created.');
+			props.setPopUpClose();
 		} catch (e) {
 			alert(e);
 		}
