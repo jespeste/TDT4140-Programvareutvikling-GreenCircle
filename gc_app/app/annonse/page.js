@@ -4,13 +4,17 @@ import Annonsecontainer from './Annonsecontainer';
 import Navbar from '../Navbar';
 import { useState, useEffect } from 'react';
 import { NativeSelect } from '@mantine/core';
+import { Button } from '@mantine/core';
+
 import './main.css';
+import CreatePost from './createpost';
 
 export default function Annonsepage() {
 	const [posts, setPostList] = useState([]);
 	const [search, setSearch] = useState('');
 	const [filter, setFilter] = useState('');
 	const [category, setCategory] = useState('');
+	const [popUp, setPopUp] = useState(false);
 
 	const categories = [
 		{ value: '', label: 'Alle verktøy' },
@@ -44,19 +48,25 @@ export default function Annonsepage() {
 			setCategory('');
 		}
 		fetchPosts();
-	}, [search, filter, category]);
+	}, [search, filter, category, popUp])
+
+	const handlePopOpen = () => {
+		setPopUp(true);
+	}
+
+	const setPopUpClose = () => {
+		setPopUp(false);
+		console.log("updated");
+	}
 
 	return (
 		<div className="bigcontainer">
 			<Navbar></Navbar>
 			<div className="onerow">
-				<input
-					type="text"
-					value={search}
-					onChange={(event) => setSearch(event.target.value)}
-					className="searchbar"
-					placeholder="Søk etter motorsag eller skrujern!"
-				/>
+				<Button color="green" radius="xl" size="md" type='button' onClick={handlePopOpen}>
+					Ny Annonse
+				</Button>
+				<input type="text" value={search} onChange={(event) => setSearch(event.target.value)} className="searchbar" placeholder="Søk etter motorsag eller skrujern!" />
 				<NativeSelect
 					data={categories}
 					onChange={(event) => setFilter(event.currentTarget.value)}
@@ -65,7 +75,15 @@ export default function Annonsepage() {
 					size="47"
 				></NativeSelect>
 			</div>
-			<Annonsecontainer data={posts} />
+			<div className='popup'>
+				<div className='outercontainer'>
+					<div className='reportcontainer'>
+						{popUp && <CreatePost setPopUpClose={setPopUpClose}/>}
+					</div>
+				</div>
+			</div>
+			<Annonsecontainer data={posts}/>
+
 		</div>
 	);
 }

@@ -16,9 +16,6 @@ export default function Navbar() {
 					<Link href="/annonse">Annonser</Link>
 				</li>
 				<li className="navbarE">
-					<Link href="/createpost">Lag Annonse</Link>
-				</li>
-				<li className="navbarE">
 					<Link href="/user">Bruker</Link>
 				</li>
 				{/* TODO: the /reports button on the navbar should only be visible when the active user is an admin. */}

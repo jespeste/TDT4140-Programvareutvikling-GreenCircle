@@ -33,6 +33,29 @@
 .onerow {
 	margin-top: 50px;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 10px;
+}
+
+.popup {
+	position: fixed;
+	top: 10%;
+	left: 40%;
+	z-index: 9;
+}
+
+.outercontainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	grid-area: auto;
+}
+
+.reportcontainer {
+	margin: 5px;
+	display: grid;
+	grid-template-columns: auto auto auto;
+	place-items: center;
 	gap: 10px;
 }

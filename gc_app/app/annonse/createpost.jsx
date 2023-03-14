@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 import Post from './Post';
 
-export default function CreatePost() {
+export default function CreatePost(props) {
 	const [url, setUrl] = useState('');
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
@@ -44,8 +44,11 @@ export default function CreatePost() {
 			padding: 10
 		}
 	}));
-
 	const { classes } = useStyles();
+
+	const closePopup = () => {
+		props.setPopUpClose();
+	}
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -95,6 +98,7 @@ export default function CreatePost() {
 			user.posts.push(record.id);
 			const userRecord = await pb.collection('users').update(user.id, user);
 			alert('Post created.');
+			props.setPopUpClose();
 		} catch (e) {
 			alert(e);
 		}
@@ -162,6 +166,9 @@ export default function CreatePost() {
 					/>
 					<Button type="submit" color="green" radius="lg">
 						Lag annonse
+					</Button>
+					<Button type='button' color="red" radius="md" onClick={closePopup}>
+						Lukk
 					</Button>
 				</form>
 			</Container>
