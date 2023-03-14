@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 import Post from './Post';
 
-export default function CreatePost() {
+export default function CreatePost(props) {
 	const [url, setUrl] = useState('');
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
@@ -44,7 +44,6 @@ export default function CreatePost() {
 			padding: 10
 		}
 	}));
-
 	const { classes } = useStyles();
 
 	const handleSubmit = (event) => {
@@ -54,6 +53,7 @@ export default function CreatePost() {
 			let location = '' + lat + ',' + long;
 			var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
 			createPost(post);
+			props.setPopUp(false);
 		} else {
 			let urlSearch = `${APP.SEARCHURL}key=${APP.TOKEN}&q=${address}&format=json`;
 			fetch(urlSearch)
@@ -76,6 +76,7 @@ export default function CreatePost() {
 				});
 			console.log(lat + 'Yo wassup');
 			console.log(long);
+			props.setPopUp(false);
 			// let location = '' + lat + ',' + long;
 			// console.log(location);
 			// var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
@@ -162,6 +163,9 @@ export default function CreatePost() {
 					/>
 					<Button type="submit" color="green" radius="lg">
 						Lag annonse
+					</Button>
+					<Button type='button' color="red" radius="md">
+						Lukk
 					</Button>
 				</form>
 			</Container>
