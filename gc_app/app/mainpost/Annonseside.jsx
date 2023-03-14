@@ -85,8 +85,8 @@ export default function Annonseside(props) {
 				Tilbake
 			</button>
 			<div className="innerannonseside">
-				{data.is_listing && <div className=" w-28 h-28 text-green-600">Til leie</div>}
-				{!data.is_listing && <div className=" w-28 h-28 text-red-600">Ønskes lånt</div>}
+				{!data.is_listing && <div className=" w-28 h-28 text-green-600">Til leie</div>}
+				{data.is_listing && <div className=" w-28 h-28 text-red-600">Ønskes lånt</div>}
 				<div className="bilde">
 					<img src={data.image} alt="" className="morradi" />
 				</div>
