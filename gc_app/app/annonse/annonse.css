@@ -103,3 +103,21 @@ button:hover {
 	text-decoration: none;
 	color: white;
 }
+.tag {
+	position: absolute;
+	font-family: sans-serif;
+	font-weight: 600;
+	margin-top: 4px;
+	text-shadow: 1px 1px 1px #0000007e;
+}
+
+.red {
+	font-size: 25px;
+	margin-left: 195px;
+	color: rgb(207, 33, 33);
+}
+.green {
+	font-size: 28px;
+	margin-left: 250px;
+	color: rgb(20, 157, 20);
+}
