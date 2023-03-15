@@ -116,22 +116,22 @@ export default function Annonseside(props) {
 							</div>
 							<div className="favourite">
 								<ReportPopUp reporter={owner} reportedUser={undefined} reportedPost={data} />
-                                <button type="button" className="mail">
-										<Link href={`/user/${owner.id}`} className="link">
-											Profil
-										</Link>
-								</button>
-                            </div>
-                            
+							</div>
 						</div>
 					</div>
 					<div className="annonsesideprofilinfo">
 						<div className="profile">
 							<div className="annonsesideprofileinfo2">
 								<div className="annonsesideprofilepicture">
-									<img className="annonsesideavatar" src={owner.avatar}></img>
+									<Link href={`/user/${owner.id}`} className="link">
+										<img className="annonsesideavatar" src={owner.avatar}></img>
+									</Link>
 								</div>
-								<div className="annonsesidename">{owner.firstName + ' ' + owner.lastName}</div>
+								<div className="annonsesidename">
+									<Link href={`/user/${owner.id}`} className="link">
+										{owner.firstName + ' ' + owner.lastName}
+									</Link>
+								</div>
 							</div>
 							<div className="annonsesideprofilecontact">
 								<button className="annonsesidetlf" onClick={() => (window.location = phonestring)}>
