@@ -5,7 +5,7 @@ import { useState, useRef } from 'react';
 import Loader from '../Loader';
 import pb from 'app/lib/pocketbase';
 import ReportPopUp from '../report/ReportForm';
-import { useSetState } from '@mantine/hooks';
+
 
 export default function Annonseside(props) {
 	let data = props.data;
