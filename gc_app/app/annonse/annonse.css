@@ -1,34 +1,34 @@
-.maincontainer {
+.annonsemaincontainer {
 	color: black;
 	background-color: rgb(243, 253, 255);
 	width: 350px;
-	max-height: 55vh;
 	border-radius: 15px;
 	min-width: 250px;
-	min-height: 420px;
+	min-height: 450px;
+	max-height: 450px;
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
-.container {
+.Annonsecontainer {
 	padding: 10px;
 	width: 330px;
 }
-.photo-container {
+.annonsephoto-container {
 	border-radius: 15px;
 	width: 330px;
-	max-height: 30vh;
+	height: 160px;
 	background-color: rgb(5, 161, 15);
 	overflow: hidden;
 	min-height: 225px;
 }
-.mainimage {
+.annonsemainimage {
 	width: 100%;
 	object-fit: cover;
 	border-radius: 15px;
 }
-.telephone {
+.annonsetelephone {
 	border-radius: 50%;
 }
-.phoneicon {
+.annonsephoneicon {
 	width: 100%;
 	height: 95%;
 	padding-top: 5px;
@@ -36,40 +36,42 @@
 	filter: invert(1);
 }
 
-.text-container {
+.annonsetext-container {
 	margin-top: -5px;
 	font-family: sans-serif;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	max-height: 150px;
+	min-height: 150px;
 }
-.title {
+.annonsetitle {
 	margin-top: -15px;
 }
-.person {
+.annonseperson {
 	margin-top: -30px;
 	margin-bottom: 3px;
 }
-.description {
+.annonsedescription {
 	margin-top: -30px;
 	max-height: 55px;
 	overflow-y: hidden;
 	min-height: 55px;
 }
-.contact {
+.annonsecontact {
 	display: flex;
 	justify-content: space-between;
 }
-.telephone {
+.annonsetelephone {
 	width: 35px;
 	height: 35px;
 	margin-right: 10px;
 }
-.phoneicon {
+.annonsephoneicon {
 	margin-top: -3px;
 	height: 100%;
 }
-.info {
+.annonseinfo {
 	min-height: 100px;
 	text-align: center;
 	justify-content: center;
@@ -78,7 +80,9 @@
 	justify-content: space-between;
 }
 
-button {
+.messagebutton,
+.seemorebutton {
+	color: white;
 	background-color: black;
 	border-radius: 15px;
 	border: none;
@@ -89,7 +93,22 @@ button {
 	padding-right: 10px;
 	transition: 0.5s;
 }
-button:hover {
+.telephone {
+	background-color: black;
+	border-radius: 15px;
+	border: none;
+	width: 35px;
+	margin-right: 7px;
+	height: 35px;
+	text-align: center;
+	justify-content: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	transition: 0.5s;
+}
+.messagebutton:hover,
+.seemorebutton:hover,
+.telephone:hover {
 	background-color: rgb(5, 161, 15);
 	cursor: pointer;
 }
@@ -99,24 +118,23 @@ button:hover {
 	height: 35px;
 }
 
-.link {
+.annonselink {
 	text-decoration: none;
 	color: white;
 }
-.tag {
+.annonsetag {
 	position: absolute;
 	font-family: sans-serif;
 	font-weight: 600;
 	margin-top: 4px;
-	text-shadow: 1px 1px 1px #0000007e;
 }
 
-.red {
+.annonsered {
 	font-size: 25px;
 	margin-left: 195px;
 	color: rgb(207, 33, 33);
 }
-.green {
+.annonsegreen {
 	font-size: 28px;
 	margin-left: 250px;
 	color: rgb(20, 157, 20);

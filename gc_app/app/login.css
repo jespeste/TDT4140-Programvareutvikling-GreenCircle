@@ -1,4 +1,4 @@
-.root {
+.loginroot {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -6,20 +6,20 @@
 	font-family: sans-serif;
 }
 
-.container {
+.logincontainer {
 	border-radius: 10px;
 	background-color: rgba(129, 196, 102, 0.778);
 	height: 500px;
 	width: 800px;
 }
-.title {
+.logintitle {
 	margin-bottom: 80px;
 	font-size: 50px;
 	margin-left: 20px;
 	padding-top: 20px;
 }
 
-.innercontainer {
+.logininnercontainer {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -29,7 +29,7 @@
 	margin-bottom: 90px;
 }
 
-.username {
+.loginusername {
 	width: 450px;
 	display: grid;
 	grid-template-columns: 200px 250px;
@@ -37,7 +37,7 @@
 	margin-bottom: 20px;
 }
 
-.password {
+.loginpassword {
 	width: 450px;
 	display: grid;
 	grid-template-columns: 200px 250px;
@@ -86,7 +86,7 @@
 .registerbutton:hover {
 	cursor: pointer;
 }
-.register {
+.loginregister {
 	font-weight: bold;
 	color: black;
 	font-size: 20px;

@@ -1,0 +1,16 @@
+.reportbutton {
+	color: white;
+	background-color: black;
+	border-radius: 15px;
+	border: none;
+	height: 35px;
+	text-align: center;
+	justify-content: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	transition: 0.5s;
+}
+.reportbutton:hover {
+	background-color: rgb(5, 161, 15);
+	cursor: pointer;
+}
