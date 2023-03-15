@@ -15,7 +15,10 @@ export default function Annonsepage() {
 	const [filter, setFilter] = useState('');
 	const [category, setCategory] = useState('');
 	const [popUp, setPopUp] = useState(false);
+	const [isListingFilter, setListingFilter] = useState('');
+	const [isListing, setListing] = useState('');
 
+	// For ease of implementation, these are static
 	const categories = [
 		{ value: '', label: 'Alle verktøy' },
 		{ value: 'Småelektrisk', label: 'Småelektrisk' },
@@ -27,13 +30,19 @@ export default function Annonsepage() {
 		{ value: 'Maling', label: 'Maling' },
 		{ value: 'Verktøyoppbevaring', label: 'Verktøyoppbevaring' }
 	];
+	const isListingTable = [
+		{value: '', label: 'Alle'},
+		{value: true, label: 'Ønskes Lånt'},
+		{value: false, label: 'Til Leie'}
+	]
 
+	// Fetch all posts from database with the given search parameters / filters
 	const fetchPosts = async () => {
 		try {
 			const data = await pb.collection('posts').getList(1, 100, {
 				$autoCancel: true,
 				expand: 'owner',
-				filter: `(title~"${search}" || description~"${search}") ${category}`
+				filter: `(title~"${search}" || description~"${search}") ${category}${isListingFilter}`
 			});
 			setPostList(data.items);
 		} catch (err) {
@@ -41,14 +50,20 @@ export default function Annonsepage() {
 		}
 	};
 
+	// Update the post overview when any filters are applied or if a new post is created
 	useEffect(() => {
 		if (filter !== '') {
 			setCategory(`&& category="${filter}"`);
 		} else {
 			setCategory('');
 		}
+		if (isListing !== '') {
+			setListingFilter(`&& is_listing=${isListing}`);
+		} else {
+			setListingFilter('');
+		}
 		fetchPosts();
-	}, [search, filter, category, popUp])
+	}, [search, filter, category, popUp, isListing, isListingFilter])
 
 	const handlePopOpen = () => {
 		setPopUp(true);
@@ -56,7 +71,6 @@ export default function Annonsepage() {
 
 	const setPopUpClose = () => {
 		setPopUp(false);
-		console.log("updated");
 	}
 
 	return (
@@ -71,6 +85,13 @@ export default function Annonsepage() {
 					data={categories}
 					onChange={(event) => setFilter(event.currentTarget.value)}
 					value={filter}
+					radius="md"
+					size="47"
+				></NativeSelect>
+				<NativeSelect
+					data={isListingTable}
+					onChange={(event) => setListing(event.currentTarget.value)}
+					value={isListing}
 					radius="md"
 					size="47"
 				></NativeSelect>
