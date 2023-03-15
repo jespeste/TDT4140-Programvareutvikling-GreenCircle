@@ -33,10 +33,10 @@ button {
 }
 
 .dark {
-	background-color: black;
+	background-color: rgb(0, 0, 0);
 	color: #fff;
 }
 .light {
 	background-color: #fff;
-	color: black;
+	color: rgb(47, 62, 52);
 }
