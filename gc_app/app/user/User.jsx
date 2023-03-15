@@ -39,7 +39,9 @@ export default function User(props) {
 				<div className="favourite">
 					{/* TODO: the reporter should be the active user, whereas the reportedUser should be the user displayed on the page.
 					Currently the both reporter and reportedUser is always set to the active user. */}
-					<ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
+					{!(user.id === activeUser.id) && 
+                        <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
+                    }
 				</div>
 			</div>
 			{(user.id === activeUser.id) &&
