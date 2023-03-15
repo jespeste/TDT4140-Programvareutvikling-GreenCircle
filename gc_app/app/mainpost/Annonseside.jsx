@@ -5,12 +5,14 @@ import { useState, useRef } from 'react';
 import Loader from '../Loader';
 import pb from 'app/lib/pocketbase';
 import ReportPopUp from '../report/ReportForm';
+import { useSetState } from '@mantine/hooks';
 
 export default function Annonseside(props) {
 	let data = props.data;
 	let owner = props.data.expand.owner;
 	let mailstring = 'mailto:' + owner.email;
 	let phonestring = 'tel:' + owner.telephone;
+	const [curFavs, setCount] = useState(data.numfavourites);
 	const [location, setLocation] = useState('');
 	const [lat, setLat] = useState(null);
 	const [long, setLong] = useState(null);
@@ -68,10 +70,25 @@ export default function Annonseside(props) {
 		iframeRef.current.style = { visibility: 'visible' };
 		setLoaded(true);
 	}
+
+	function getUser(){
+		return pb.authStore.model;
+	}
+
 	async function addToFavourites() {
-		let user = pb.authStore.model;
+		const id = data.id;
+		const user = getUser();
+		if(user.favourites.includes(data.id)){
+			return ;
+		}
+		
 		user.favourites.push(props.data.id);
 		const record = await pb.collection('users').update(user.id, user);
+		setCount(curFavs +1 );
+		data.numfavourites = data.numfavourites +1;
+		const rec  = await pb.collection('posts').update(data.id, {numfavourites: data.numfavourites});
+
+
 	}
 
 	function goBack() {
