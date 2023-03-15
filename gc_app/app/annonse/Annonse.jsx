@@ -12,35 +12,35 @@ export default function Annonse(props) {
 	let messagestring = 'sms:' + owner.telephone;
 
 	return (
-		<div className="maincontainer">
-			<div className="tag">
-				{data.is_listing && <div className="red">Ønskes lånt</div>}
-				{!data.is_listing && <div className="green">Til leie</div>}
+		<div className="annonsemaincontainer">
+			<div className="annonsetag">
+				{data.is_listing && <div className="annonsered">Ønskes lånt</div>}
+				{!data.is_listing && <div className="annonsegreen">Til leie</div>}
 			</div>
 			{data.category != '' && <div>{data.category}</div>}
-			<div className="container">
-				<div className="photo-container">
-					<img className="mainimage" src={data.image} alt="" />
+			<div className="Annonsecontainer">
+				<div className="annonsephoto-container">
+					<img className="annonsemainimage" src={data.image} alt="" />
 				</div>
-				<div className="text-container">
-					<div className="title">
+				<div className="annonsetext-container">
+					<div className="annonsetitle">
 						<h1>{data.title}</h1>
 					</div>
-					<div className="person">
+					<div className="annonseperson">
 						<h4>{owner.firstName + ' ' + owner.lastName}</h4>
 					</div>
-					<div className="description">
+					<div className="annonsedescription">
 						<p>{data.description}</p>
 					</div>
 				</div>
-				<div className="info">
-					<div className="contact">
+				<div className="annonseinfo">
+					<div className="annonsecontact">
 						<button
 							type="button"
 							className="telephone"
 							onClick={() => (window.location = phonestring)}
 						>
-							<img className="phoneicon" src={PHONEICON} />
+							<img className="annonsephoneicon" src={PHONEICON} />
 						</button>
 						<button
 							type="button"
@@ -51,7 +51,7 @@ export default function Annonse(props) {
 						</button>
 					</div>
 					<button type="button" className="seemorebutton">
-						<Link href={`/mainpost/${data.id}`} className="link">
+						<Link href={`/mainpost/${data.id}`} className="annonselink">
 							Se mer
 						</Link>
 					</button>

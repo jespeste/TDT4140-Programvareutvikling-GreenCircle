@@ -29,18 +29,18 @@ export default function Login() {
 		router.push('/registration');
 	}
 	return (
-		<div className="root">
+		<div className="loginroot">
 			{isLoading && <Loader></Loader>}
 			{!isLoading && (
 				<form onSubmit={handleSubmit(login)}>
-					<div className="container">
-						<h1 className="title">Logg inn</h1>
-						<div className="innercontainer">
-							<div className="username">
+					<div className="logincontainer">
+						<h1 className="logintitle">Logg inn</h1>
+						<div className="logininnercontainer">
+							<div className="loginusername">
 								E-post:
 								<input type="text" placeholder="email" {...register('email')} />
 							</div>
-							<div className="password">
+							<div className="loginpassword">
 								Passord:
 								<input type="password" placeholder="password" {...register('password')} />
 							</div>
@@ -50,8 +50,8 @@ export default function Login() {
 								</button>
 							</div>
 						</div>
-						<div className="innercontainer">
-							<div className="register">
+						<div className="logininnercontainer">
+							<div className="loginregister">
 								Ikke bruker?
 								<button className="registerbutton" type="button" onClick={reggie}>
 									Lag profil
