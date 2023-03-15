@@ -1,7 +1,6 @@
 .searchbar {
-	width: 60vw;
+	width: 900px;
 	height: 40px;
-	margin-left: 100px;
 	margin-bottom: 50px;
 	border: 2px solid black;
 	border-radius: 5px;
@@ -31,7 +30,7 @@
 }
 
 .onerow {
-	margin-top: 50px;
+	margin-top: 20px;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	gap: 10px;
@@ -39,8 +38,10 @@
 
 .popup {
 	position: fixed;
-	top: 10%;
-	left: 40%;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	align-items: center;
 	z-index: 9;
 }
 
@@ -58,4 +59,28 @@
 	grid-template-columns: auto auto auto;
 	place-items: center;
 	gap: 10px;
+}
+
+.button {
+	color: black;
+	font-weight: bold;
+	background-color: #b5d43b;
+	border-radius: 6px;
+	border-width: 0;
+	box-sizing: border-box;
+	cursor: pointer;
+	font-size: 100%;
+	height: 45px;
+	outline: none;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	text-transform: none;
+	transform: translateZ(0);
+	transition: all 0.2s, box-shadow 0.08s ease-in;
+	touch-action: manipulation;
+}
+
+.button:hover {
+	background-color: #d9ef82;
 }

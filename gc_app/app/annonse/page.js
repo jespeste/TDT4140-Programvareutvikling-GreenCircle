@@ -31,10 +31,10 @@ export default function Annonsepage() {
 		{ value: 'Verktøyoppbevaring', label: 'Verktøyoppbevaring' }
 	];
 	const isListingTable = [
-		{value: '', label: 'Alle'},
-		{value: true, label: 'Ønskes Lånt'},
-		{value: false, label: 'Til Leie'}
-	]
+		{ value: '', label: 'Alle' },
+		{ value: true, label: 'Ønskes Lånt' },
+		{ value: false, label: 'Til Leie' }
+	];
 
 	// Fetch all posts from database with the given search parameters / filters
 	const fetchPosts = async () => {
@@ -63,24 +63,30 @@ export default function Annonsepage() {
 			setListingFilter('');
 		}
 		fetchPosts();
-	}, [search, filter, category, popUp, isListing, isListingFilter])
+	}, [search, filter, category, popUp, isListing, isListingFilter]);
 
 	const handlePopOpen = () => {
 		setPopUp(true);
-	}
+	};
 
 	const setPopUpClose = () => {
 		setPopUp(false);
-	}
+	};
 
 	return (
 		<div className="bigcontainer">
 			<Navbar></Navbar>
 			<div className="onerow">
-				<Button color="green" radius="xl" size="md" type='button' onClick={handlePopOpen}>
+				<button className="button" type="button" onClick={handlePopOpen}>
 					Ny Annonse
-				</Button>
-				<input type="text" value={search} onChange={(event) => setSearch(event.target.value)} className="searchbar" placeholder="Søk etter motorsag eller skrujern!" />
+				</button>
+				<input
+					type="text"
+					value={search}
+					onChange={(event) => setSearch(event.target.value)}
+					className="searchbar"
+					placeholder="Søk etter motorsag eller skrujern!"
+				/>
 				<NativeSelect
 					data={categories}
 					onChange={(event) => setFilter(event.currentTarget.value)}
@@ -96,15 +102,14 @@ export default function Annonsepage() {
 					size="47"
 				></NativeSelect>
 			</div>
-			<div className='popup'>
-				<div className='outercontainer'>
-					<div className='reportcontainer'>
-						{popUp && <CreatePost setPopUpClose={setPopUpClose}/>}
+			<div className="popup">
+				<div className="outercontainer">
+					<div className="reportcontainer">
+						{popUp && <CreatePost setPopUpClose={setPopUpClose} />}
 					</div>
 				</div>
 			</div>
-			<Annonsecontainer data={posts}/>
-
+			<Annonsecontainer data={posts} />
 		</div>
 	);
 }

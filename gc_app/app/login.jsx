@@ -34,16 +34,15 @@ export default function Login() {
 			{!isLoading && (
 				<form onSubmit={handleSubmit(login)}>
 					<div className="logincontainer">
-						<h1 className="logintitle">Logg inn</h1>
+						<h1 className="logintitle">Greencircle</h1>
 						<div className="logininnercontainer">
-							<div className="loginusername">
-								E-post:
-								<input type="text" placeholder="email" {...register('email')} />
-							</div>
-							<div className="loginpassword">
-								Passord:
-								<input type="password" placeholder="password" {...register('password')} />
-							</div>
+							<input className="email" type="text" placeholder="Epost" {...register('email')} />
+							<input
+								className="password"
+								type="password"
+								placeholder="Passord"
+								{...register('password')}
+							/>
 							<div>
 								<button className="loginbutton" type="submit" disabled={isLoading}>
 									Logg inn

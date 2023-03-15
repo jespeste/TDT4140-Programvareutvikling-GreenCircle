@@ -77,11 +77,12 @@ export default function Annonseside(props) {
 	function goBack() {
 		window.history.back();
 	}
+	console.log(data.category);
 
 	return (
 		<div className="annonseside">
 			<button className="goBack" onClick={goBack}>
-				Tilbake
+				→
 			</button>
 			<div className="innerannonseside">
 				<div className="tag">
@@ -92,7 +93,7 @@ export default function Annonseside(props) {
 					<img src={data.image} alt="" className="morradi" />
 				</div>
 				<div className="divider">
-					<div className="annonseinfo">
+					<div className="annonsesideinfo">
 						<div className="favourite">
 							<button className="favouriteButton" onClick={addToFavourites}>
 								&#9829; Legg til favoritt
@@ -100,7 +101,7 @@ export default function Annonseside(props) {
 							<p>{data.numfavourites} har lagt til som favoritt</p>
 						</div>
 						<div>
-							{data.category != '' && <div>Kategori: {data.category}</div>}
+							{data.category != undefined && <div>Kategori: {data.category}</div>}
 							<div className="annonseTittel">
 								<h1>{data.title}</h1>
 							</div>
@@ -117,19 +118,22 @@ export default function Annonseside(props) {
 							</div>
 						</div>
 					</div>
-					<div className="profilinfo">
+					<div className="annonsesideprofilinfo">
 						<div className="profile">
-							<div className="profileinfo2">
-								<div className="profilepicture">
-									<img className="avatar" src={owner.avatar}></img>
+							<div className="annonsesideprofileinfo2">
+								<div className="annonsesideprofilepicture">
+									<img className="annonsesideavatar" src={owner.avatar}></img>
 								</div>
-								<div className="name">{owner.firstName + ' ' + owner.lastName}</div>
+								<div className="annonsesidename">{owner.firstName + ' ' + owner.lastName}</div>
 							</div>
-							<div className="profilecontact">
-								<button className="tlf" onClick={() => (window.location = phonestring)}>
+							<div className="annonsesideprofilecontact">
+								<button className="annonsesidetlf" onClick={() => (window.location = phonestring)}>
 									Telefon
 								</button>
-								<button className="mail" onClick={() => (window.location.href = mailstring)}>
+								<button
+									className="annonsesidemail"
+									onClick={() => (window.location.href = mailstring)}
+								>
 									E-post
 								</button>
 							</div>

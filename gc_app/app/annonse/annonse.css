@@ -1,8 +1,8 @@
 .annonsemaincontainer {
-	color: black;
-	background-color: rgb(243, 253, 255);
-	width: 350px;
-	border-radius: 15px;
+	color: #434738;
+	background-color: #f7f7f7;
+	width: 320px;
+	border-radius: 6px;
 	min-width: 250px;
 	min-height: 450px;
 	max-height: 450px;
@@ -10,13 +10,12 @@
 }
 .Annonsecontainer {
 	padding: 10px;
-	width: 330px;
+	width: 300px;
 }
 .annonsephoto-container {
 	border-radius: 15px;
-	width: 330px;
+	width: 300px;
 	height: 160px;
-	background-color: rgb(5, 161, 15);
 	overflow: hidden;
 	min-height: 225px;
 }
@@ -33,7 +32,6 @@
 	height: 95%;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	filter: invert(1);
 }
 
 .annonsetext-container {
@@ -82,10 +80,12 @@
 
 .messagebutton,
 .seemorebutton {
-	color: white;
-	background-color: black;
-	border-radius: 15px;
+	color: black;
+	background-color: #b5d43b;
+	border-radius: 6px;
 	border: none;
+	font-size: 15px;
+	font-weight: bold;
 	height: 35px;
 	text-align: center;
 	justify-content: center;
@@ -94,7 +94,7 @@
 	transition: 0.5s;
 }
 .telephone {
-	background-color: black;
+	background-color: #b5d43b;
 	border-radius: 15px;
 	border: none;
 	width: 35px;
@@ -109,7 +109,7 @@
 .messagebutton:hover,
 .seemorebutton:hover,
 .telephone:hover {
-	background-color: rgb(5, 161, 15);
+	background-color: #d9ef82;
 	cursor: pointer;
 }
 
@@ -120,7 +120,7 @@
 
 .annonselink {
 	text-decoration: none;
-	color: white;
+	color: black;
 }
 .annonsetag {
 	position: absolute;
@@ -131,11 +131,11 @@
 
 .annonsered {
 	font-size: 25px;
-	margin-left: 195px;
+	margin-left: 175px;
 	color: rgb(207, 33, 33);
 }
 .annonsegreen {
 	font-size: 28px;
-	margin-left: 250px;
-	color: rgb(20, 157, 20);
+	margin-left: 230px;
+	color: #b5d43b;
 }
