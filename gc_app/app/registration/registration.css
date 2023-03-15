@@ -1,4 +1,5 @@
 .root {
+	color: #434738;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -7,34 +8,24 @@
 }
 .maincontainer {
 	border-radius: 10px;
-	background-color: rgba(129, 196, 102, 0.778);
-	height: 500px;
-	width: 800px;
-}
-.regcontainer {
-	width: 450px;
-	margin-left: 60px;
-	margin-bottom: -10px;
-	font-weight: bold;
+	margin-top: -80px;
+	text-align: center;
 }
 h3 {
-	margin-top: 10px;
-	font-weight: bold;
-	font-size: 40px;
-	margin-left: 20px;
+	text-align: center;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	font-size: 50px;
 }
 
-.inputfield {
-	align-items: center;
-	height: 40px;
-	width: 450px;
-	width: 100%;
-	display: grid;
-	gap: 10px;
-	grid-template-columns: 200px 250px;
-	justify-content: space-between;
-	margin-bottom: 5px;
-	font-size: 20px;
+input {
+	background-color: #f7f7f7;
+	width: 400px;
+	height: 50px;
+	font-size: 35px;
+	border-radius: 5px;
+	border: none;
+	margin-top: 12px;
 }
 .centereditems {
 	margin-top: -25px;
@@ -44,21 +35,20 @@ h3 {
 	flex-direction: column;
 }
 .submitbutton {
+	color: black;
 	font-weight: bold;
-	background-color: #15b12f;
+	background-color: #b5d43b;
 	border-radius: 6px;
 	border-width: 0;
 	box-sizing: border-box;
-	color: black;
 	cursor: pointer;
-	width: 200px;
-	font-size: 100%;
-	height: 55px;
+	width: 400px;
+	font-size: 30px;
+	height: 50px;
 	line-height: 1.15;
-	margin: 12px 0 0;
+	margin-top: 12px;
 	outline: none;
 	overflow: hidden;
-	padding: 0 25px;
 	position: relative;
 	text-align: center;
 	text-transform: none;
@@ -71,24 +61,24 @@ h3 {
 }
 
 .submitbutton:hover {
-	background-color: #20bf53;
+	background-color: #d9ef82;
 }
 
 .logginbutton {
 	background-color: transparent;
 	text-decoration: underline;
 	border: none;
-	color: black;
+	color: #434738;
 	font-weight: 600;
-	font-size: 15px;
+	font-size: 20px;
 }
 .logginbutton:hover {
 	cursor: pointer;
 }
 .login {
+	margin-top: 20px;
 	font-weight: 600;
-	font-size: 15px;
-	margin-top: 5px;
+	font-size: 20px;
 }
 
 .centered {

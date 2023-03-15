@@ -8,6 +8,7 @@ import { Checkbox } from '@mantine/core';
 import { NativeSelect } from '@mantine/core';
 import { createStyles } from '@mantine/core';
 import { useState } from 'react';
+import './createpost.css';
 
 import Post from './Post';
 
@@ -48,7 +49,7 @@ export default function CreatePost(props) {
 
 	const closePopup = () => {
 		props.setPopUpClose();
-	}
+	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -79,10 +80,6 @@ export default function CreatePost(props) {
 				});
 			console.log(lat + 'Yo wassup');
 			console.log(long);
-			// let location = '' + lat + ',' + long;
-			// console.log(location);
-			// var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
-			// createPost(post);
 		}
 	};
 
@@ -121,55 +118,59 @@ export default function CreatePost(props) {
 		}
 	};
 	return (
-		<div className="root">
-			<Container size={200} px={10} className={classes.container}>
+		<div className="createpostroot">
+			<Container className="createpostcontainer">
+				<h1 className="h1">Ny annonse</h1>
 				<form onSubmit={handleSubmit}>
 					{/* <FileInput label="Last opp Bilde:" placeholder="Bilde" /> */}
-
 					<TextInput
+						className="textinput"
 						value={url}
 						onChange={(event) => setUrl(event.target.value)}
 						placeholder="Bildeadresse (url)"
-						label="Url"
 						withAsterisk
 					/>
 					<TextInput
+						className="textinput"
 						value={title}
 						onChange={(event) => setTitle(event.target.value)}
 						placeholder="Tittel"
-						label="Tittel"
 						withAsterisk
 					/>
 					<TextInput
+						className="textinput"
 						value={address}
 						onChange={(event) => setAddress(event.target.value)}
-						label="Adresse"
+						placeholder="Adresse"
 					/>
 					<Textarea
+						className="textinput"
 						value={description}
 						onChange={(event) => setDescription(event.target.value)}
-						placeholder=""
-						label="Beskrivelse"
+						placeholder="Beskrivelse"
 						autosize
 						minRows={2}
 					/>
 					<NativeSelect
-						label="Velg kategori"
+						className="textinput"
 						data={data}
 						onChange={(event) => setValue(event.currentTarget.value)}
 						value={value}
 					></NativeSelect>
 					<Checkbox
+						className="textinput"
 						label="Ønskes lånt"
 						checked={checked}
 						onChange={(event) => setChecked(event.currentTarget.checked)}
 					/>
-					<Button type="submit" color="green" radius="lg">
-						Lag annonse
-					</Button>
-					<Button type='button' color="red" radius="md" onClick={closePopup}>
-						Lukk
-					</Button>
+					<div className="buttons">
+						<Button type="submit" color="green" radius="lg">
+							Lag annonse
+						</Button>
+						<Button type="button" color="red" radius="md" onClick={closePopup}>
+							Lukk
+						</Button>
+					</div>
 				</form>
 			</Container>
 		</div>

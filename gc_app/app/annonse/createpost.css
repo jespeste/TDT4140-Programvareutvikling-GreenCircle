@@ -1,0 +1,32 @@
+.createpostcontainer {
+	margin-top: 10px;
+	align-items: center;
+	text-align: center;
+	font-family: sans-serif;
+}
+
+.h1 {
+	margin-left: -30px;
+}
+
+.createpostroot {
+	margin-top: 150px;
+	width: 500px;
+	height: 440px;
+	background-color: #b5d43b;
+	border-radius: 6px;
+}
+
+.textinput {
+	width: 400px;
+	margin: auto;
+	margin-top: 12px;
+}
+
+.buttons {
+	margin: auto;
+	margin-top: 12px;
+	width: 400px;
+	display: grid;
+	grid-template-columns: auto auto;
+}
