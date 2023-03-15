@@ -7,12 +7,13 @@ import { useState } from 'react';
 import { Switch } from '@mantine/core';
 import ReportPopUp from '../report/ReportForm';
 
-function getUser() {
+function getActiveUser() {
 	return pb.authStore.model;
 }
 
 export default function User(props) {
-	const user = getUser();
+	const user = props.user;
+    const activeUser = getActiveUser();
 	let posts = props.posts.filter((post) => post.owner === user.id);
 	let favourites = props.posts.filter((post) => user.favourites.includes(post.id));
 	const [show, setShow] = useState(false);
@@ -38,20 +39,29 @@ export default function User(props) {
 				<div className="favourite">
 					{/* TODO: the reporter should be the active user, whereas the reportedUser should be the user displayed on the page.
 					Currently the both reporter and reportedUser is always set to the active user. */}
-					<ReportPopUp reporter={getUser()} reportedUser={getUser()} reportedPost={undefined} />
+					{!(user.id === activeUser.id) && 
+                        <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
+                    }
 				</div>
 			</div>
-			<div className="posts">
-				<Switch
-					onChange={changeView}
-					color="green"
-					onLabel={'Favoritter'}
-					offLabel={'Dine annonser'}
-					size="xl"
-				></Switch>
-				{!show && <Annonsecontainer data={posts}></Annonsecontainer>}
-				{show && <Annonsecontainer data={favourites}></Annonsecontainer>}
-			</div>
+			{(user.id === activeUser.id) &&
+                <div className="posts">
+                    <Switch
+                        onChange={changeView}
+                        color="green"
+                        onLabel={'Favoritter'}
+                        offLabel={'Dine annonser'}
+                        size="xl"
+                    ></Switch>
+                    {!show && <Annonsecontainer data={posts}></Annonsecontainer>}
+                    {show && <Annonsecontainer data={favourites}></Annonsecontainer>}
+			    </div>
+            }
+			{!(user.id === activeUser.id) &&
+                <div className="posts">
+                    <Annonsecontainer data={posts}></Annonsecontainer>
+			    </div>
+            }
 		</div>
 	);
 }
