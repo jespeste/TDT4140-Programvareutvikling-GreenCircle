@@ -5,6 +5,7 @@ import { useState, useRef } from 'react';
 import Loader from '../Loader';
 import pb from 'app/lib/pocketbase';
 import ReportPopUp from '../report/ReportForm';
+import Link from 'next/link';
 
 export default function Annonseside(props) {
 	let data = props.data;
@@ -114,7 +115,13 @@ export default function Annonseside(props) {
 							</div>
 							<div className="favourite">
 								<ReportPopUp reporter={owner} reportedUser={undefined} reportedPost={data} />
-							</div>
+                                <button type="button" className="mail">
+										<Link href={`/user/${owner.id}`} className="link">
+											Profil
+										</Link>
+								</button>
+                            </div>
+                            
 						</div>
 					</div>
 					<div className="profilinfo">
