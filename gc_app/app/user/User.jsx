@@ -6,6 +6,7 @@ import Annonsecontainer from '../annonse/Annonsecontainer';
 import { useState } from 'react';
 import { Switch } from '@mantine/core';
 import ReportPopUp from '../report/ReportForm';
+import ReviewPopUp from '../reviews/review/ReviewForm';
 
 function getActiveUser() {
 	return pb.authStore.model;
@@ -37,10 +38,11 @@ export default function User(props) {
 					<button className="mail">E-post</button>
 				</div>
 				<div className="favourite">
-					{/* TODO: the reporter should be the active user, whereas the reportedUser should be the user displayed on the page.
-					Currently the both reporter and reportedUser is always set to the active user. */}
 					{!(user.id === activeUser.id) && 
-                        <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
+                        <div>
+                            <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
+					        <ReviewPopUp reviewer={getActiveUser()} reviewedUser={user} reviewedPost={undefined} />
+                        </div>
                     }
 				</div>
 			</div>

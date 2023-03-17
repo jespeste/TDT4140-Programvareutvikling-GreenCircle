@@ -1,0 +1,51 @@
+h2.headertext {
+	text-align: center;
+  }
+
+.maincontainer {
+	color: black;
+	background-color: rgb(243, 253, 255);
+	width: 350px;
+	max-height: 55vh;
+	border-radius: 15px;
+	padding: 5px;
+	min-width: 250px;
+	min-height: 120px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.container {
+	padding: 10px;
+	width: 330px;
+}
+
+.outercontainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	grid-area: auto;
+}
+
+.reviewcontainer {
+	margin: 5px;
+	display: grid;
+	grid-template-columns: auto auto auto;
+	place-items: center;
+	gap: 10px;
+}
+
+.deleteButton {
+	background-color: rgb(196, 0, 0);
+	border-radius: 15px;
+	border: none;
+	text-align: center;
+	justify-content: center;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.deleteButton:hover {
+	background-color: rgb(255, 0, 0);
+	cursor: pointer;
+}
