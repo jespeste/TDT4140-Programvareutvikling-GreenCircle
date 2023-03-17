@@ -5,19 +5,27 @@ import { useState, useRef } from 'react';
 import Loader from '../Loader';
 import pb from 'app/lib/pocketbase';
 import ReportPopUp from '../report/ReportForm';
+import ReviewPopUp from '../reviews/review/ReviewForm';
 import Link from 'next/link';
+import { Group } from '@mantine/core';
 
 export default function Annonseside(props) {
 	let data = props.data;
 	let owner = props.data.expand.owner;
 	let mailstring = 'mailto:' + owner.email;
 	let phonestring = 'tel:' + owner.telephone;
+    const activeUser = getActiveUser();
+
 	const [location, setLocation] = useState('');
 	const [lat, setLat] = useState(null);
 	const [long, setLong] = useState(null);
 	const [loaded, setLoaded] = useState(false);
 	const iframeRef = useRef(null);
 	const geolocationAPI = navigator.geolocation;
+
+    function getActiveUser() {
+        return pb.authStore.model;
+    }
 
 	function getCity(coordinates) {
 		var xhr = new XMLHttpRequest();
@@ -36,13 +44,13 @@ export default function Annonseside(props) {
 		xhr.onreadystatechange = processRequest;
 		xhr.addEventListener('readystatechange', processRequest, false);
 
-		function processRequest() {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				var response = JSON.parse(xhr.responseText);
-				setLocation(response.address);
-				return;
-			}
-		}
+        function processRequest() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                setLocation(response.address);
+                return;
+            }
+        }
 	}
 	const coordinates = [
 		parseFloat(data.location.split(',')[0]),
@@ -87,7 +95,7 @@ export default function Annonseside(props) {
 			</button>
 			<div className="innerannonseside">
 				<div className="tag">
-					{!data.is_listing && <div className="green">Til leie</div>}
+					{!data.is_listing && <div className="green">Til utlån</div>}
 					{data.is_listing && <div className="red">Ønskes lånt</div>}
 				</div>
 				<div className="bilde">
@@ -96,9 +104,20 @@ export default function Annonseside(props) {
 				<div className="divider">
 					<div className="annonsesideinfo">
 						<div className="favourite">
-							<button className="favouriteButton" onClick={addToFavourites}>
-								&#9829; Legg til favoritt
-							</button>
+                            <Group>
+                                <button className="favouriteButton" onClick={addToFavourites}>
+                                    &#9829; Legg til favoritt
+                                </button>
+                                {
+                                !(owner.id === activeUser.id) 
+                                    && <ReportPopUp reporter={owner} reportedUser={undefined} reportedPost={data} />
+                                }
+                                {!(owner.id === activeUser.id) 
+                                    && <ReviewPopUp reviewer={activeUser} reviewedUser={owner} reviewedPost={data} />
+                                }
+
+                            </Group>
+                            
 							<p>{data.numfavourites} har lagt til som favoritt</p>
 						</div>
 						<div>
@@ -108,14 +127,11 @@ export default function Annonseside(props) {
 							</div>
 							<div className="annonseLocation">
 								<p>
-									{location.road}, {location.city} {location.postcode}
+									{location.road} {location.city} {location.postcode}
 								</p>
 							</div>
 							<div className="beskrivelse">
 								<p> {data.description}</p>
-							</div>
-							<div className="favourite">
-								<ReportPopUp reporter={owner} reportedUser={undefined} reportedPost={data} />
 							</div>
 						</div>
 					</div>

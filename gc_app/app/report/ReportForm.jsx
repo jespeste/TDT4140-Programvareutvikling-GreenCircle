@@ -4,13 +4,15 @@ import { Container, FileInput, Space } from '@mantine/core';
 import { Textarea } from '@mantine/core';
 import { Button } from '@mantine/core';
 import { Group } from '@mantine/core';
-import { Title } from '@mantine/core';
+import { Title, Text } from '@mantine/core';
 import { useState } from 'react';
 import Report from './Report';
 import './button.css';
 
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, Group, Button } from '@mantine/core';
+import { ActionIcon } from '@mantine/core';
+
     
     /**
      * Report button that opens up a form for reporting inapproptiate users/posts.
@@ -84,7 +86,19 @@ import { Modal, Group, Button } from '@mantine/core';
 			);
             close();
 		} catch (e) {
-			alert(e);
+            alert('Feilmelding:' + e + '\n' +
+			'Prøvde å sende følgende vurdering:' + '\n' +
+            'Beskrivelse: ' +
+            report.description +
+            '\n' +
+            'Rapportert bruker: ' +
+            report.reportedUser +
+            '\n' +
+            'Rapportert annonse: ' +
+            report.reportedPost +
+            '\n' +
+            'Rapportert av: ' +
+            report.reporter);
 		}
 	}
 
@@ -119,7 +133,10 @@ import { Modal, Group, Button } from '@mantine/core';
             </Modal>
 
             <Group position="center">
-                <Button onClick={open} className="reportbutton">Rapportér </Button>
+                    <ActionIcon color="red" size={31} variant="outline" onClick={open} radius="xl">
+                        <Text fw={750} fz={25} align="center"> ! </Text>
+                    </ActionIcon>
+                {/* <Button onClick={open} className="reportbutton">Rapportér </Button> */}
             </Group>
 		</div>
 	);
