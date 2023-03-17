@@ -9,7 +9,8 @@ export default function Navbar() {
 		pb.authStore.clear();
 	}
     function getActiveUser() {
-        return pb.authStore.model;
+        const activeUser = pb.authStore.model;
+		return activeUser;
     }
 	const activeUser = getActiveUser();
 
@@ -26,9 +27,11 @@ export default function Navbar() {
 					<Link href={`/user/${activeUser.id}`}>Bruker</Link>
 				</li>
 				{/* TODO: the /reports button on the navbar should only be visible when the active user is an admin. */}
+				{ activeUser.isAdmin &&
 				<li className="navbarE">
 					<Link href="/reports">Rapporter</Link>
 				</li>
+				}
 				<li className="navbarE">
 					<Link href="/" onClick={logOut}>
 						Logg ut

@@ -10,6 +10,7 @@ import pb from '../lib/pocketbase';
  * @returns - View of a single report.
  */
 export default function ReportView({reportData}) {
+	const activeUser = pb.authStore.model;
 
 	async function deleteReportedPost() {
 		try {
@@ -60,8 +61,9 @@ export default function ReportView({reportData}) {
 	}
 
 	return (
+		<>
+		{ activeUser.isAdmin &&
 		<div className="maincontainer">
-
 			 {<div>
 				<button className="deleteButton" onClick={deleteReport}> X</button>
 				<b> Rapport-ID: </b>{reportData.id}
@@ -98,7 +100,11 @@ export default function ReportView({reportData}) {
 				{/* TODO: Very long words may exceed the width of the container. */}
 				{reportData.description}
 			</div>
-
 		</div>
+		}
+		{ !activeUser.isAdmin &&
+			<h1>DU SKAL IKKE VÆRE HER???????</h1>
+		}
+		</>
 	);
 }
