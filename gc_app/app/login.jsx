@@ -15,9 +15,26 @@ export default function Login() {
 		pb.authStore.clear();
 		setLoading(true);
 		try {
-			const authData = await pb.collection('users').authWithPassword(data.email, data.password);
-		} catch (e) {
-			alert(e);
+			const authAdmin = await pb.admins.authWithPassword(data.email, data.password);
+			const otherData = {"isAdmin": true};
+			try {
+				const authData = await pb.collection('users').authWithPassword(data.email, data.password);
+				let activeUser = pb.authStore.model;
+				const authAdmin = await pb.admins.authWithPassword(data.email, data.password);
+				const record = await pb.collection('users').update(activeUser.id, otherData);
+				const authData2 = await pb.collection('users').authWithPassword(data.email, data.password);
+			} catch (e) {
+				alert(e);
+			}
+		} catch (error) {
+			console.log("Failed to authenticate admin");
+			console.log(error);
+			try {
+				const authData = await pb.collection('users').authWithPassword(data.email, data.password);
+				const activeUser = pb.authStore.model;
+			} catch (e) {
+				alert(e);
+			}
 		}
 		setLoading(false);
 		if (pb.authStore.isValid) {
