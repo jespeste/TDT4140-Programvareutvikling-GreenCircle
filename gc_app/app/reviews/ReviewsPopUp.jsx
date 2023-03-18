@@ -3,7 +3,7 @@ import pb from '../lib/pocketbase';
 import ReviewContainer from './ReviewsView';
 import Navbar from '../Navbar';
 import { useState, useEffect } from 'react';
-import { Switch, Title, Group, Space, Rating} from '@mantine/core';
+import { Switch, Title, Group, Space, Rating, Text} from '@mantine/core';
 
 export default function ReviewsPopUp({ user }) {
 
@@ -48,9 +48,9 @@ export default function ReviewsPopUp({ user }) {
                     checked={checked}
                     onChange={(event) => setChecked(event.currentTarget.checked)}
                     color="gray"
-                    onLabel={'Vurderinger gitt'}
-                    offLabel={'Vurderinger fått'}
-                    size={19}
+                    onLabel={<Text fz={14}> Vurderinger gitt </Text>}
+                    offLabel={<Text fz={14}> Vurderinger fått </Text>}
+                    size={25}
                     radius="md"
                 ></Switch>
                 <Space h={44} w={0}></Space>

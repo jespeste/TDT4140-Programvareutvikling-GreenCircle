@@ -21,6 +21,10 @@ export default function ReviewView(props) {
 	let reviewedPost = props.reviewData.expand.reviewedPost;
     let reviewDate = new Date(reviewData.created).toISOString().slice(0, 10)
 
+    let isListing = reviewedPost.is_listing;
+    let isPostOwner = reviewedPost.owner === reviewer.id;
+    let isBorrower = !isPostOwner && reviewedPost.owner === reviewedUser.id;
+
     function getActiveUser() {
         return pb.authStore.model;
     }      
@@ -55,20 +59,21 @@ export default function ReviewView(props) {
                         }
                         <div>
                         <Text size={14}>{reviewer.firstName + ' ' + reviewer.lastName}</Text>
+                        
                         {/* <div>Reviewer: {reviewedUser.id} </div>
                         <div>Reviewed: {reviewer.id} </div>
                         <div>PostOwner: {reviewedPost.owner} </div>
                         <div>IsListing: {!reviewedPost.is_listing && "False"} {reviewedPost.is_listing && "True"}</div> */}
                         
                         {
-                            ((reviewedPost.is_listing && reviewer !== reviewedPost.owner) 
-                            || (!reviewedPost.is_listing && reviewedPost.owner === reviewedUser.id)) 
-                            && <Text size="xs" color="dimmed"> Utlåner ({reviewDate}) </Text>
+                            ( (isListing && isPostOwner) 
+                            || (!isListing && isBorrower) ) 
+                            && <Text size="xs" color="dimmed">  Utlåner ({reviewDate})</Text>
                         }
 
                         {
-                            ((reviewedPost.is_listing && reviewer === reviewedPost.owner) 
-                            || (!reviewedPost.is_listing && reviewedPost.owner !== reviewedUser.id)) 
+                            ( (isListing && isBorrower) 
+                            || (!isListing && !isBorrower) ) 
                             && <Text size="xs" color="dimmed">  Låner ({reviewDate})</Text>
                         }
                         </div>

@@ -65,7 +65,8 @@ export default function User(props) {
                                 }
                                 {/* {user.verified && <div className="verified">&#10003; </div> } */}
                                 <Space w={10} />
-                                {user.firstName + ' ' + user.lastName}
+                                <Text fz={20} align="center"> {user.firstName + ' ' + user.lastName} </Text>
+                                {/* {user.firstName + ' ' + user.lastName} */}
                                 <Space w={10} />
                                 {!(user.id === activeUser.id) && 
                                     <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
@@ -97,10 +98,16 @@ export default function User(props) {
 
                                         onChange={changeView}
                                         color="gray"
-                                        offLabel={'Dine annonser'}
-                                        onLabel={'Favoritt annonser'}
-                                        size={25}
+                                        // offLabel={'Dine annonser'}
+                                        // onLabel={'Favoritt annonser'}
+                                        // size={25}
                                         // style={{ width: 250 }} // Set the width to 100 pixels
+                                        // radius="md"
+
+                                        // color="gray"
+                                        offLabel={<Text fz={18}> Dine annonser </Text>}
+                                        onLabel={<Text fz={18}> Favoritt annonser </Text>}
+                                        size={32}
                                         radius="md"
                                     ></Switch>
                                     </Group>
