@@ -5,11 +5,19 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Loader from './Loader';
 import './login.css';
+import { Image, Space, PasswordInput, Input, Button, Text, Group } from '@mantine/core';
 
 export default function Login() {
 	const [isLoading, setLoading] = useState();
 	const { register, handleSubmit } = useForm();
 	const router = useRouter();
+
+    const images = new Map([
+		[
+			'GC_logo',
+			'http://127.0.0.1:8090/api/files/m9mawxr7i6htgxh/9szx48762ii1crw/gc_logo3_eGxbKtAqxM.png'
+		]
+	]);
 
 	async function login(data) {
 		pb.authStore.clear();
@@ -42,39 +50,89 @@ export default function Login() {
 		}
 		console.log(pb.authStore.model);
 	}
+
 	function reggie() {
 		router.push('/registration');
 	}
 	return (
-		<div className="loginroot">
+		<div className="loginroot"
+        // style={{background: "#282424"}} dark-mode test
+        >
 			{isLoading && <Loader></Loader>}
 			{!isLoading && (
 				<form onSubmit={handleSubmit(login)}>
 					<div className="logincontainer">
-						<h1 className="logintitle">Greencircle</h1>
+                        <Image maw={275} mx="auto" radius="md" src={images.get('GC_logo')} alt="Login_logo" />
+                        <Space h={5} />
 						<div className="logininnercontainer">
-							<input className="email" type="text" placeholder="Epost" {...register('email')} />
-							<input
-								className="password"
-								type="password"
-								placeholder="Passord"
-								{...register('password')}
-							/>
-							<div>
-								<button className="loginbutton" type="submit" disabled={isLoading}>
-									Logg inn
-								</button>
-							</div>
-						</div>
-						<div className="logininnercontainer">
-							<div className="loginregister">
-								Ikke bruker?
-								<button className="registerbutton" type="button" onClick={reggie}>
-									Lag profil
-								</button>
-							</div>
-						</div>
-					</div>
+                            <Input.Wrapper label="E-post">
+                                <Input
+                                    {...register('email')}
+                                    className="email"
+                                    type="email"
+                                    variant="filled"
+                                    placeholder="E-post"
+
+                                    style={{ width: "400px"}}
+                                    styles={(theme) => ({
+                                        input: {
+                                        '&:focus-within': {
+                                            borderColor: "teal",
+                                        },
+                                        },
+                                    })}
+                                />
+                            </Input.Wrapper>
+
+                            <PasswordInput
+                                className="password"
+                                style={{ width: "400px"}}
+                                styles={(theme) => ({
+                                    input: {
+                                        '&:focus-within': {
+                                        borderColor: "teal",
+                                        },
+                                    },
+                                    })}
+                                variant="filled"
+                                placeholder="Passord"
+                                label="Passord"
+                                // error="Feil passord"
+                                {...register('password')}
+                            />
+
+                            <Space h={40} />
+
+                            <Button 
+                                color="teal" 
+                                size="md" 
+                                type="submit" 
+                                disabled={isLoading} 
+                                compact
+                                style={{ width: "275px"}}
+                            >
+                                Logg inn
+                            </Button>
+
+                            <Space h={25} />
+                            
+                            <Text
+                                ta="center"
+                                fz="md"
+                                fw={475}
+                            >
+                                Ikke bruker? 
+                                <button className="registerbutton" type="button" onClick={reggie}>
+                                    {<Text
+                                        ta="center"
+                                        fz="md"
+                                        fw={475}>
+                                        Lag profil
+                                    </Text>}
+                                </button>
+                            </Text>
+                        </div>
+                    </div>
 				</form>
 			)}
 		</div>
