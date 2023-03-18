@@ -68,13 +68,13 @@ export default function ReviewView(props) {
                         {
                             ( (isListing && isPostOwner) 
                             || (!isListing && isBorrower) ) 
-                            && <Text size="xs" color="dimmed">  Utlåner ({reviewDate})</Text>
+                            && <Text size="xs" color="dimmed">  Låner ({reviewDate})</Text>
                         }
 
                         {
                             ( (isListing && isBorrower) 
                             || (!isListing && !isBorrower) ) 
-                            && <Text size="xs" color="dimmed">  Låner ({reviewDate})</Text>
+                            && <Text size="xs" color="dimmed">  Utlåner ({reviewDate})</Text>
                         }
                         </div>
                     </Group>
