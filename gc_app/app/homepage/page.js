@@ -55,10 +55,9 @@ export default function HomePage() {
 	return (
 		<div id="homeWrap">
 			<Navbar></Navbar>
-			<h1 id="homeHeader">Velkommen til greencircle</h1>
+			<h1 id="homeHeader">Velkommen til GreenCircle</h1>
 			<p id="homeDescription">
-				Vi er en utleieplattform hvor du kan leie ut dine verktøy og redskaper, og i tillegg leie
-				andre sine vertøy og redskaper
+				Vi er en utlånsplattform med mål om å gjøre det enkelt og trygt å dele utstyr med hverandre. 
 			</p>
 
 			<div id="linkMenu">

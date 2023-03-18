@@ -4,7 +4,7 @@ import Annonsecontainer from './Annonsecontainer';
 import Navbar from '../Navbar';
 import { useState, useEffect } from 'react';
 import { NativeSelect } from '@mantine/core';
-import { Button } from '@mantine/core';
+import { Button, Grid } from '@mantine/core';
 
 import './main.css';
 import CreatePost from './createpost';
@@ -74,42 +74,44 @@ export default function Annonsepage() {
 	};
 
 	return (
-		<div className="bigcontainer">
-			<Navbar></Navbar>
-			<div className="onerow">
-				<button className="button" type="button" onClick={handlePopOpen}>
-					Ny Annonse
-				</button>
-				<input
-					type="text"
-					value={search}
-					onChange={(event) => setSearch(event.target.value)}
-					className="searchbar"
-					placeholder="Søk etter motorsag eller skrujern!"
-				/>
-				<NativeSelect
-					data={categories}
-					onChange={(event) => setFilter(event.currentTarget.value)}
-					value={filter}
-					radius="md"
-					size="47"
-				></NativeSelect>
-				<NativeSelect
-					data={isListingTable}
-					onChange={(event) => setListing(event.currentTarget.value)}
-					value={isListing}
-					radius="md"
-					size="47"
-				></NativeSelect>
-			</div>
-			<div className="popup">
-				<div className="outercontainer">
-					<div className="reportcontainer">
-						{popUp && <CreatePost setPopUpClose={setPopUpClose} />}
-					</div>
-				</div>
-			</div>
-			<Annonsecontainer data={posts} />
-		</div>
+        <div className="bigcontainer">
+            <Navbar></Navbar>
+            <Grid style={{backgroundColor: '', justifyContent: 'center'}}>
+                <div className="onerow">
+                    <button className="button" type="button" onClick={handlePopOpen}>
+                        Ny Annonse
+                    </button>
+                    <input
+                        type="text"
+                        value={search}
+                        onChange={(event) => setSearch(event.target.value)}
+                        className="searchbar"
+                        placeholder="Søk etter motorsag eller skrujern!"
+                        />
+                    <NativeSelect
+                        data={categories}
+                        onChange={(event) => setFilter(event.currentTarget.value)}
+                        value={filter}
+                        radius="md"
+                        size="47"
+                        ></NativeSelect>
+                    <NativeSelect
+                        data={isListingTable}
+                        onChange={(event) => setListing(event.currentTarget.value)}
+                        value={isListing}
+                        radius="md"
+                        size="47"
+                        ></NativeSelect>
+                </div>
+                <div className="popup">
+                    <div className="outercontainer">
+                        <div className="reportcontainer">
+                            {popUp && <CreatePost setPopUpClose={setPopUpClose} />}
+                        </div>
+                    </div>
+                </div>
+                <Annonsecontainer data={posts} />
+            </Grid>
+        </div>
 	);
 }
