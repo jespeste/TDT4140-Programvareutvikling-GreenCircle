@@ -2,7 +2,7 @@ import Registration from './registration';
 
 export default function Page() {
 	return (
-		<div className="root">
+		<div>
 			<Registration></Registration>
 		</div>
 	);

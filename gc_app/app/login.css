@@ -1,10 +1,10 @@
 .loginroot {
-	color: #434738;
+	/* color: #434738; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
-	font-family: sans-serif;
+	height: 95vh;
+	/* font-family: sans-serif; */
 }
 
 .logincontainer {
@@ -12,21 +12,21 @@
 	height: 500px;
 	width: 800px;
 }
-.logintitle {
+/* .logintitle {
 	text-align: center;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	font-size: 50px;
 	padding-top: 20px;
-}
+} */
 
 .logininnercontainer {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	font-weight: bold;
-	font-size: 30px;
+	/* font-weight: bold; */
+	font-size: 25px;
 }
 
 .loginusername {
@@ -36,13 +36,13 @@
 	justify-content: space-around;
 }
 
-.loginpassword {
+/* .loginpassword {
 	width: 450px;
 	display: grid;
 	grid-template-columns: 200px 250px;
 	justify-content: space-around;
-}
-.loginbutton {
+} */
+/* .loginbutton {
 	color: black;
 	font-weight: bold;
 	background-color: #b5d43b;
@@ -62,40 +62,40 @@
 	transition: all 0.2s, box-shadow 0.08s ease-in;
 	touch-action: manipulation;
 	width: 400px;
-}
+} */
 
 .loginbutton:disabled {
 	cursor: default;
 }
 
-.loginbutton:hover {
+/* .loginbutton:hover {
 	background-color: #d9ef82;
-}
+} */
 .registerbutton {
 	background-color: transparent;
 	text-decoration: underline;
 	border: none;
-	color: #434738;
-	font-weight: 600;
-	font-size: 20px;
+	/* color: #434738; */
+	/* font-weight: 600;
+	font-size: 20px; */
 }
 .registerbutton:hover {
 	cursor: pointer;
 }
-.loginregister {
+/* .loginregister {
 	margin-top: 20px;
 	font-weight: bold;
 	font-size: 20px;
-}
+} */
 
 input {
 	width: 400px;
-	height: 50px;
-	font-size: 35px;
-	border-radius: 5px;
-	border: none;
-	background-color: #f7f7f7;
+	/* height: 50px; */
+	/* font-size: 35px; */
+	/* border-radius: 5px; */
+	/* border: none; */
+	/* background-color: #f7f7f7; */
 }
-.password {
+/* .password {
 	margin-top: 12px;
-}
+} */
