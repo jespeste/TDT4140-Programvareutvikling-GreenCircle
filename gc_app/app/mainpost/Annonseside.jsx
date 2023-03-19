@@ -7,7 +7,8 @@ import pb from 'app/lib/pocketbase';
 import ReportPopUp from '../report/ReportForm';
 import ReviewPopUp from '../reviews/review/ReviewForm';
 import Link from 'next/link';
-import { Group } from '@mantine/core';
+import { Group, Button, Modal, ActionIcon } from '@mantine/core';
+import { DatePicker } from '../booking/datePicker';
 
 export default function Annonseside(props) {
 	let data = props.data;
@@ -20,6 +21,7 @@ export default function Annonseside(props) {
 	const [lat, setLat] = useState(null);
 	const [long, setLong] = useState(null);
 	const [loaded, setLoaded] = useState(false);
+	const [isBooked, setBooked] = useState(data.startDate);
 	const iframeRef = useRef(null);
 	const geolocationAPI = navigator.geolocation;
 
@@ -88,6 +90,22 @@ export default function Annonseside(props) {
 	}
 	console.log(data.category);
 
+	async function handleBooking(dates){
+		console.log(dates);
+		setBooked(dates[0]);
+		const upDated = {
+			startDate: dates[0],
+			endDate: dates[1],
+			booking_confirmed: true,
+		}
+		try {
+			const upDates = await pb.collection('posts').update(data.id, upDated);
+			alert("Booking forespørsel har blitt sendt.");
+		} catch (err) {
+			alert(err);
+		}
+	}
+
 	return (
 		<div className="annonseside">
 			<button className="goBack" onClick={goBack}>
@@ -115,7 +133,10 @@ export default function Annonseside(props) {
                                 {!(owner.id === activeUser.id) 
                                     && <ReviewPopUp reviewer={activeUser} reviewedUser={owner} reviewedPost={data} />
                                 }
-
+								{!(owner.id === activeUser.id) && isBooked == ''
+									&& <DatePicker handleBooking={handleBooking}></DatePicker>
+								}
+								{}
                             </Group>
                             
 							<p>{data.numfavourites} har lagt til som favoritt</p>

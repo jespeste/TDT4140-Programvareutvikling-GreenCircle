@@ -1,4 +1,7 @@
 .loader {
+	position: fixed;
+	top: 40%;
+	left: 40%;
 	border: 30px solid #f3f3f3;
 	border-top: 30px solid #b5d43b;
 	border-radius: 50%;

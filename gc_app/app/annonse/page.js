@@ -42,7 +42,7 @@ export default function Annonsepage() {
 			const data = await pb.collection('posts').getList(1, 100, {
 				$autoCancel: true,
 				expand: 'owner',
-				filter: `(title~"${search}" || description~"${search}") ${category}${isListingFilter}`
+				filter: `(title~"${search}" || description~"${search}") && booking_confirmed=false && startDate="" ${category}${isListingFilter}`
 			});
 			setPostList(data.items);
 		} catch (err) {
