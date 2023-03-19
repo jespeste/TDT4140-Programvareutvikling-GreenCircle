@@ -48,6 +48,7 @@ export default function Registration() {
 		try {
 			const record = await pb.collection('users').create(user);
 			alert('User Created.');
+            const auth = await pb.collection('users').authWithPassword(user.email, user.password);
 			router.push('/homepage');
 		} catch (e) {
 			alert(e);
