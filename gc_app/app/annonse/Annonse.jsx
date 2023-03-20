@@ -86,7 +86,7 @@ export default function Annonse(props) {
                         radius="xl"
                         style={{ position: "absolute", top: "10px", right: "10px" }}
                         >
-                        <Text fw={750} fz={30} align="center"> ♡ </Text>
+                        <Text fw={750} fz={33} align="center"> ♡ </Text>
                     </ActionIcon>
                 }
                 {activeUser.favourites.includes(data.id) && 
@@ -98,7 +98,7 @@ export default function Annonse(props) {
                         radius="xl"
                         style={{ position: "absolute", top: "10px", right: "10px" }}
                         >
-                        <Text fw={750} fz={30} align="center"> ♥ </Text>
+                        <Text fw={750} fz={33} align="center"> ♥ </Text>
                     </ActionIcon>
                 }
             </div>}
