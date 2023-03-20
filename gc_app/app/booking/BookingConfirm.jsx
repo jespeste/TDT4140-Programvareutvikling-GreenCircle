@@ -12,7 +12,20 @@ export default function BookingConfirm(props){
     const [opposite, setOpposite] = useState(false);
 
 
-    async function acceptBooking(){
+    async function acceptBooking(post){
+        close();
+    }
+
+    function handleClick(){
+        props.setOn(opposite);
+        setOpposite(!opposite);
+        toggle();
+    }
+
+    async function rejectBooking(id){
+        props.reject(id);
+        props.setOn(opposite);
+        setOpposite(!opposite);
         close();
     }
 
@@ -39,15 +52,6 @@ export default function BookingConfirm(props){
     //     setloading(false);
     // },[toggle])
 
-    function handleClick(){
-        toggle();
-    }
-
-    function rejectBooking(){
-        close();
-        props.setOn(opposite);
-        setOpposite(!opposite);
-    }
     return (
         <>
             <Group position="center">
@@ -64,10 +68,11 @@ export default function BookingConfirm(props){
                 <Text size="lg" mb="xs" weight={500}>
                     Forespørsler om bookinger
                 </Text>
-                {data.map((post) => {
-                    console.log(post);
+                {(data.length == 0) ? (<h2>Ingen nye booking forespørsler :) </h2>) : (
+                <>
+                {data.filter(post=>post.startDate!='' && post.booking_confirmed == false).map((post) => {
                     return (<>
-                        <Text size='sm' mb='xs'>
+                        <Text size='sm' mb='xs' key={post.id}>
                             Hvem: {post.expand.booker.firstName} {post.expand.booker.lastName}
                             <br/>
                             Annonse: {post.title}
@@ -78,13 +83,15 @@ export default function BookingConfirm(props){
 
                         </Text>
                         <Group align="flex-end">
-                            <Button onClick={acceptBooking}>Aksepter booking</Button>
-                            <Button onClick={rejectBooking} style={{backgroundColor: "red"}}>Avslå</Button>
+                            <Button onClick={()=>acceptBooking(post.id)}>Aksepter booking</Button>
+                            <Button onClick={()=>rejectBooking(post.id)} style={{backgroundColor: "red"}}>Avslå</Button>
                         </Group>
                         </>
                         )
                     })
                 }
+                </>)
+            }
             </Dialog>
         </>
     )

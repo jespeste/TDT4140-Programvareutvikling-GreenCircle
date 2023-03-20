@@ -31,6 +31,22 @@ export default function User(props) {
 	function changeView() {
         setShow(!show);
 	}
+
+    async function rejectBooking(id){
+		console.log("hei");
+        console.log("Called??");
+        const upDated = {
+            "startDate": "",
+            "endDate": "",
+            "booking_confirmed": false,
+        }
+        try {
+            let updates = await pb.collection('posts').update(id, upDated);
+			console.log(updates);
+        } catch (err) {
+            console.log(err);
+		}
+	}
     
     useEffect(()=>{
         if(!isLoading){
@@ -102,7 +118,7 @@ export default function User(props) {
                                     <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
                                 }
                                 {(user.id === activeUser.id) && (!isLoading) &&
-                                    <BookingConfirm data={posts} setOn={setOn}></BookingConfirm>
+                                    <BookingConfirm data={posts} setOn={setOn} reject={rejectBooking}></BookingConfirm>
                                 }
                             </div>
                         </Group>
