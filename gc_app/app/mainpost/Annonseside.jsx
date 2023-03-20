@@ -322,9 +322,6 @@ export default function Annonseside(props) {
                                 ></iframe>
 						</div>
                             </Card.Section>
-                                            
-                                
-                            
                         </Card>
                     </Grid.Col>   
                 </Grid>

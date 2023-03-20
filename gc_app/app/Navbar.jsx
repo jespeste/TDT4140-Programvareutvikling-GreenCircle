@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import pb from './lib/pocketbase';
 import './navbar.css';
-import { Tabs, Space, Text, Image, Card } from '@mantine/core';
+import { Tabs, Space, Text, Image, Card} from '@mantine/core';
 
 
 export default function Navbar({page}) {
@@ -84,14 +84,16 @@ export default function Navbar({page}) {
                                 </Tabs.Tab>
                             </Link>
                         }
+                            <div>
 
-                            <Tabs.Tab value="login" ml="auto">
-                                <Link href="/" onClick={logOut} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <Link href="/" onClick={logOut} style={{ textDecoration: 'none', color: 'inherit', position: 'absolute', right: '0'}}>
+                                <Tabs.Tab value="login" ml="auto" onClick={logOut}>
                                     <Text fw={500} size={15} >
                                         Logg ut
                                     </Text>
-                                </Link>
-                            </Tabs.Tab>
+                                </Tabs.Tab>
+                            </Link>
+                            </div>
 
                     </Tabs.List>
                 </Tabs> 
