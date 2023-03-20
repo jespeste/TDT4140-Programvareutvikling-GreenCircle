@@ -120,10 +120,10 @@ import { ActionIcon } from '@mantine/core';
                     <Space h="xs" />
                     <div>
                         <Group position="center" spacing="xs" grow>
-                            <Button type="submit" color="green" radius="lg">
+                            <Button compact variant= 'outline' type="submit" color="green" radius="lg">
                                 Send
                             </Button>
-                            <Button type="abort" color="red" radius="lg" onClick={(e) => { e.preventDefault(); close(); }}>
+                            <Button compact variant= 'outline' type="abort" color="red" radius="lg" onClick={(e) => { e.preventDefault(); close(); }}>
                                 {' '}
                                 Avbryt
                             </Button>

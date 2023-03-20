@@ -198,12 +198,14 @@ export default function Annonseside(props) {
                                         }
                                         {!(activeUser.id === owner.id) &&
                                             <Group>
-                                                {/* Review should only be available for posts that the user has participated in */}
-                                                {/* {!(activeUser.id === owner.id) &&
-                                                    <ReportPopUp reviewer={activeUser} reviewedUser={undefined} reviewedPost={data} />
+                                                {/* Review should only be available for posts that the user has participated in (as borrower/borrowee) .
+                                                    For the future: replace 'true' with the additional check that the activeUser has been a 
+                                                    borrower/borrowee for the post in question.*/}
+                                                {(activeUser.id !== owner.id && true) &&
+                                                    <ReviewPopUp reviewer={activeUser} reviewedUser={undefined} reviewedPost={data} />
 
-                                                } */}
-                                                {!(activeUser.id === owner.id) &&
+                                                }
+                                                {(activeUser.id !== owner.id) &&
                                                     <ReportPopUp reporter={activeUser} reportedUser={undefined} reportedPost={data} />
                                                 }
                                             </Group>
@@ -230,9 +232,10 @@ export default function Annonseside(props) {
                                 <Avatar color="blue" size={70} radius="xl"> {owner.firstName[0]}{owner.lastName[0]}</Avatar>
                             }
                         </Group>
-                        <Group position='right'>
-                            <Text size={14}>{owner.firstName + ' ' + owner.lastName} 
-                            </Text>                       
+                        {/* <Group position='right'> */}
+                            <Text size={14}>{owner.firstName + ' ' + owner.lastName} </Text>                       
+                        </UnstyledButton>
+                    </Link>
                             {(data.is_listing) 
                                 && 
                                 <div style={{ position: "absolute", top: "10px", left: "10px"}}>
@@ -245,14 +248,14 @@ export default function Annonseside(props) {
                                      <Badge size="md" color="teal" >  Utlåner </Badge>
                                 </div>
                             }
-                        </Group>
-                    </UnstyledButton>
-                </Link>
+                        {/* </Group> */}
 
             </Group>
-            <div style={{ position: "absolute", top: "10px", right: "10px" }}>
-                <ReportPopUp reporter={activeUser} reportedUser={owner} reportedPost={undefined} />
-            </div>
+            {activeUser.id !== owner.id &&
+                <div style={{ position: "absolute", top: "10px", right: "10px" }}>
+                    <ReportPopUp reporter={activeUser} reportedUser={owner} reportedPost={undefined} />
+                </div>
+            }
             
 			</div>
             <Space h={4} />

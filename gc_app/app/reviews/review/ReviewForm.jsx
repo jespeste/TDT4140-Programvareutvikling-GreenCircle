@@ -110,10 +110,10 @@ export default function ReviewPopUp({reviewer, reviewedUser, reviewedPost}) {
                     <Space h="xs" />
                     <div>
                         <Group position="center" spacing="xs" grow>
-                            <Button type="submit" color="green" radius="lg">
+                            <Button variant="outline" compact type="submit" color="green" radius="lg">
                                 Send
                             </Button>
-                            <Button type="abort" color="red" radius="lg" onClick={(e) => { e.preventDefault(); close(); }}>
+                            <Button variant="outline" compact type="abort" color="red" radius="lg" onClick={(e) => { e.preventDefault(); close(); }}>
                                 {' '}
                                 Avbryt
                             </Button>

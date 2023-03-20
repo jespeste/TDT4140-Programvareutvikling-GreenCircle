@@ -176,14 +176,14 @@ export default function CreatePost(props) {
 						checked={checked}
 						onChange={(event) => setChecked(event.currentTarget.checked)}
                         />
-                        <Space h={10}></Space>
+                        <Space h={20}></Space>
 					<div >
                         <Group position='center' grow>
-                            <Button compact type="submit" color="green" radius="md">
-                                Lag annonse
+                            <Button variant="outline" compact type="submit" color="green" radius="md">
+                                Publisér annonse
                             </Button>
-                            <Button compact type="button" color="red" radius="md" onClick={closePopup}>
-                                Lukk
+                            <Button variant="outline" compact type="button" color="red" radius="md" onClick={closePopup}>
+                                Avbryt
                             </Button>
                         </Group>
 					</div>
