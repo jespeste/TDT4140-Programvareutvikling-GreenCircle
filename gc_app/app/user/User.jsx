@@ -3,12 +3,13 @@ import pb from '../lib/pocketbase';
 import './user.css';
 import pb from '../lib/pocketbase';
 import Annonsecontainer from '../annonse/Annonsecontainer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Switch, Grid, Group, Flex, Space, Avatar, Text } from '@mantine/core';
 import ReportPopUp from '../report/ReportForm';
 import ReviewPopUp from '../reviews/review/ReviewForm';
 import ReviewsPopUp from '../reviews/ReviewsPopUp';
 import { ActionIcon } from '@mantine/core';
+import BookingConfirm from '../booking/BookingConfirm';
 // import { MessageReport } from 'tabler-icons-react';
               
 
@@ -19,12 +20,41 @@ function getActiveUser() {
 export default function User(props) {
 	const user = props.user;
     const activeUser = getActiveUser();
-	let posts = props.posts.filter((post) => post.owner === user.id);
+	let postProp = props.posts.filter((post) => post.owner === user.id);
+    const [posts, setPosts] = useState(postProp);
 	let favourites = props.posts.filter((post) => user.favourites.includes(post.id));
 	const [show, setShow] = useState(false);
+    const [isLoading, setloading] = useState(true);
+    const [isOn, setOn] = useState(true);
+
+    
 	function changeView() {
-		setShow(!show);
+        setShow(!show);
 	}
+    
+    useEffect(()=>{
+        if(!isLoading){
+            setloading(true);
+            async function getPosts() {
+                try {
+                    const record = await pb.collection('posts').getList(1,100,{
+                        filter:`owner="${user.id}"`,
+                        expand: 'owner, booker',
+                    });
+                    console.log(record);
+                    setPosts(record.items);
+                } catch (err) {
+                    alert(err);
+                }
+            }
+            getPosts();
+            console.log(posts);
+            setloading(false);
+        }
+        setloading(false);
+        console.log(isOn + " Er på? Hei")
+    },[isOn])
+
 	return (
 		<div>
     
@@ -71,14 +101,8 @@ export default function User(props) {
                                 {!(user.id === activeUser.id) && 
                                     <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
                                 }
-                                {(user.id === activeUser.id) && 
-                                    <ActionIcon>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                            <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
-                                            <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
-                                        </svg>
-                                    </ActionIcon>
+                                {(user.id === activeUser.id) && (!isLoading) &&
+                                    <BookingConfirm data={posts} setOn={setOn}></BookingConfirm>
                                 }
                             </div>
                         </Group>

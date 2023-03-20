@@ -1,26 +1,63 @@
 'use client'
 import { useDisclosure } from '@mantine/hooks';
 import { useEffect, useState } from "react";
-import { Group, Button, TextInput, Dialog, Text} from "@mantine/core";
+import { Group, Button, TextInput, Dialog, Text, ActionIcon } from "@mantine/core";
 import pb from '../lib/pocketbase';
 
 export default function BookingConfirm(props){
     const [opened, { toggle, close }] = useDisclosure(false);
-    const [data, setData] = useState(props.data);
+    const data = props.data;
+    console.log(data);
+    // const [isLoading, setloading] = useState(true);
+    const [opposite, setOpposite] = useState(false);
 
 
     async function acceptBooking(){
         close();
     }
-    
-    useEffect(()=>{
-        setData(props.data);    
-    },[data])
 
+    // async function getPosts() {
+    //     let user = pb.authStore.model;
+    //     try {
+    //         const record = await pb.collection('posts').getList(1,100,{
+    //             filter:`owner="${user.id}"`,
+    //             expand: 'booker',
+    //         });
+    //         console.log(record);
+    //         return record.items;
+    //     } catch (err) {
+    //         alert(err);
+    //     }
+    // }
+    
+    // useEffect(()=>{
+    //     if(!isLoading){
+    //         let updated = getPosts();
+    //         setData(updated);
+    //         console.log(data);
+    //     }
+    //     setloading(false);
+    // },[toggle])
+
+    function handleClick(){
+        toggle();
+    }
+
+    function rejectBooking(){
+        close();
+        props.setOn(opposite);
+        setOpposite(!opposite);
+    }
     return (
         <>
             <Group position="center">
-                <Button onClick={toggle}>Booking forespørsler</Button>
+                <ActionIcon onClick={handleClick} style={{outlineColor: "black"}}>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+                        <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+                    </svg>
+                </ActionIcon>
             </Group>
 
             <Dialog opened={opened} withCloseButton onClose={close} size="lg" radius="md">
@@ -28,20 +65,25 @@ export default function BookingConfirm(props){
                     Forespørsler om bookinger
                 </Text>
                 {data.map((post) => {
+                    console.log(post);
                     return (<>
                         <Text size='sm' mb='xs'>
-                            Hvem: {"Placeholder"}
+                            Hvem: {post.expand.booker.firstName} {post.expand.booker.lastName}
                             <br/>
-                            Hvor:
+                            Annonse: {post.title}
+                            <br/>
+                            Fra {post.startDate.slice(0,10)} til {post.endDate.slice(0,10)}
+                            <br/>
                             <a href={"../mainpost/" + post.id}>{"Placeholder2"}</a>
 
                         </Text>
                         <Group align="flex-end">
                             <Button onClick={acceptBooking}>Aksepter booking</Button>
+                            <Button onClick={rejectBooking} style={{backgroundColor: "red"}}>Avslå</Button>
                         </Group>
-                </>
-                    )
-                })
+                        </>
+                        )
+                    })
                 }
             </Dialog>
         </>

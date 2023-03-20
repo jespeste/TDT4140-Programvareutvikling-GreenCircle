@@ -9,7 +9,7 @@ async function getUser(id) {
 
 async function getPosts() {
 	const record = await pb.collection('posts').getList(1,100,{
-		expand: 'owner'
+		expand: 'owner, booker',
 	});
 	return record.items;
 }

@@ -5,7 +5,7 @@ import 'app/mainpost/main.css';
 
 async function getPost(id) {
 	const post = await pb.collection('posts').getOne(id, {
-		expand: 'owner'
+		expand: 'owner, booker',
 	});
 	return post;
 }

@@ -21,7 +21,7 @@ export default function Annonseside(props) {
 	const [lat, setLat] = useState(null);
 	const [long, setLong] = useState(null);
 	const [loaded, setLoaded] = useState(false);
-	const [isBooked, setBooked] = useState(data.startDate);
+	const [isBooked, setBooked] = useState(data.booking_confirmed);
 	const iframeRef = useRef(null);
 	const geolocationAPI = navigator.geolocation;
 
@@ -93,14 +93,18 @@ export default function Annonseside(props) {
 	async function handleBooking(dates){
 		console.log(dates);
 		setBooked(dates[0]);
+		let user = pb.authStore.model;
+		console.log(user.id);
 		const upDated = {
-			startDate: dates[0],
-			endDate: dates[1],
-			booking_confirmed: true,
+			"startDate": dates[0],
+			"endDate": dates[1],
+			"booking_confirmed": false,
+			"booker": user.id,
 		}
 		try {
 			const upDates = await pb.collection('posts').update(data.id, upDated);
 			alert("Booking forespørsel har blitt sendt.");
+			console.log(upDates);
 		} catch (err) {
 			alert(err);
 		}
@@ -133,7 +137,7 @@ export default function Annonseside(props) {
                                 {!(owner.id === activeUser.id) 
                                     && <ReviewPopUp reviewer={activeUser} reviewedUser={owner} reviewedPost={data} />
                                 }
-								{!(owner.id === activeUser.id) && isBooked == ''
+								{!(owner.id === activeUser.id) && !isBooked
 									&& <DatePicker handleBooking={handleBooking}></DatePicker>
 								}
 								{}
