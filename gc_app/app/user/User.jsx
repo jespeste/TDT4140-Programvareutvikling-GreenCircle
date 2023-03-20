@@ -4,7 +4,7 @@ import './user.css';
 import pb from '../lib/pocketbase';
 import Annonsecontainer from '../annonse/Annonsecontainer';
 import { useState, useEffect } from 'react';
-import { Switch, Grid, Group, Flex, Space, Avatar, Text } from '@mantine/core';
+import { Switch, Grid, Group, Flex, Space, Avatar, Text, Button, Select } from '@mantine/core';
 import ReportPopUp from '../report/ReportForm';
 import ReviewPopUp from '../reviews/review/ReviewForm';
 import ReviewsPopUp from '../reviews/ReviewsPopUp';
@@ -22,10 +22,19 @@ export default function User(props) {
     const activeUser = getActiveUser();
 	let postProp = props.posts.filter((post) => post.owner === user.id);
     const [posts, setPosts] = useState(postProp);
+    console.log(props);
+    const booked = props.posts.filter((post) => {
+        if(post.booker != '' && post.booking_confirmed){
+            return post.expand.booker.id == user.id;
+        }
+    });
+    console.log(booked);
 	let favourites = props.posts.filter((post) => user.favourites.includes(post.id));
-	const [show, setShow] = useState(false);
+	const [show, setShow] = useState("1");
     const [isLoading, setloading] = useState(true);
     const [isOn, setOn] = useState(true);
+    const [bookRequest, setCurrentPosts] = useState([]);
+    const [showBooked, setShowBooked] = useState(false);
 
     
 	function changeView() {
@@ -48,6 +57,18 @@ export default function User(props) {
 		}
 	}
     
+    async function acceptBooking(id){
+        const upDated = {
+            "booking_confirmed": true,
+        }
+        try {
+            let updates = await pb.collection('posts').update(id, upDated);
+			console.log(updates);
+        } catch (err) {
+            console.log(err);
+		}
+    }
+
     useEffect(()=>{
         if(!isLoading){
             setloading(true);
@@ -118,7 +139,7 @@ export default function User(props) {
                                     <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
                                 }
                                 {(user.id === activeUser.id) && (!isLoading) &&
-                                    <BookingConfirm data={posts} setOn={setOn} reject={rejectBooking}></BookingConfirm>
+                                    <BookingConfirm data={posts} setOn={setOn} reject={rejectBooking} accept={acceptBooking}></BookingConfirm>
                                 }
                             </div>
                         </Group>
@@ -141,7 +162,7 @@ export default function User(props) {
                             <div >
                                 <Group position='center'>
 
-                                    <Switch
+                                    {/* <Switch
                                         labelPosition="left"
                                         // label="Annonser"
 
@@ -158,7 +179,15 @@ export default function User(props) {
                                         onLabel={<Text fz={18}> Favoritt annonser </Text>}
                                         size={32}
                                         radius="md"
-                                    ></Switch>
+                                    ></Switch> */}
+                                    <Select
+                                    data={[
+                                        { value: '1', label: 'Mine annonser' },
+                                        { value: '2', label: 'Favoritter' },
+                                        { value: '3', label: 'Mine bookinger' },
+                                    ]}
+                                    onChange={setShow}
+                                    />
                                     </Group>
                                 <Space h="md"></Space>
 
@@ -169,8 +198,10 @@ export default function User(props) {
                                     offLabel={'Dine annonser'}
                                     size="xl"
                                 ></Switch> */}
-                                {!show && <Annonsecontainer data={posts}></Annonsecontainer>}
-                                {show && <Annonsecontainer data={favourites}></Annonsecontainer>}
+                                { show == '1' && <Annonsecontainer data={posts}></Annonsecontainer>}
+                                { show == '2' && <Annonsecontainer data={favourites}></Annonsecontainer>}
+                                { show == '3' && <Annonsecontainer data={booked}></Annonsecontainer>}
+
                             </div>
                         }
                         {!(user.id === activeUser.id) &&

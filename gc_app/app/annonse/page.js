@@ -35,6 +35,18 @@ export default function Annonsepage() {
 		{ value: true, label: 'Ønskes Lånt' },
 		{ value: false, label: 'Til Leie' }
 	];
+	const updatePosts = async (post) => {
+		try {
+			let unbooked = {
+				"startDate": "",
+				"endDate": "",
+				"booking_confirmed": false
+			}
+			const update = await pb.collection('posts').update(post.id, unbooked);
+		} catch (err) {
+			console.log(err);
+		}
+	}
 
 	// Fetch all posts from database with the given search parameters / filters
 	const fetchPosts = async () => {
@@ -45,6 +57,9 @@ export default function Annonsepage() {
 				filter: `(title~"${search}" || description~"${search}") && booking_confirmed=false && startDate="" ${category}${isListingFilter}`
 			});
 			setPostList(data.items);
+			posts.filter((post)=>(post.endDate == Date())).forEach((post)=>{
+				updatePosts();
+			})
 		} catch (err) {
 			console.log(err.isAbort);
 		}
