@@ -122,7 +122,7 @@ export default function Annonse(props) {
                     radius="xl"
                     style={{ position: "absolute", top: "10px", right: "10px" }}
                     >
-                    <Text fw={750} fz={27} align="center"> 🗑 </Text>
+                    <Text fw={750} fz={27} align="center"> 🞭 </Text>
                 </ActionIcon>
             }
                             
