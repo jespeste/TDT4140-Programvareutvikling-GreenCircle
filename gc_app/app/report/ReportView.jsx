@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Link from 'next/link';
 import './report-view.css';
 import pb from '../lib/pocketbase';
 import { useState } from 'react';
@@ -189,15 +190,15 @@ export default function ReportView({reportData}) {
                     </td>
 
                     <td>
-                        <a href={"../user/" + reportData.reporter}>{reportData.reporter}</a> 
+                        <Link href={"../user/" + reportData.reporter}>{reportData.reporter}</Link> 
                     </td>
 
                     <td>
-                        <a href={"../user/" + reportData.reportedUser}>{reportData.reportedUser}</a>
+                        <Link href={"../user/" + reportData.reportedUser}>{reportData.reportedUser}</Link>
                     </td>
 
                     <td>
-                        <a href={"../mainpost/" + reportData.reportedPost}>{reportData.reportedPost}</a>
+                        <Link href={"../mainpost/" + reportData.reportedPost}>{reportData.reportedPost}</Link>
                     </td>
                 </tr>
                 }

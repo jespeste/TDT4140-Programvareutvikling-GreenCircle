@@ -122,7 +122,7 @@ export default function Annonse(props) {
                     radius="xl"
                     style={{ position: "absolute", top: "10px", right: "10px" }}
                     >
-                    <Text fw={750} fz={27} align="center"> 🞭 </Text>
+                    <Text fw={750} fz={27} align="center"> 🗑 </Text>
                 </ActionIcon>
             }
                             
@@ -160,7 +160,7 @@ export default function Annonse(props) {
             <Group position="apart" mt="md" mb="xs" grow>
 
             <Link href={`/mainpost/${data.id}`} style={{ textDecoration: 'none' }}>
-                <Button variant="light" color="cyan" fullWidth mt="md" radius="md">
+                <Button variant="light" color="teal" fullWidth mt="md" radius="md">
                     Se mer
                 </Button>
             </Link>
