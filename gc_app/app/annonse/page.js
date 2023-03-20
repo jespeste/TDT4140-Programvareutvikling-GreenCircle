@@ -80,8 +80,10 @@ export default function Annonsepage() {
         
         <div style={{ display: 'flex', justifyContent: 'center'}}>
             
-            <Card shadow="sm" padding="lg" radius="md" withBorder style={{width: "80vw", maxWidth: '1150px', 
-                paddingTop: '30px', paddingBottom: '25px', marginTop: '10px', minHeight: '90vh'}}>
+            <Card shadow="sm" padding="lg" radius="md" withBorder 
+                style={{
+                    backgroundColor: 'rgb(0,0,0,0)',
+                    width: "80vw", maxWidth: '1150px', paddingTop: '30px', paddingBottom: '25px', marginTop: '10px', minHeight: '90vh'}}>
 
                 <CardSection style={{ display: 'flex', justifyContent: 'center'}}>
                     <Group position='apart' grow>
