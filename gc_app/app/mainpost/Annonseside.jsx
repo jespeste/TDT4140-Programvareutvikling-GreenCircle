@@ -138,7 +138,7 @@ export default function Annonseside(props) {
                                 <Group>
                                     {data.is_listing && <div> <Badge color="pink" variant="light"> Ønskes lånt </Badge></div>}
                                     {!data.is_listing && <div> <Badge color="teal" variant="light"> Lånes ut </Badge></div>}
-                                    {!data.is_listing && <div> <Badge color="cyan" variant="light"> {data.category}</Badge></div>}
+                                    {(data.category !== '') && <div> <Badge color="cyan" variant="light"> {data.category}</Badge></div>}
                                 </Group>
                                 <Group>
                                     <Badge color="pink" variant="light"> {data.numfavourites} har lagt til som favoritt </Badge>
@@ -219,7 +219,7 @@ export default function Annonseside(props) {
 			<div>
             <Group position='center'>
 
-                <Link href={"../user/" + owner.id} className="reviewLink">
+                <Link href={"../user/" + owner.id}>
 
                     <UnstyledButton>
                         <Group position='center'>
