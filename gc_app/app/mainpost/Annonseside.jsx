@@ -26,15 +26,26 @@ export default function Annonseside(props) {
 	const geolocationAPI = navigator.geolocation;
     const creationDate = new Date(data.created);
     
+    const [isFavourite, setIsFavourite] = useState(activeUser.favourites.includes(data.id));
 
     function getActiveUser() {
         return pb.authStore.model;
     }
 
+    async function addToFavourites() {
+		activeUser.favourites.push(props.data.id);
+		const record = await pb.collection('users').update(activeUser.id, activeUser);
+        setIsFavourite(activeUser.favourites.includes(data.id));
+	}
+    async function removeFromFavourites() {
+		activeUser.favourites.pop(props.data.id);
+		const record = await pb.collection('users').update(activeUser.id, activeUser);
+        setIsFavourite(activeUser.favourites.includes(data.id));
+	}
     async function deletePost() {
 		try {
 			if (confirm("Dette vil fjerne annonsen: " + data.id)) {
-				await pb.collection('reviews').delete(data.id);
+				await pb.collection('posts').delete(data.id);
 				alert('Annonse fjernet: ' + data.id);
 				document.location.href=`/user/${activeUser.id}`
 			}
@@ -42,14 +53,15 @@ export default function Annonseside(props) {
 			alert(e);
 		}
 	}
-
     async function addToFavourites() {
 		activeUser.favourites.push(props.data.id);
 		const record = await pb.collection('users').update(activeUser.id, activeUser);
+        setIsFavourite(activeUser.favourites.includes(data.id));
 	}
     async function removeFromFavourites() {
 		activeUser.favourites.pop(props.data.id);
 		const record = await pb.collection('users').update(activeUser.id, activeUser);
+        setIsFavourite(activeUser.favourites.includes(data.id));
 	}
 
 	function getCity(coordinates) {
@@ -145,7 +157,7 @@ export default function Annonseside(props) {
                                     {activeUser.id !== owner.id && <div>
 
 
-                                    {!activeUser.favourites.includes(data.id) &&
+                                    {!isFavourite && 
                                         <ActionIcon 
                                             color="red" 
                                             size={31} 
@@ -157,7 +169,7 @@ export default function Annonseside(props) {
                                             <Text fw={750} fz={25} align="center"> ♡ </Text>
                                         </ActionIcon>
                                     }
-                                    {activeUser.favourites.includes(data.id) && 
+                                    {isFavourite &&
                                         <ActionIcon 
                                             color="red" 
                                             size={31} 

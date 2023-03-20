@@ -4,6 +4,7 @@ import Link from 'next/link';
 import './annonse.css';
 import { Card, Image, Text, Badge, Button, Group, Avatar, ActionIcon } from '@mantine/core';
 import ReportPopUp from '../report/ReportForm';
+import { useState } from 'react';
 import pb from '../lib/pocketbase';
 
 export default function Annonse(props) {
@@ -12,6 +13,10 @@ export default function Annonse(props) {
     const activeUser = getActiveUser();
 	let data = props.data;
 	let owner = props.data.expand.owner;
+
+    const [isFavourite, setIsFavourite] = useState(activeUser.favourites.includes(data.id));
+	const [postExists, setPostExists] = useState(true);
+
 	// let phonestring = 'tel:' + owner.telephone;
 	// let messagestring = 'sms:' + owner.telephone;
 
@@ -23,17 +28,20 @@ export default function Annonse(props) {
     async function addToFavourites() {
 		activeUser.favourites.push(props.data.id);
 		const record = await pb.collection('users').update(activeUser.id, activeUser);
+        setIsFavourite(activeUser.favourites.includes(data.id));
 	}
     async function removeFromFavourites() {
 		activeUser.favourites.pop(props.data.id);
 		const record = await pb.collection('users').update(activeUser.id, activeUser);
+        setIsFavourite(activeUser.favourites.includes(data.id));
 	}
     async function deletePost() {
 		try {
 			if (confirm("Dette vil fjerne annonsen: " + data.id)) {
-				await pb.collection('reviews').delete(data.id);
+				await pb.collection('posts').delete(data.id);
 				alert('Annonse fjernet: ' + data.id);
-				document.location.reload();
+				// document.location.reload();
+                setPostExists(false)
 			}
 		} catch (e) {
 			alert(e);
@@ -41,8 +49,9 @@ export default function Annonse(props) {
 	}
 
 	return (
-        <div>
-        <div>
+        <>
+        {postExists &&
+            <div>
         <Card shadow="sm" padding="lg" radius="md" withBorder style={{width: "320px"}}>
             <Card.Section>
                 <Link href={`/mainpost/${data.id}`}>
@@ -77,7 +86,8 @@ export default function Annonse(props) {
                 </Link>
             } */}
             {activeUser.id !== owner.id && <div>
-                {!activeUser.favourites.includes(data.id) &&
+                {/* {!activeUser.favourites.includes(data.id) && */}
+                { !isFavourite &&
                     <ActionIcon 
                         color="red" 
                         size={35} 
@@ -89,7 +99,8 @@ export default function Annonse(props) {
                         <Text fw={750} fz={33} align="center"> ♡ </Text>
                     </ActionIcon>
                 }
-                {activeUser.favourites.includes(data.id) && 
+                {/* {activeUser.favourites.includes(data.id) &&  */}
+                { isFavourite &&
                     <ActionIcon 
                         color="red" 
                         size={35} 
@@ -156,6 +167,7 @@ export default function Annonse(props) {
             </Group>
         </Card>
         </div>
-        </div>
+        }
+        </>
 	);
 }
