@@ -21,10 +21,15 @@ export default function User(props) {
     const activeUser = getActiveUser();
 	let posts = props.posts.filter((post) => post.owner === user.id);
 	let favourites = props.posts.filter((post) => user.favourites.includes(post.id));
+    let mailstring = 'mailto:' + user.email;
+	let phonestring = 'tel:' + user.telephone;
+
 	const [show, setShow] = useState(false);
+
 	function changeView() {
 		setShow(!show);
 	}
+
 	return (
 		<div style={{backgroundColor: '', display: 'flex', justifyContent: 'center'}}>
             
@@ -74,16 +79,14 @@ export default function User(props) {
                         <Space h={7} />
 
                         <div className="profilecontact">
-                            <Button compact color='teal' >
-                                <Text>
+                            {/* <Group position="center"> */}
+                                <Button color='teal' compact variant="" onClick={() => (window.location = phonestring)}>
                                     Telefon
-                                </Text>
-                            </Button>
-                            <Button compact color='teal' >
-                                <Text>
-                                    E-post
-                                </Text>
-                            </Button>
+                                </Button>
+                                <Button color='teal' compact variant="" onClick={() => (window.location.href = mailstring)}>
+                                    E-post 
+                                </Button>
+                            {/* </Group> */}
                         </div>
                                 </Card>
                         <div className="favourite">

@@ -264,7 +264,6 @@ export default function Annonseside(props) {
             </CardSection>
 			<div>
                 <Group position="center">
-
                     <Button color='teal' compact variant="outline" onClick={() => (window.location = phonestring)}>
                         Telefon
                     </Button>
@@ -272,7 +271,6 @@ export default function Annonseside(props) {
                         E-post 
                     </Button>
                 </Group>
-
 			</div>
 
             {/* <br /> */}
