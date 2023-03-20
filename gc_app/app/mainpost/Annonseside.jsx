@@ -234,7 +234,10 @@ export default function Annonseside(props) {
                             <Text size={14}>{owner.firstName + ' ' + owner.lastName} 
                             </Text>                       
                             {(data.is_listing) 
-                                && <Badge size="xs" color="dimmed">  Låner </Badge>
+                                && 
+                                <div style={{ position: "absolute", top: "10px", left: "10px"}}>
+                                    <Badge size="md" color="dimmed">  Låner </Badge>
+                                </div>
                             }
                             {(!data.is_listing) 
                                 &&
@@ -247,10 +250,10 @@ export default function Annonseside(props) {
                 </Link>
 
             </Group>
-                           
-            {!(activeUser.id === owner.id) &&
+            <div style={{ position: "absolute", top: "10px", right: "10px" }}>
                 <ReportPopUp reporter={activeUser} reportedUser={owner} reportedPost={undefined} />
-            }
+            </div>
+            
 			</div>
             <Space h={4} />
             <CardSection>
