@@ -15,7 +15,7 @@ export default function Login() {
     const images = new Map([
 		[
 			'GC_logo',
-			'http://127.0.0.1:8090/api/files/m9mawxr7i6htgxh/9szx48762ii1crw/gc_logo3_eGxbKtAqxM.png'
+			'http://127.0.0.1:8090/api/files/m9mawxr7i6htgxh/k9kwz27p8ekqp37/gc_logo3_275_8S63uRNkXR.png'
 		]
 	]);
 
@@ -55,9 +55,8 @@ export default function Login() {
 		router.push('/registration');
 	}
 	return (
-		<div className="loginroot"
-        // style={{background: "#282424"}} dark-mode test
-        >
+      
+		<div className="loginroot">
 			{isLoading && <Loader></Loader>}
 			{!isLoading && (
 				<form onSubmit={handleSubmit(login)}>
@@ -65,23 +64,25 @@ export default function Login() {
                         <Image maw={275} mx="auto" radius="md" src={images.get('GC_logo')} alt="Login_logo" />
                         <Space h={5} />
 						<div className="logininnercontainer">
-                            <Input.Wrapper label="E-post">
+                            <Input.Wrapper label="E-post"
+                                required> 
                                 <Input
                                     {...register('email')}
                                     className="email"
                                     type="email"
                                     variant="filled"
                                     placeholder="E-post"
-
+                                    
                                     style={{ width: "400px"}}
                                     styles={(theme) => ({
                                         input: {
-                                        '&:focus-within': {
-                                            borderColor: "teal",
-                                        },
+                                            '&:focus-within': {
+                                                borderColor: "teal",
+                                            },
                                         },
                                     })}
-                                />
+                                    required
+                                    />
                             </Input.Wrapper>
 
                             <PasswordInput
@@ -90,18 +91,19 @@ export default function Login() {
                                 styles={(theme) => ({
                                     input: {
                                         '&:focus-within': {
-                                        borderColor: "teal",
+                                            borderColor: "teal",
                                         },
                                     },
                                     })}
-                                variant="filled"
-                                placeholder="Passord"
-                                label="Passord"
-                                // error="Feil passord"
-                                {...register('password')}
-                            />
+                                    variant="filled"
+                                    placeholder="Passord"
+                                    label="Passord"
+                                    // error="Feil passord"
+                                    {...register('password')}
+                                    required
+                                    />
 
-                            <Space h={40} />
+                            <Space h={35} />
 
                             <Button 
                                 color="teal" 
@@ -110,7 +112,7 @@ export default function Login() {
                                 disabled={isLoading} 
                                 compact
                                 style={{ width: "275px"}}
-                            >
+                                >
                                 Logg inn
                             </Button>
 
@@ -120,16 +122,16 @@ export default function Login() {
                                 ta="center"
                                 fz="md"
                                 fw={475}
-                            >
+                                >
                                 Ikke bruker? 
-                                <button className="registerbutton" type="button" onClick={reggie}>
+                                <Button onClick={reggie} variant="subtle" color="gray" compact >
                                     {<Text
                                         ta="center"
                                         fz="md"
                                         fw={475}>
                                         Lag profil
                                     </Text>}
-                                </button>
+                                </Button>
                             </Text>
                         </div>
                     </div>
