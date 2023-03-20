@@ -137,6 +137,12 @@ export default function Annonseside(props) {
                                 height={500}
                                 alt="AnnonseBilde"
                                 />
+                                <Button size={18} variant="filled" color="teal" compact onClick={goBack}
+                                    style={{ position: "absolute", top: "10px", left: "10px", paddingLeft: '5px', paddingBottom: '2px', paddingTop: '2px', paddingRight: '5px'}}>
+                                    {/* // style={{ position: "absolute", top: "10px", left: "10px", width: "50px", height: '33px', justifyContent: 'center', alignContent: 'center'}}> */}
+                                    Tilbake 
+                                        {/* <Text fz={22} align="center" style={{ paddingBottom: '10px'}}> Tilbake </Text> */}
+                                </Button>
                             </Card.Section>
                                             
                                 
@@ -328,10 +334,7 @@ export default function Annonseside(props) {
             </Container>
 
 		    <div>
-			
-            {/* <button className="goBack" onClick={goBack}>
-				→
-            </button> */}
+		
             
 		</div>
         </div>
