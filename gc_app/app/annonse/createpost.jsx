@@ -1,13 +1,19 @@
 'use client';
 import pb from '../lib/pocketbase';
-import { Container, FileInput } from '@mantine/core';
+import { Container, FileInput, Switch, Title } from '@mantine/core';
 import { TextInput } from '@mantine/core';
 import { Textarea } from '@mantine/core';
 import { Button } from '@mantine/core';
 import { Checkbox } from '@mantine/core';
 import { NativeSelect } from '@mantine/core';
 import { createStyles } from '@mantine/core';
+import { Card } from '@mantine/core';
+import { Title } from '@mantine/core';
+import { Switch } from '@mantine/core';
+import { Group} from '@mantine/core';
+import { Space} from '@mantine/core';
 import { useState } from 'react';
+
 import './createpost.css';
 
 import Post from './Post';
@@ -119,8 +125,15 @@ export default function CreatePost(props) {
 	};
 	return (
 		<div className="createpostroot">
-			<Container className="createpostcontainer">
-				<h1 className="h1">Ny annonse</h1>
+            <Card shadow="sm" padding="lg" radius="md" withBorder style={{paddingBottom: "35px"}}>
+
+			<Container 
+            className="createpostcontainer"
+            >
+				{/* <h1 className="h1">Ny annonse</h1> */}
+                <Title>
+                    Ny annonse
+                </Title>
 				<form onSubmit={handleSubmit}>
 					{/* <FileInput label="Last opp Bilde:" placeholder="Bilde" /> */}
 					<TextInput
@@ -129,20 +142,20 @@ export default function CreatePost(props) {
 						onChange={(event) => setUrl(event.target.value)}
 						placeholder="Bildeadresse (url)"
 						withAsterisk
-					/>
+                        />
 					<TextInput
 						className="textinput"
 						value={title}
 						onChange={(event) => setTitle(event.target.value)}
 						placeholder="Tittel"
 						withAsterisk
-					/>
+                        />
 					<TextInput
 						className="textinput"
 						value={address}
 						onChange={(event) => setAddress(event.target.value)}
 						placeholder="Adresse"
-					/>
+                        />
 					<Textarea
 						className="textinput"
 						value={description}
@@ -150,29 +163,33 @@ export default function CreatePost(props) {
 						placeholder="Beskrivelse"
 						autosize
 						minRows={2}
-					/>
+                        />
 					<NativeSelect
 						className="textinput"
 						data={data}
 						onChange={(event) => setValue(event.currentTarget.value)}
 						value={value}
-					></NativeSelect>
+                        ></NativeSelect>
 					<Checkbox
 						className="textinput"
 						label="Ønskes lånt"
 						checked={checked}
 						onChange={(event) => setChecked(event.currentTarget.checked)}
-					/>
-					<div className="buttons">
-						<Button type="submit" color="green" radius="lg">
-							Lag annonse
-						</Button>
-						<Button type="button" color="red" radius="md" onClick={closePopup}>
-							Lukk
-						</Button>
+                        />
+                        <Space h={10}></Space>
+					<div >
+                        <Group position='center' grow>
+                            <Button compact type="submit" color="green" radius="md">
+                                Lag annonse
+                            </Button>
+                            <Button compact type="button" color="red" radius="md" onClick={closePopup}>
+                                Lukk
+                            </Button>
+                        </Group>
 					</div>
 				</form>
 			</Container>
+            </Card>
 		</div>
 	);
 }

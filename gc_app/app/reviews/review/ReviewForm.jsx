@@ -123,9 +123,13 @@ export default function ReviewPopUp({reviewer, reviewedUser, reviewedPost}) {
             </Modal>
 
             <Group position="center">
-                    <ActionIcon color="blue" size={31} variant="outline" onClick={open} radius="xl">
+                    <Button variant="subtle" color="" compact onClick={open}>
+                            Vurdér 
+                    </Button>
+                    {/* Ikon-varian: */}
+                    {/* <ActionIcon color="blue" size={31} variant="outline" onClick={open} radius="xl">
                         <Text fw={750} fz={22} align="center"> : ) </Text>
-                    </ActionIcon>
+                    </ActionIcon> */}
             </Group>
         </div>
 	);

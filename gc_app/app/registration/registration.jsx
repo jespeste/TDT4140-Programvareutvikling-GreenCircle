@@ -48,6 +48,7 @@ export default function Registration() {
 		try {
 			const record = await pb.collection('users').create(user);
 			alert('User Created.');
+            const auth = await pb.collection('users').authWithPassword(user.email, user.password);
 			router.push('/homepage');
 		} catch (e) {
 			alert(e);
@@ -189,7 +190,7 @@ export default function Registration() {
                                     fz="md"
                                     fw={475}
                                     >
-                                    Ikke bruker? 
+                                    Har du bruker? 
                                     <Button onClick={login} variant="subtle" color="gray" compact >
                                         {<Text
                                             ta="center"

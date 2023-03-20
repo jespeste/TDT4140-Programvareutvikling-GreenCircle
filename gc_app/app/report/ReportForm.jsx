@@ -133,10 +133,15 @@ import { ActionIcon } from '@mantine/core';
             </Modal>
 
             <Group position="center">
-                    <ActionIcon color="red" size={31} variant="outline" onClick={open} radius="xl">
-                        <Text fw={750} fz={25} align="center"> ! </Text>
-                    </ActionIcon>
-                {/* <Button onClick={open} className="reportbutton">Rapportér </Button> */}
+
+
+                <Button variant="subtle" color="red" compact onClick={open} >
+                    Rapportér 
+                </Button>
+                {/* Ikon-variant: */}
+                {/* <ActionIcon color="red" size={31} variant="outline" onClick={open} radius="xl">
+                    <Text fw={750} fz={25} align="center"> ! </Text>
+                </ActionIcon> */}
             </Group>
 		</div>
 	);

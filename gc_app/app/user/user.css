@@ -12,7 +12,7 @@
 	height: 300px;
 	width: 300px;
 	border-radius: 50%;
-	background-color: rgb(5, 161, 15);
+	/* background-color: rgb(5, 161, 15); */
 }
 .avatar {
 	width: 100%;
@@ -33,7 +33,7 @@
 .profile {
 	width: 400px;
 	font-family: sans-serif;
-	color: #434738;
+	/* color: #434738; */
 	margin-top: 20px;
 }
 .name {
@@ -41,13 +41,13 @@
 	text-align: center;
 	display: flex;
 	width: 300px;
-	color: black;
+	/* color: black; */
 	font-size: 25px;
 	font-weight: bold;
 }
 
 .verified {
-	background-color: #b5d43b;
+	/* background-color: #b5d43b; */
 	width: 26px;
 	height: 30px;
 	font-size: 25px;

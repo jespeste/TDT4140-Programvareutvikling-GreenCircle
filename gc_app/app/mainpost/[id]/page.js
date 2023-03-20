@@ -13,9 +13,11 @@ async function getPost(id) {
 export default async function Annonsepage({ params }) {
 	const post = await getPost(params.id);
 	return (
-		<div className="bigcontainer">
-			<Navbar></Navbar>
-			<Annonseside data={post}></Annonseside>
+        <div>
+			<Navbar page="posts"></Navbar>
+            <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: ''}}>
+			    <Annonseside data={post}></Annonseside>
+		    </div>
 		</div>
 	);
 }

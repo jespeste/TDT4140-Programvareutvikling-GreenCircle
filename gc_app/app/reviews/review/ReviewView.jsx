@@ -2,9 +2,9 @@
 import React from 'react';
 import './review-view.css';
 import pb from '../../lib/pocketbase';
-import { Rating, Group, Avatar, Text } from '@mantine/core';
+import { Rating, Group, Avatar, Text, CardSection } from '@mantine/core';
 import Link from 'next/link';
-import { Grid, Stack, Title, Space, Button, UnstyledButton } from '@mantine/core';
+import { Title, Space, Button, UnstyledButton, Card } from '@mantine/core';
 
 /**
  * Displays a review and offers options for deleting related data-elements.
@@ -42,7 +42,8 @@ export default function ReviewView(props) {
 	}
 
 	return (
-		<div className="maincontainer">
+		<div>
+            <Card shadow="sm" padding="lg" radius="md" withBorder style={{minwWidth: '100%', width: '100%'} }>
 
 			<div>
             <Group position='apart'>
@@ -50,7 +51,6 @@ export default function ReviewView(props) {
 
                 <UnstyledButton>
                     <Group position='apart'>
-                        {/* <Avatar size={40} color="blue">BH</Avatar> */}
                         {reviewer.avatar !== '' && 
                                 <Avatar size={39} src={reviewer.avatar} href={"../user/" + reviewer.id} ></Avatar>
                             }
@@ -88,7 +88,9 @@ export default function ReviewView(props) {
 
 			</div>
             <Space h={4} />
-            
+            <CardSection>
+                
+            </CardSection>
 			<div>
             <Link href={"../mainpost/" + reviewedPost.id} className="reviewLink">
                 <Title order={5} color="dimmed" >
@@ -96,7 +98,7 @@ export default function ReviewView(props) {
                 </Title>
             </Link>
 
-            <Text color='#434738' italic size={14}>{reviewData.description}</Text>
+            <Text italic size={14}>{reviewData.description}</Text>
                     
 			</div>
             {activeUser.id === reviewer.id &&
@@ -106,7 +108,8 @@ export default function ReviewView(props) {
                     </Button>
                 </Group>
             }
-            <br />
+            {/* <br /> */}
+            </Card>
 		</div>
 	);
 }

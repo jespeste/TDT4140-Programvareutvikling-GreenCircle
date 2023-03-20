@@ -8,7 +8,7 @@ import { Switch, Grid, Group, Flex, Space, Avatar, Text } from '@mantine/core';
 import ReportPopUp from '../report/ReportForm';
 import ReviewPopUp from '../reviews/review/ReviewForm';
 import ReviewsPopUp from '../reviews/ReviewsPopUp';
-import { ActionIcon } from '@mantine/core';
+import { ActionIcon, Button, Card, Flex } from '@mantine/core';
 // import { MessageReport } from 'tabler-icons-react';
               
 
@@ -26,29 +26,29 @@ export default function User(props) {
 		setShow(!show);
 	}
 	return (
-		<div>
+		<div style={{backgroundColor: '', display: 'flex', justifyContent: 'center'}}>
+            
+            <Card>
+
+            <Space h={15}></Space>
     
-            <Grid style={{backgroundColor: '', justifyContent: 'center'}}>
-                {/* <Flex
-                    // mih={50}
-                    // gap={35}
-                    // justify="center"
-                    // align="flex-start"
-                    // direction="row"
-                    // wrap="wrap"
-                > */}
-
-
-                
-                {/* <Grid.Col span={2}> */}
+            <Flex style={{backgroundColor: '', display: 'flex', justifyContent: 'center'}}>
                     <div >
+                        <Card style={{backgroundColor: 'rgba(0, 0, 0, 0)'}}> 
+                                
                         <div className="profileinfo2">
+                            <Space h={20}></Space>
                             <div >
                                 {user.avatar !== '' 
                                     && <Avatar color="teal" size={300} radius={300} src={user.avatar}></Avatar>
                                 }
                                 {!(user.avatar !== '')
                                     && <Avatar color="teal" size={300} radius={300}> {user.firstName[0]}{user.lastName[0]}</Avatar>
+                                }
+                                {!(user.id === activeUser.id) && 
+                                    <div style={{ position: "absolute", top: "10px", left: "10px" }}>
+                                            <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
+                                    </div>
                                 }
                                 <Space h={15}></Space>
                                 {/* <img className="avatar" src={user.avatar}></img> */}
@@ -68,34 +68,39 @@ export default function User(props) {
                                 <Text fz={20} align="center"> {user.firstName + ' ' + user.lastName} </Text>
                                 {/* {user.firstName + ' ' + user.lastName} */}
                                 <Space w={10} />
-                                {!(user.id === activeUser.id) && 
-                                    <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
-                                }
                             </div>
                         </Group>
                         <Space h={7} />
 
                         <div className="profilecontact">
-                            <button className="tlf">Telefon</button>
-                            <button className="mail">E-post</button>
+                            <Button compact color='teal' >
+                                <Text>
+                                    Telefon
+                                </Text>
+                            </Button>
+                            <Button compact color='teal' >
+                                <Text>
+                                    E-post
+                                </Text>
+                            </Button>
                         </div>
+                                </Card>
                         <div className="favourite">
                             <ReviewsPopUp user={user}/>
                             {/* {user.id} */}
                         </div>
                     </div>
                 {/* </Grid.Col> */}
-                <Space w="md" />
+                <Space w={30} />
                 {/* <Grid.Col span={9}> */}
-                    <div style={{ textAlign: "center", justifyContent: "center"}} >
+                    <div style={{ textAlign: "center", justifyContent: "center", backgroundColor: ''}} >
                         {(user.id === activeUser.id) &&
-                            <div >
+                            <div>
                                 <Group position='center'>
-
                                     <Switch
                                         labelPosition="left"
                                         // label="Annonser"
-
+                                        
                                         onChange={changeView}
                                         color="gray"
                                         // offLabel={'Dine annonser'}
@@ -103,14 +108,14 @@ export default function User(props) {
                                         // size={25}
                                         // style={{ width: 250 }} // Set the width to 100 pixels
                                         // radius="md"
-
+                                        
                                         // color="gray"
                                         offLabel={<Text fz={18}> Dine annonser </Text>}
                                         onLabel={<Text fz={18}> Favoritt annonser </Text>}
                                         size={32}
                                         radius="md"
                                     ></Switch>
-                                    </Group>
+                                </Group>
                                 <Space h="md"></Space>
 
                                 {/* <Switch
@@ -120,22 +125,23 @@ export default function User(props) {
                                     offLabel={'Dine annonser'}
                                     size="xl"
                                 ></Switch> */}
-                                {!show && <Annonsecontainer data={posts}></Annonsecontainer>}
-                                {show && <Annonsecontainer data={favourites}></Annonsecontainer>}
+                                {!show && <Annonsecontainer data={posts} occupiedWidth={2000}></Annonsecontainer>}
+                                {show && <Annonsecontainer data={favourites} occupiedWidth={2000}></Annonsecontainer>}
                             </div>
                         }
-                        {!(user.id === activeUser.id) &&
+                        {!(user.id === activeUser.id) && 
                             <div >
-                                <Annonsecontainer data={posts}></Annonsecontainer>
+                                <Annonsecontainer data={posts} occupiedWidth={2000}></Annonsecontainer>
                             </div>
                         }
                     </div>
                 {/* </Grid.Col> */}
                 {/* </Flex> */}
-            </Grid>
+            </Flex>
+            </Card>
         </div>
-                
-                
-                );
-            }
+                    
+                    
+        );
+    }
             
