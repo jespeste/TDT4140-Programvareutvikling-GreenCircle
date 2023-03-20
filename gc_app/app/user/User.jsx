@@ -28,11 +28,12 @@ export default function User(props) {
 	return (
 		<div style={{backgroundColor: '', display: 'flex', justifyContent: 'center'}}>
             
-            <Card>
+            <Card style={{backgroundColor: 'rgba(0, 0, 0, 0)'}}> 
+
 
             <Space h={15}></Space>
     
-            <Flex style={{backgroundColor: '', display: 'flex', justifyContent: 'center'}}>
+            <Flex style={{backgroundColor: 'rgba(0, 0, 0, 0)', display: 'flex', justifyContent: 'center'}}>
                     <div >
                         <Card style={{backgroundColor: 'rgba(0, 0, 0, 0)'}}> 
                                 
