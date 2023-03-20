@@ -204,9 +204,15 @@ export default function ReportView({reportData}) {
             </tbody>
             </Table>
                 <div style={{textAlign: "center"}}>
-                    <Title order={5}>Beskrivelse: </Title>
-                    {/* TODO: Very long words may exceed the width of the container. */}
-                    <Text>{reportData.description}</Text>
+                    {reportData.description !== '' &&
+                        <>
+                        <Title order={5}>Beskrivelse: </Title>
+                        <Text>{reportData.description}</Text>
+                        </>
+                    }
+                    {reportData.description === '' &&
+                        <Title order={5}> Ingen beskrivelse gitt </Title>
+                    }
                 </div>
             </Card>
 		</div>
