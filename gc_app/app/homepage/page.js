@@ -4,7 +4,7 @@ import './homepage.css';
 import Navbar from '../Navbar';
 import { Image } from '@mantine/core';
 import { Space } from '@mantine/core';
-
+import Link from 'next/link';
 
 
 // export async function getServerSideProps(){
@@ -76,62 +76,62 @@ export default function HomePage() {
 			<div id="linkMenu">
 				<ul id="homeMenuTop">
 					<li className="homeList">
-						<a className="homeLink" href="./annonse">
+						<Link className="homeLink" href="./annonse">
 							<img className="homeIcon" src={images.get('smaaelektrisk')} />
 							<br />
 							Småelektrisk
-						</a>
+						</Link>
 					</li>
 					<li className="homeList">
-						<a className="homeLink" href="./annonse">
+						<Link className="homeLink" href="./annonse">
 							<img className="homeIcon" src={images.get('handverktoy')} />
 							<br />
 							Håndverktøy
-						</a>
+						</Link>
 					</li>
 					<li className="homeList">
-						<a className="homeLink" href="./annonse">
+						<Link className="homeLink" href="./annonse">
 							<img className="homeIcon" src={images.get('nailgun')} />
 							<br />
 							Spikerpistol og kompressor
-						</a>
+						</Link>
 					</li>
 					<li className="homeList">
-						<a className="homeLink" href="./annonse">
+						<Link className="homeLink" href="./annonse">
 							<img className="homeIcon" src={images.get('storelektrisk')} />
 							<br />
 							Storelektrisk
-						</a>
+						</Link>
 					</li>
 				</ul>
 				<ul id="homeMenuBottom">
 					<li className="homeList">
-						<a className="homeLink" href="./annonse">
+						<Link className="homeLink" href="./annonse">
 							<img className="homeIcon" src={images.get('maaleverktoy')} />
 							<br />
 							Måleverktoy
-						</a>
+						</Link>
 					</li>
 					<li className="homeList">
-						<a className="homeLink" href="./annonse">
+						<Link className="homeLink" href="./annonse">
 							<img className="homeIcon" src={images.get('festemidler')} />
 							<br />
 							Lim og festemidler
-						</a>
+						</Link>
 					</li>
 					<li className="homeList">
-						<a className="homeLink" href="./annonse">
+						<Link className="homeLink" href="./annonse">
 							<img className="homeIcon" src={images.get('maling')} />
 							<br />
 							Maling
-						</a>
+						</Link>
 					</li>
 					<li className="homeList">
-						<a className="homeLink" href="./annonse">
+						<Link className="homeLink" href="./annonse">
 							<img className="homeIcon" src={images.get('oppbevaring')} />
 							<br />
 							Verktøy oppbevaring
-						</a>
+						</Link>
 					</li>
 				</ul>
 			</div>
