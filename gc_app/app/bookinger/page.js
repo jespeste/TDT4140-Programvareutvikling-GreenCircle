@@ -12,7 +12,7 @@ export default function Bookingpage() {
 		try {
 			const reportData = await pb.collection('bookings').getList(1,100,{ 
 				'$autoCancel': true,
-			    expand: 'owner, booker'
+			    expand: 'owner, booker, post'
 			});
 			console.log(reportData);
 			setReportList(reportData.items);

@@ -59,9 +59,18 @@ export default function User(props) {
         const upDated = {
             "booking_confirmed": true,
         }
+        const post = await pb.collection('posts').getOne(id);
+        const upBook = {
+            "owner": post.owner,
+            "booker": post.booker,
+            "post": post.id,
+            "startDate": post.startDate,
+            "endDate": post.endDate
+        }
         try {
             let updates = await pb.collection('posts').update(id, upDated);
-			console.log(updates);
+            console.log(updates);
+            let upBookes = await pb.collection('bookings').create(upBook);
         } catch (err) {
             console.log(err);
 		}

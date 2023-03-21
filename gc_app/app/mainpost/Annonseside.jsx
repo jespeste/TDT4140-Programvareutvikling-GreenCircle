@@ -15,6 +15,7 @@ export default function Annonseside(props) {
 	let owner = props.data.expand.owner;
 	let mailstring = 'mailto:' + owner.email;
 	let phonestring = 'tel:' + owner.telephone;
+	console.log(data.booking_confirmed + " ER den confirmed?");
     const activeUser = getActiveUser();
 
 	const [location, setLocation] = useState('');
@@ -92,7 +93,7 @@ export default function Annonseside(props) {
 
 	async function handleBooking(dates){
 		console.log(dates);
-		setBooked(dates[0]);
+		setBooked(true);
 		let user = pb.authStore.model;
 		console.log(user.id);
 		const upDated = {
@@ -104,6 +105,23 @@ export default function Annonseside(props) {
 		try {
 			const upDates = await pb.collection('posts').update(data.id, upDated);
 			alert("Booking forespørsel har blitt sendt.");
+			console.log(upDates);
+		} catch (err) {
+			alert(err);
+		}
+	}
+
+	async function handleCancellation(){
+		const upDated = {
+			"startDate": "",
+			"endDate": "",
+			"booking_confirmed": false,
+			"booker": "",
+		}
+		try {
+			const upDates = await pb.collection('posts').update(data.id, upDated);
+			setBooked(false);
+			alert("Du har nå avbooket.");
 			console.log(upDates);
 		} catch (err) {
 			alert(err);
@@ -134,10 +152,13 @@ export default function Annonseside(props) {
                                 !(owner.id === activeUser.id) 
                                     && <ReportPopUp reporter={owner} reportedUser={undefined} reportedPost={data} />
                                 }
-                                {!(owner.id === activeUser.id) && isBooked && data.booker == activeUser.id
+                                {!(owner.id === activeUser.id) && data.booking_confirmed && isBooked && data.booker == activeUser.id
                                     && <ReviewPopUp reviewer={activeUser} reviewedUser={owner} reviewedPost={data} />
                                 }
-								{!(owner.id === activeUser.id) && !isBooked
+								{!(owner.id === activeUser) && data.booking_confirmed && data.booker == activeUser.id && isBooked
+									&& <Button color="red" onClick={()=>{handleCancellation()}}>Avbook</Button>
+								}
+								{!(owner.id === activeUser.id) && !data.booking_confirmed && !isBooked
 									&& <DatePicker handleBooking={handleBooking}></DatePicker>
 								}
 								{}

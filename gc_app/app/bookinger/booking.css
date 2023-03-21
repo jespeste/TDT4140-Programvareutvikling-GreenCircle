@@ -1,0 +1,11 @@
+.booking-container {
+    display: flex;
+    height: 90%;
+}
+
+.left, .right {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 0px;
+}
