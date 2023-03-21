@@ -215,12 +215,14 @@ export default function Annonseside(props) {
                                             </Button>
                                         }
                                         {!(activeUser.id === owner.id) &&
+                                        
                                             <Group>
                                                 {/* Review should only be available for posts that the user has participated in (as borrower/borrowee) .
                                                     For the future: replace 'true' with the additional check that the activeUser has been a 
                                                     borrower/borrowee for the post in question.*/}
+                                                    <Text>{owner.id} </Text>
                                                 {(activeUser.id !== owner.id && true) &&
-                                                    <ReviewPopUp reviewer={activeUser} reviewedUser={undefined} reviewedPost={data} />
+                                                    <ReviewPopUp reviewer={activeUser} reviewedUser={owner} reviewedPost={data} />
 
                                                 }
                                                 {(activeUser.id !== owner.id) &&
