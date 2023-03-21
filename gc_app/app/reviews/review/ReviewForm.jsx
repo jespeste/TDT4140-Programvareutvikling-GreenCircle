@@ -89,7 +89,7 @@ export default function ReviewPopUp({reviewer, reviewedUser, reviewedPost}) {
 
 	return (
 
-        <div className="root">
+        <div className="regroot">
             <Modal opened={opened} onClose={close} withCloseButton={false} centered>
                 <Title order={3} weight={100} align="center">{getReviewTitle()}</Title>
                 <form onSubmit={handleSubmit}>
