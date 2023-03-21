@@ -235,12 +235,6 @@ export default function Annonseside(props) {
                                     }
                                     {!(owner.id === activeUser.id) 
                                         && <ReviewPopUp reviewer={activeUser} reviewedUser={owner} reviewedPost={data} />} */}
-								{!(owner.id === activeUser) && data.booking_confirmed && data.booker == activeUser.id && isBooked
-									&& <Button color="red" onClick={()=>{handleCancellation()}}>Avbook</Button>
-								}
-								{!(owner.id === activeUser.id) && !data.booking_confirmed && !isBooked
-									&& <DatePicker handleBooking={handleBooking}></DatePicker>
-								}
                             </Group>
                             
                             </Group>
@@ -259,6 +253,12 @@ export default function Annonseside(props) {
                                                 Slett annonsen
                                             </Button>
                                         }
+										{!(owner.id === activeUser) && data.booking_confirmed && data.booker == activeUser.id && isBooked
+											&& <Button color="red" onClick={()=>{handleCancellation()}}>Avbook</Button>
+										}
+										{!(owner.id === activeUser.id) && !data.booking_confirmed && !isBooked
+											&& <DatePicker handleBooking={handleBooking}></DatePicker>
+										}
                                         {!(activeUser.id === owner.id) &&
                                         
                                             <Group>

@@ -46,10 +46,10 @@ export const DatePicker = (props) => {
             setState([item.selection]);
             }}
         />
-        <Button class='button-3' onClick={handleBooking}>Book nå</Button>
+        <Button color="green" compact onClick={handleBooking}>Book nå</Button>
         </Modal>
         <Group>
-            <Button class='button-3' onClick={open}>Book</Button>
+            <Button variant="subtle" color="green" compact onClick={open}>Book</Button>
         </Group>
         </>
     )

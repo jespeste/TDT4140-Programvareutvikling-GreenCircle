@@ -129,9 +129,6 @@ export default function User(props) {
                                             <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
                                     </div>
                                 }
-                                {(user.id === activeUser.id) && (!isLoading) &&
-                                    <BookingConfirm data={posts.filter((post)=>(post.owner == user.id))} setOn={setOn} reject={rejectBooking} accept={acceptBooking}></BookingConfirm>
-                                }
                                 <Space h={15}></Space>
                                 {/* <img className="avatar" src={user.avatar}></img> */}
                             </div>
@@ -148,6 +145,9 @@ export default function User(props) {
                                 {/* {user.verified && <div className="verified">&#10003; </div> } */}
                                 <Space w={10} />
                                 <Text fz={20} align="center"> {user.firstName + ' ' + user.lastName} </Text>
+                                {(user.id === activeUser.id) && (!isLoading) &&
+                                    <BookingConfirm data={posts.filter((post)=>(post.owner == user.id))} setOn={setOn} reject={rejectBooking} accept={acceptBooking}></BookingConfirm>
+                                }
                                 {/* {user.firstName + ' ' + user.lastName} */}
                                 <Space w={10} />
                                 

@@ -15,14 +15,14 @@ export default function PreviousBooking(props){
             justify="center"
             align="center"  
         >   
-        <Grid.Col span={7}>
+        <Grid.Col span={6}>
             {(bookingsOwner.length == 0) ? (<Title order={2}>Ingen har booket fra deg :(</Title>) : (
             <Title order={2}>Annonser andre har booket fra deg:</Title>
             )}
         </Grid.Col>
-        <Grid.Col span={3}>
+        <Grid.Col span={5}>
             {(bookingsBooker.length == 0) ? (<Title order={2}>Du har ikke booket noe</Title>) : (
-                <Title order={2}>Annonser du har booket:</Title>
+                <Title order={2}>Annonser du har booket tidligere:</Title>
             )}
         </Grid.Col>
         </Grid>
@@ -43,11 +43,11 @@ export default function PreviousBooking(props){
                     </Card.Section>
                     <Card.Section mih={80}>
                         <Text>
-                            Eier: <Link href={"../user/" + post.owner}>{post.owner}</Link>
+                            Eier: <Link href={"../user/" + post.owner}>{post.expand.owner.firstName + " " + post.expand.owner.lastName}</Link>
                             <br></br>
-                            Låner: <Link href={"../user/" + post.booker}>{post.booker}</Link>
+                            Låner: <Link href={"../user/" + post.booker}>{post.expand.booker.firstName + post.expand.booker.lastName}</Link>
                             <br></br>
-                            Annonse: <Link href={"../mainpost/" + post.post}>{post.post}</Link>
+                            Annonse: <Link href={"../mainpost/" + post.post}>{post.expand.post.title}</Link>
 
                         </Text>
                     </Card.Section>
@@ -70,11 +70,11 @@ export default function PreviousBooking(props){
                             <Image src={post.expand.post.image} mah={200} maw={200}/>
                         </Card.Section>
                             <Text>
-                                Eier: <Link href={"../user/" + post.owner}>{post.owner}</Link>
+                                Eier: <Link href={"../user/" + post.owner}>{post.expand.owner.firstName + " " + post.expand.owner.lastName}</Link>
                                 <br></br>
-                                Låner: <Link href={"../user/" + post.booker}>{post.booker}</Link>
+                                Låner: <Link href={"../user/" + post.booker}>{post.expand.booker.firstName + post.expand.booker.lastName}</Link>
                                 <br></br>
-                                Annonse: <Link href={"../mainpost/" + post.post}>{post.post}</Link>
+                                Annonse: <Link href={"../mainpost/" + post.post}>{post.expand.post.title}</Link>
 
                             </Text>
                         <Card.Section></Card.Section>
