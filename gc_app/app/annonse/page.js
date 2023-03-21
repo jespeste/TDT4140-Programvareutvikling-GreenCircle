@@ -3,8 +3,8 @@ import pb from '../lib/pocketbase';
 import Annonsecontainer from './Annonsecontainer';
 import Navbar from '../Navbar';
 import { useState, useEffect } from 'react';
-import { NativeSelect } from '@mantine/core';
-import { Button, Grid } from '@mantine/core';
+import { CardSection, NativeSelect } from '@mantine/core';
+import { Button, Grid, Input, Group, Card, Space, Select } from '@mantine/core';
 
 import './main.css';
 import CreatePost from './createpost';
@@ -20,7 +20,7 @@ export default function Annonsepage() {
 
 	// For ease of implementation, these are static
 	const categories = [
-		{ value: '', label: 'Alle verktøy' },
+		{ value: '', label: 'Alle' },
 		{ value: 'Småelektrisk', label: 'Småelektrisk' },
 		{ value: 'Håndverktøy', label: 'Håndverktøy' },
 		{ value: 'Spikerpistol og kompressor', label: 'Spikerpistol og kompressor' },
@@ -33,7 +33,7 @@ export default function Annonsepage() {
 	const isListingTable = [
 		{ value: '', label: 'Alle' },
 		{ value: true, label: 'Ønskes Lånt' },
-		{ value: false, label: 'Til Leie' }
+		{ value: false, label: 'Lånes ut' }
 	];
 	const updatePosts = async (post) => {
 		console.log("RUns");
@@ -103,35 +103,75 @@ export default function Annonsepage() {
 	};
 
 	return (
-        <div className="bigcontainer">
-            <Navbar></Navbar>
-            <Grid style={{backgroundColor: '', justifyContent: 'center'}}>
-                <div className="onerow">
-                    <button className="button" type="button" onClick={handlePopOpen}>
-                        Ny Annonse
-                    </button>
-                    <input
-                        type="text"
-                        value={search}
-                        onChange={(event) => setSearch(event.target.value)}
-                        className="searchbar"
-                        placeholder="Søk etter motorsag eller skrujern!"
-                        />
-                    <NativeSelect
-                        data={categories}
-                        onChange={(event) => setFilter(event.currentTarget.value)}
-                        value={filter}
-                        radius="md"
-                        size="47"
-                        ></NativeSelect>
-                    <NativeSelect
-                        data={isListingTable}
-                        onChange={(event) => setListing(event.currentTarget.value)}
-                        value={isListing}
-                        radius="md"
-                        size="47"
-                        ></NativeSelect>
-                </div>
+        
+        <div>
+            <Navbar page="posts"></Navbar>
+        
+        <div style={{ display: 'flex', justifyContent: 'center'}}>
+            
+            <Card shadow="sm" padding="lg" radius="md" withBorder 
+                style={{
+                    backgroundColor: 'rgb(0,0,0,0)',
+                    width: "80vw", maxWidth: '1150px', paddingTop: '30px', paddingBottom: '25px', marginTop: '10px', minHeight: '90vh'}}>
+
+                <CardSection style={{ display: 'flex', justifyContent: 'center'}}>
+                    <Group position='apart' grow>
+                            <Button variant="outline" color="teal" onClick={handlePopOpen} 
+                                style={{ width: '50px', marginTop: '25px'}}>
+                                + Ny Annonse
+                            </Button>
+
+                        <Input.Wrapper label="Søk" >
+                            <Input
+                                value={search}
+                                onChange={(event) => setSearch(event.target.value)}
+                                placeholder="Søk etter utstyr her"
+                                styles={(theme) => ({
+                                    input: {
+                                    '&:focus-within': {
+                                        borderColor: theme.colors.teal[7],
+                                    },
+                                    },
+                                })}
+                                />
+                        </Input.Wrapper>
+                        <Select
+                            label="Kategorier"
+                            data={categories}
+                            onChange={setFilter}
+                            value={filter}
+                            radius="md"
+                            // size="47"
+                            styles={(theme) => ({
+                                input: {
+                                '&:focus-within': {
+                                    borderColor: theme.colors.teal[7],
+                                },
+                                },
+                            })}
+                            ></Select>
+                        <Select
+                            label="Annonsetype"
+                            data={isListingTable}
+                            onChange={setListing}
+                            value={isListing}
+                            radius="md"
+                            // size="47"
+                            styles={(theme) => ({
+                                input: {
+                                '&:focus-within': {
+                                    borderColor: theme.colors.teal[7],
+                                },
+                                },
+                            })}
+                        ></Select>
+                    </Group>
+                </CardSection>
+                <Space h={25}></Space>
+                <CardSection style={{display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Annonsecontainer data={posts} occupiedWidth={1500} />
+                </CardSection>
+            </Card>
                 <div className="popup">
                     <div className="outercontainer">
                         <div className="reportcontainer">
@@ -139,8 +179,8 @@ export default function Annonsepage() {
                         </div>
                     </div>
                 </div>
-                <Annonsecontainer data={posts} />
-            </Grid>
+            </div>
         </div>
+
 	);
 }

@@ -29,10 +29,12 @@ export default function Annonsepage({ params }) {
 	},[])
 
 	return (
-		<div className="bigcontainer">
-			<Navbar></Navbar>
+        <div>
+			<Navbar page="posts"></Navbar>
 			{!isLoading &&
-			<Annonseside data={post}></Annonseside>
+            <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: ''}}>
+			    <Annonseside data={post}></Annonseside>
+		      </div>
 			}
 		</div>
 	);

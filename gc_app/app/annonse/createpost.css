@@ -13,7 +13,7 @@
 	margin-top: 150px;
 	width: 500px;
 	height: 440px;
-	background-color: #b5d43b;
+	/* background-color: #b5d43b; */
 	border-radius: 6px;
 }
 
@@ -26,7 +26,7 @@
 .buttons {
 	margin: auto;
 	margin-top: 12px;
-	width: 400px;
+	width: 100px;
 	display: grid;
 	grid-template-columns: auto auto;
 }

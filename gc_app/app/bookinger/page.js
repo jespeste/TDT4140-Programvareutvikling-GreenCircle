@@ -28,7 +28,7 @@ export default function Bookingpage() {
 
 	return (
 		<div className="bigcontainer">
-            <Navbar></Navbar>
+            <Navbar page="bookings"></Navbar>
             <PreviousBooking data={bookings} user={user}></PreviousBooking>
 		</div>
 	);

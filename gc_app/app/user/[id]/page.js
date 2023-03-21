@@ -19,7 +19,7 @@ export default async function Page({ params }) {
 	const posts = await getPosts();
 	return (
 		<div>
-			<Navbar></Navbar>
+			<Navbar page="user"></Navbar>
 			<User posts={posts} user={user} ></User>
 		</div>
 	);
