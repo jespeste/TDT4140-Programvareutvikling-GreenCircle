@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { MantineProvider } from '@mantine/core';
 import { ActionIcon, Text } from '@mantine/core';
 
-export default function DarkMode(props) {
+export default function DarkContainer(props) {
   const [checked, setChecked] = useState(false);
 
   return (
     <div style={{ position: 'relative' }}>
-      <div style={{ zIndex: 999, position: 'fixed', top: 10, right: 12 }}>
+      <div style={{ position: 'absolute', top: 5, right: 5 }}>
         <ActionIcon
           variant="outline"
           color={checked ? 'teal' : 'teal'}

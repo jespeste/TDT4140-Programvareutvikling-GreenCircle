@@ -190,7 +190,7 @@ export default function Registration() {
                                     fz="md"
                                     fw={475}
                                     >
-                                    Ikke bruker? 
+                                    Har du bruker? 
                                     <Button onClick={login} variant="subtle" color="gray" compact >
                                         {<Text
                                             ta="center"
