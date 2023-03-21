@@ -13,17 +13,16 @@ import { useDisclosure } from '@mantine/hooks';
 import { Modal, Group, Button } from '@mantine/core';
 import { ActionIcon } from '@mantine/core';
 
-    
-    /**
-     * Report button that opens up a form for reporting inapproptiate users/posts.
-    *
-    * @param {*} reporter - The reporting user.
-    * @param {*} reportedUser - The reported user.
-    * @param {*} reportedPost - The reported post.
-    * @returns - A button which once clicked opens up a report-form.
-    */
-   export default function ReportPopUp({ reportedUser, reportedPost }) {
-    const [opened, { open, close }] = useDisclosure(false);
+/**
+ * Report button that opens up a form for reporting inapproptiate users/posts.
+ *
+ * @param {*} reporter - The reporting user.
+ * @param {*} reportedUser - The reported user.
+ * @param {*} reportedPost - The reported post.
+ * @returns - A button which once clicked opens up a report-form.
+ */
+export default function ReportPopUp({ reportedUser, reportedPost }) {
+	const [opened, { open, close }] = useDisclosure(false);
 	const [description, setDescription] = useState('');
 
 	function getActiveUser() {
@@ -84,65 +83,74 @@ import { ActionIcon } from '@mantine/core';
 					'Rapportert av: ' +
 					report.reporter
 			);
-            close();
+			close();
 		} catch (e) {
-            alert('Feilmelding:' + e + '\n' +
-			'Prøvde å sende følgende vurdering:' + '\n' +
-            'Beskrivelse: ' +
-            report.description +
-            '\n' +
-            'Rapportert bruker: ' +
-            report.reportedUser +
-            '\n' +
-            'Rapportert annonse: ' +
-            report.reportedPost +
-            '\n' +
-            'Rapportert av: ' +
-            report.reporter);
+			alert(
+				'Feilmelding:' +
+					e +
+					'\n' +
+					'Prøvde å sende følgende vurdering:' +
+					'\n' +
+					'Beskrivelse: ' +
+					report.description +
+					'\n' +
+					'Rapportert bruker: ' +
+					report.reportedUser +
+					'\n' +
+					'Rapportert annonse: ' +
+					report.reportedPost +
+					'\n' +
+					'Rapportert av: ' +
+					report.reporter
+			);
 		}
 	}
 
 	return (
 		<div className="root">
-            <Modal opened={opened} onClose={close} withCloseButton={false} centered>
-            {/* <Modal opened={opened} onClose={close} title={getReportTitle()} centered> */}
-                {/* <h2 position="center">{getReportTitle()} </h2> */}
-                <Title order={3} weight={100} align="center">{getReportTitle()}</Title>
-                <form onSubmit={handleSubmit}>
-                    <Textarea
-                        maxlength="256"
-                        value={description}
-                        onChange={(event) => setDescription(event.target.value)}
-                        placeholder=""
-                        autosize
-                        minRows={2}
-                    />
-                    <Space h="xs" />
-                    <div>
-                        <Group position="center" spacing="xs" grow>
-                            <Button compact variant= 'outline' type="submit" color="green" radius="lg">
-                                Send
-                            </Button>
-                            <Button compact variant= 'outline' type="abort" color="red" radius="lg" onClick={(e) => { e.preventDefault(); close(); }}>
-                                {' '}
-                                Avbryt
-                            </Button>
-                        </Group>
-                    </div>
-                </form>
-            </Modal>
+			<Modal opened={opened} onClose={close} withCloseButton={false} centered>
+				<Title order={3} weight={100} align="center">
+					{getReportTitle()}
+				</Title>
+				<form onSubmit={handleSubmit}>
+					<Textarea
+						maxlength="256"
+						value={description}
+						onChange={(event) => setDescription(event.target.value)}
+						placeholder=""
+						autosize
+						minRows={2}
+					/>
+					<Space h="xs" />
+					<div>
+						<Group position="center" spacing="xs" grow>
+							<Button compact variant="outline" type="submit" color="green" radius="lg">
+								Send
+							</Button>
+							<Button
+								compact
+								variant="outline"
+								type="abort"
+								color="red"
+								radius="lg"
+								onClick={(e) => {
+									e.preventDefault();
+									close();
+								}}
+							>
+								{' '}
+								Avbryt
+							</Button>
+						</Group>
+					</div>
+				</form>
+			</Modal>
 
-            <Group position="center">
-
-
-                <Button variant="subtle" color="red" compact onClick={open} >
-                    Rapportér 
-                </Button>
-                {/* Ikon-variant: */}
-                {/* <ActionIcon color="red" size={31} variant="outline" onClick={open} radius="xl">
-                    <Text fw={750} fz={25} align="center"> ! </Text>
-                </ActionIcon> */}
-            </Group>
+			<Group position="center">
+				<Button variant="subtle" color="red" compact onClick={open}>
+					Rapportér
+				</Button>
+			</Group>
 		</div>
 	);
 }

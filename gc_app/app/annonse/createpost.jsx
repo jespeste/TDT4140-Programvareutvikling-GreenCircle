@@ -10,8 +10,8 @@ import { createStyles } from '@mantine/core';
 import { Card } from '@mantine/core';
 import { Title } from '@mantine/core';
 import { Switch } from '@mantine/core';
-import { Group} from '@mantine/core';
-import { Space} from '@mantine/core';
+import { Group } from '@mantine/core';
+import { Space } from '@mantine/core';
 import { useState } from 'react';
 
 import './createpost.css';
@@ -51,7 +51,6 @@ export default function CreatePost(props) {
 			padding: 10
 		}
 	}));
-	const { classes } = useStyles();
 
 	const closePopup = () => {
 		props.setPopUpClose();
@@ -125,71 +124,71 @@ export default function CreatePost(props) {
 	};
 	return (
 		<div className="createpostroot">
-            <Card shadow="sm" padding="lg" radius="md" withBorder style={{paddingBottom: "35px"}}>
-
-			<Container 
-            className="createpostcontainer"
-            >
-				{/* <h1 className="h1">Ny annonse</h1> */}
-                <Title>
-                    Ny annonse
-                </Title>
-				<form onSubmit={handleSubmit}>
-					{/* <FileInput label="Last opp Bilde:" placeholder="Bilde" /> */}
-					<TextInput
-						className="textinput"
-						value={url}
-						onChange={(event) => setUrl(event.target.value)}
-						placeholder="Bildeadresse (url)"
-						withAsterisk
-                        />
-					<TextInput
-						className="textinput"
-						value={title}
-						onChange={(event) => setTitle(event.target.value)}
-						placeholder="Tittel"
-						withAsterisk
-                        />
-					<TextInput
-						className="textinput"
-						value={address}
-						onChange={(event) => setAddress(event.target.value)}
-						placeholder="Adresse"
-                        />
-					<Textarea
-						className="textinput"
-						value={description}
-						onChange={(event) => setDescription(event.target.value)}
-						placeholder="Beskrivelse"
-						autosize
-						minRows={2}
-                        />
-					<NativeSelect
-						className="textinput"
-						data={data}
-						onChange={(event) => setValue(event.currentTarget.value)}
-						value={value}
-                        ></NativeSelect>
-					<Checkbox
-						className="textinput"
-						label="Ønskes lånt"
-						checked={checked}
-						onChange={(event) => setChecked(event.currentTarget.checked)}
-                        />
-                        <Space h={20}></Space>
-					<div >
-                        <Group position='center' grow>
-                            <Button variant="outline" compact type="submit" color="green" radius="md">
-                                Publisér annonse
-                            </Button>
-                            <Button variant="outline" compact type="button" color="red" radius="md" onClick={closePopup}>
-                                Avbryt
-                            </Button>
-                        </Group>
-					</div>
-				</form>
-			</Container>
-            </Card>
+			<Card shadow="sm" padding="lg" radius="md" withBorder style={{ paddingBottom: '35px' }}>
+				<Container className="createpostcontainer">
+					<Title>Ny annonse</Title>
+					<form onSubmit={handleSubmit}>
+						<TextInput
+							className="textinput"
+							value={url}
+							onChange={(event) => setUrl(event.target.value)}
+							placeholder="Bildeadresse (url)"
+							withAsterisk
+						/>
+						<TextInput
+							className="textinput"
+							value={title}
+							onChange={(event) => setTitle(event.target.value)}
+							placeholder="Tittel"
+							withAsterisk
+						/>
+						<TextInput
+							className="textinput"
+							value={address}
+							onChange={(event) => setAddress(event.target.value)}
+							placeholder="Adresse"
+						/>
+						<Textarea
+							className="textinput"
+							value={description}
+							onChange={(event) => setDescription(event.target.value)}
+							placeholder="Beskrivelse"
+							autosize
+							minRows={2}
+						/>
+						<NativeSelect
+							className="textinput"
+							data={data}
+							onChange={(event) => setValue(event.currentTarget.value)}
+							value={value}
+						></NativeSelect>
+						<Checkbox
+							className="textinput"
+							label="Ønskes lånt"
+							checked={checked}
+							onChange={(event) => setChecked(event.currentTarget.checked)}
+						/>
+						<Space h={20}></Space>
+						<div>
+							<Group position="center" grow>
+								<Button variant="outline" compact type="submit" color="green" radius="md">
+									Publisér annonse
+								</Button>
+								<Button
+									variant="outline"
+									compact
+									type="button"
+									color="red"
+									radius="md"
+									onClick={closePopup}
+								>
+									Avbryt
+								</Button>
+							</Group>
+						</div>
+					</form>
+				</Container>
+			</Card>
 		</div>
 	);
 }
