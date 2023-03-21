@@ -36,6 +36,7 @@ export default function Annonsepage() {
 		{ value: false, label: 'Til Leie' }
 	];
 	const updatePosts = async (post) => {
+		console.log("RUns");
 		try {
 			let unbooked = {
 				"startDate": "",
@@ -70,7 +71,6 @@ export default function Annonsepage() {
 				filter: `(title~"${search}" || description~"${search}") && booking_confirmed=false && startDate="" ${category}${isListingFilter}`
 			});
 			setPostList(data.items);
-			console.log("hei");
 
 			// TODO: Find how to update posts when they pass a certain date, maybe backend or something.
 			//getAndUpdate();

@@ -26,6 +26,9 @@ export default function Navbar() {
 				<li className="navbarE">
 					<Link href={`/user/${activeUser.id}`}>Bruker</Link>
 				</li>
+				<li className='navbarE'>
+					<Link href="/bookinger">Historie</Link>
+				</li>
 				{/* TODO: the /reports button on the navbar should only be visible when the active user is an admin. */}
 				{ activeUser.isAdmin &&
 				<li className="navbarE">

@@ -134,7 +134,7 @@ export default function Annonseside(props) {
                                 !(owner.id === activeUser.id) 
                                     && <ReportPopUp reporter={owner} reportedUser={undefined} reportedPost={data} />
                                 }
-                                {!(owner.id === activeUser.id) 
+                                {!(owner.id === activeUser.id) && isBooked && data.booker == activeUser.id
                                     && <ReviewPopUp reviewer={activeUser} reviewedUser={owner} reviewedPost={data} />
                                 }
 								{!(owner.id === activeUser.id) && !isBooked
