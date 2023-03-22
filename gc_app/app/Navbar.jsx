@@ -1,9 +1,8 @@
-'use client';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import pb from './lib/pocketbase';
 import './navbar.css';
 import { Tabs, Space, Text, Image, Card} from '@mantine/core';
-
 
 export default function Navbar({page}) {
     const images = new Map([
@@ -13,19 +12,22 @@ export default function Navbar({page}) {
         ]
     ]);
 
-	function logOut() {
-		pb.authStore.clear();
-	}
+    function logOut() {
+        pb.authStore.clear();
+    }
 
     function getActiveUser() {
         const activeUser = pb.authStore.model;
-		return activeUser;
+        return activeUser;
     }
 
-	const activeUser = getActiveUser();
+    const [activeUser, setActiveUser] = useState(null);
 
+    useEffect(() => {
+        setActiveUser(getActiveUser());
+    }, []);
 
-	return (
+    return (
         <div>
             <Card style={{backgroundColor: '', width: '150%', position: 'fixed', zIndex: '998', height: '49px', top: '0'} } >
 
@@ -59,13 +61,15 @@ export default function Navbar({page}) {
                             </Tabs.Tab>
                         </Link>
 
-                        <Link href={`/user/${activeUser.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <Tabs.Tab value="user" >
-                                <Text fw={500} size={15} >
-                                    Profil
-                                </Text>
-                            </Tabs.Tab>
-                        </Link>
+                        {activeUser &&
+                            <Link href={`/user/${activeUser.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                <Tabs.Tab value="user" >
+                                    <Text fw={500} size={15} >
+                                        Profil
+                                    </Text>
+                                </Tabs.Tab>
+                            </Link>
+                        }
 
                         <Link href="/annonse" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <Tabs.Tab value="posts" >
@@ -83,7 +87,7 @@ export default function Navbar({page}) {
                             </Tabs.Tab>
                         </Link>
 
-                        { activeUser.isAdmin &&
+                        { activeUser && activeUser.isAdmin &&
                             <Link href="/reports" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <Tabs.Tab value="reports" >
                                     <Text fw={500} size={15} >
@@ -92,8 +96,8 @@ export default function Navbar({page}) {
                                 </Tabs.Tab>
                             </Link>
                         }
-                            <div>
 
+                        <div>
                             <Link href="/" onClick={logOut} style={{ textDecoration: 'none', color: 'inherit', position: 'absolute', right: '0'}}>
                                 <Tabs.Tab value="login" ml="auto" onClick={logOut}>
                                     <Text fw={500} size={15} >
