@@ -11,7 +11,6 @@ import ReviewsPopUp from '../reviews/ReviewsPopUp';
 import { ActionIcon, Button, Card, Flex } from '@mantine/core';
 import BookingConfirm from '../booking/BookingConfirm';
 // import { MessageReport } from 'tabler-icons-react';
-              
 
 function getActiveUser() {
 	return pb.authStore.model;
@@ -28,7 +27,7 @@ export default function User(props) {
         }
     });
 	let favourites = props.posts.filter((post) => user.favourites.includes(post.id));
-    let mailstring = 'mailto:' + user.email;
+	let mailstring = 'mailto:' + user.email;
 	let phonestring = 'tel:' + user.telephone;
 
 	const [show, setShow] = useState("1");
@@ -104,53 +103,55 @@ export default function User(props) {
     },[isOn, show])
 
 	return (
-		<div style={{backgroundColor: '', display: 'flex', justifyContent: 'center'}}>
-            
-            <Card style={{backgroundColor: 'rgba(0, 0, 0, 0)'}}> 
+		<div style={{ backgroundColor: '', display: 'flex', justifyContent: 'center' }}>
+			<Card style={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}>
+				<Space h={15}></Space>
 
-
-            <Space h={15}></Space>
-    
-            <Flex style={{backgroundColor: 'rgba(0, 0, 0, 0)', display: 'flex', justifyContent: 'center'}}>
-                    <div >
-                        <Card style={{backgroundColor: 'rgba(0, 0, 0, 0)'}}> 
-                                
-                        <div className="profileinfo2">
-                            <Space h={20}></Space>
-                            <div >
-                                {user.avatar !== '' 
-                                    && <Avatar color="teal" size={300} radius={300} src={user.avatar}></Avatar>
-                                }
-                                {!(user.avatar !== '')
-                                    && <Avatar color="teal" size={300} radius={300}> {user.firstName[0]}{user.lastName[0]}</Avatar>
-                                }
-                                {!(user.id === activeUser.id) && 
-                                    <div style={{ position: "absolute", top: "10px", left: "10px" }}>
-                                            <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
-                                    </div>
-                                }
-                                <Space h={15}></Space>
-                                {/* <img className="avatar" src={user.avatar}></img> */}
-                            </div>
-                        </div>
+				<Flex
+					style={{ backgroundColor: 'rgba(0, 0, 0, 0)', display: 'flex', justifyContent: 'center' }}
+				>
+					<div>
+						<Card style={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}>
+							<div className="profileinfo2">
+								<Space h={20}></Space>
+								<div>
+									{user.avatar !== '' && (
+										<Avatar color="teal" size={300} radius={300} src={user.avatar}></Avatar>
+									)}
+									{!(user.avatar !== '') && (
+										<Avatar color="teal" size={300} radius={300}>
+											{' '}
+											{user.firstName[0]}
+											{user.lastName[0]}
+										</Avatar>
+									)}
+									{!(user.id === activeUser.id) && (
+										<div style={{ position: 'absolute', top: '10px', left: '10px' }}>
+											<ReportPopUp
+												reporter={getActiveUser()}
+												reportedUser={user}
+												reportedPost={undefined}
+											/>
+										</div>
+									)}
+									<Space h={15}></Space>
+									{/* <img className="avatar" src={user.avatar}></img> */}
+								</div>
+							</div>
 
                         <Group position='apart'>
                             <Space w={4}></Space>
                             <div className="name" style={{ textAlign: "center", justifyContent: "center"}}>
                                 {user.verified && 
                                     <ActionIcon color="green" size={31} variant="filled" radius="xl">
-                                        <Text fw={750} fz={25} align="center"> ✓ </Text>
+                                        <Text fw={750} fz={25} align="center"> {' '} ✓ {' '} </Text>
                                     </ActionIcon>
                                 }
                                 {/* {user.verified && <div className="verified">&#10003; </div> } */}
                                 <Space w={10} />
                                 <Text fz={20} align="center"> {user.firstName + ' ' + user.lastName} </Text>
-                                {(user.id === activeUser.id) && (!isLoading) &&
-                                    <BookingConfirm data={posts.filter((post)=>(post.owner == user.id))} setOn={setOn} reject={rejectBooking} accept={acceptBooking}></BookingConfirm>
-                                }
                                 {/* {user.firstName + ' ' + user.lastName} */}
                                 <Space w={10} />
-                                
                             </div>
                         </Group>
                         <Space h={7} />
@@ -174,31 +175,39 @@ export default function User(props) {
                 {/* </Grid.Col> */}
                 <Space w={30} />
                 {/* <Grid.Col span={9}> */}
-                    <div style={{ textAlign: "center", justifyContent: "center", backgroundColor: ''}} >
+                    <div style={{ justifyContent: "center", backgroundColor: ''}} >
                         {(user.id === activeUser.id) &&
                             <div>
                                 <Group position='center'>
-                    
-                                    <Select
-                                    defaultValue='1'
-                                    data={[
-                                        { value: '1', label: 'Mine annonser' },
-                                        { value: '2', label: 'Favoritter' },
-                                        { value: '3', label: 'Mine bookinger' },
-                                    ]}
-                                    onChange={setShow}
-                                    />
-                                    </Group>
+                                    <Switch
+                                        labelPosition="left"
+                                        // label="Annonser"
+                                        
+                                        onChange={changeView}
+                                        color="gray"
+                                        // offLabel={'Dine annonser'}
+                                        // onLabel={'Favoritt annonser'}
+                                        // size={25}
+                                        // style={{ width: 250 }} // Set the width to 100 pixels
+                                        // radius="md"
+                                        
+                                        // color="gray"
+                                        offLabel={<Text fz={18}> Dine annonser </Text>}
+                                        onLabel={<Text fz={18}> Favoritt annonser </Text>}
+                                        size={32}
+                                        radius="md"
+                                    ></Switch>
+                                </Group>
                                 <Space h="md"></Space>
 
-                                {/* <Switch
+								{/* <Switch
                                     onChange={changeView}
                                     color="green"
                                     onLabel={'Favoritter'}
                                     offLabel={'Dine annonser'}
                                     size="xl"
                                 ></Switch> */}
-                                { show == '1' && <Annonsecontainer occupiedWidth={2000} data={posts.filter((post)=>(post.owner == user.id))}></Annonsecontainer>}
+                                { show == '1' && <Annonsecontainer showDelete={true} occupiedWidth={2000} data={posts.filter((post)=>(post.owner == user.id))}></Annonsecontainer>}
                                 { show == '2' && <Annonsecontainer occupiedWidth={2000} data={
                                     posts.filter((post) => user.favourites.includes(post.id))
                                 }></Annonsecontainer>}
