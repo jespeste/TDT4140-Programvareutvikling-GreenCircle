@@ -133,11 +133,11 @@ export default function Annonse(props) {
 							)}
 						</Group>
 
-						<Text size="sm" color="dimmed" style={{ height: '70px', overflow: 'scrollable' }}>
+						<Text size="sm" color="dimmed" lineClamp={4} style={{ height: '86px' }}>
 							{data.description}
 						</Text>
 
-						<Group position="apart" mt="md" mb="xs" grow>
+						<Group position="apart" mb="xs" grow>
 							<Link href={`/mainpost/${data.id}`} style={{ textDecoration: 'none' }}>
 								<Button variant="light" color="teal" fullWidth mt="md" radius="md">
 									Se mer
