@@ -35,6 +35,32 @@ export default function Annonsepage() {
 		{ value: true, label: 'Ønskes Lånt' },
 		{ value: false, label: 'Lånes ut' }
 	];
+	const updatePosts = async (post) => {
+		console.log("RUns");
+		try {
+			let unbooked = {
+				"startDate": "",
+				"endDate": "",
+				"booking_confirmed": false
+			}
+			const update = await pb.collection('posts').update(post.id, unbooked);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+	const getAndUpdate = async () => {
+		const record2 = await pb.collection('posts').getList(1, 100, {
+			$autoCancel: true,
+			expand: 'owner',
+		});
+		record2.items.filter((post)=>{
+			const end = new Date(post.endDate);
+			const today = new Date();
+			return end > today;
+		}).forEach((post)=>{
+			updatePosts(post);
+		})
+	}
 
 	// Fetch all posts from database with the given search parameters / filters
 	const fetchPosts = async () => {
@@ -42,9 +68,12 @@ export default function Annonsepage() {
 			const data = await pb.collection('posts').getList(1, 100, {
 				$autoCancel: true,
 				expand: 'owner',
-				filter: `(title~"${search}" || description~"${search}") ${category}${isListingFilter}`
+				filter: `(title~"${search}" || description~"${search}") && booking_confirmed=false && startDate="" ${category}${isListingFilter}`
 			});
 			setPostList(data.items);
+
+			// TODO: Find how to update posts when they pass a certain date, maybe backend or something.
+			//getAndUpdate();
 		} catch (err) {
 			console.log(err.isAbort);
 		}

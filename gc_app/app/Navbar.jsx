@@ -75,6 +75,14 @@ export default function Navbar({page}) {
                             </Tabs.Tab>
                         </Link>
 
+                        <Link href="/bookinger" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <Tabs.Tab value="bookings" >
+                                <Text fw={500} size={15} >
+                                    Historikk
+                                </Text>
+                            </Tabs.Tab>
+                        </Link>
+
                         { activeUser.isAdmin &&
                             <Link href="/reports" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <Tabs.Tab value="reports" >

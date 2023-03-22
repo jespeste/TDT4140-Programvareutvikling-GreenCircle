@@ -8,20 +8,23 @@ import ReportPopUp from '../report/ReportForm';
 import ReviewPopUp from '../reviews/review/ReviewForm';
 import Link from 'next/link';
 import { Button, Grid, Group, Card, Space,  Avatar, ActionIcon, Text} from '@mantine/core';
-import { Container, Grid, Image, Badge, UnstyledButton, CardSection } from '@mantine/core';
-
+import { Container, Grid, Image, Badge, UnstyledButton, CardSection, Button, Modal, ActionIcon } from '@mantine/core';
+import { useRouter } from 'next/navigation';
+import { DatePicker } from '../booking/datePicker';
 
 export default function Annonseside(props) {
 	let data = props.data;
 	let owner = props.data.expand.owner;
 	let mailstring = 'mailto:' + owner.email;
 	let phonestring = 'tel:' + owner.telephone;
+	console.log(data.booking_confirmed + " ER den confirmed?");
     const activeUser = getActiveUser();
-
+    const router = useRouter();
 	const [location, setLocation] = useState('');
 	const [lat, setLat] = useState(null);
 	const [long, setLong] = useState(null);
 	const [loaded, setLoaded] = useState(false);
+	const [isBooked, setBooked] = useState(data.booking_confirmed);
 	const iframeRef = useRef(null);
 	const geolocationAPI = navigator.geolocation;
     const creationDate = new Date(data.created);
@@ -47,7 +50,7 @@ export default function Annonseside(props) {
 			if (confirm("Dette vil fjerne annonsen: " + data.id)) {
 				await pb.collection('posts').delete(data.id);
 				alert('Annonse fjernet: ' + data.id);
-				document.location.href=`/user/${activeUser.id}`
+                router.push(`/user/${activeUser.id}`);
 			}
 		} catch (e) {
 			alert(e);
@@ -125,6 +128,43 @@ export default function Annonseside(props) {
 	}
 	console.log(data.category);
 
+	async function handleBooking(dates){
+		console.log(dates);
+		setBooked(true);
+		let user = pb.authStore.model;
+		console.log(user.id);
+		const upDated = {
+			"startDate": dates[0],
+			"endDate": dates[1],
+			"booking_confirmed": false,
+			"booker": user.id,
+		}
+		try {
+			const upDates = await pb.collection('posts').update(data.id, upDated);
+			alert("Booking forespørsel har blitt sendt.");
+			console.log(upDates);
+		} catch (err) {
+			alert(err);
+		}
+	}
+
+	async function handleCancellation(){
+		const upDated = {
+			"startDate": "",
+			"endDate": "",
+			"booking_confirmed": false,
+			"booker": "",
+		}
+		try {
+			const upDates = await pb.collection('posts').update(data.id, upDated);
+			setBooked(false);
+			alert("Du har nå avbooket.");
+			console.log(upDates);
+		} catch (err) {
+			alert(err);
+		}
+	}
+
 	return ( 
         <div style={{ display: 'flex', justifyContent: 'center', width: '100%', maxWidth: '1150px', backgroundColor: ''}}>
             <Container my="md">
@@ -147,7 +187,7 @@ export default function Annonseside(props) {
                                             
                                 
                             {/* <div style={{ position: "absolute", top: "10px", right: "55px" }}>
-                                {!(owner.id === activeUser.id) 
+                                {!(owner.id === activeUser.id) && data.booking_confirmed && isBooked && data.booker == activeUser.id
                                     && <ReportPopUp reporter={owner} reportedUser={undefined} reportedPost={data} />}
                             </div> */}
 
@@ -195,7 +235,6 @@ export default function Annonseside(props) {
                                     }
                                     {!(owner.id === activeUser.id) 
                                         && <ReviewPopUp reviewer={activeUser} reviewedUser={owner} reviewedPost={data} />} */}
-
                             </Group>
                             
                             </Group>
@@ -214,13 +253,20 @@ export default function Annonseside(props) {
                                                 Slett annonsen
                                             </Button>
                                         }
+						
                                         {!(activeUser.id === owner.id) &&
                                         
                                             <Group>
+                                                {!(owner.id === activeUser) && data.booking_confirmed && data.booker == activeUser.id && isBooked
+											        && <Button variant="subtle" color="red" compact onClick={()=>{handleCancellation()}}>Avbook</Button>
+                                                }
+                                                {!(owner.id === activeUser.id) && !data.booking_confirmed && !isBooked
+                                                    && <DatePicker handleBooking={handleBooking}></DatePicker>
+                                                }
                                                 {/* Review should only be available for posts that the user has participated in (as borrower/borrowee) .
                                                     For the future: replace 'true' with the additional check that the activeUser has been a 
                                                     borrower/borrowee for the post in question.*/}
-                                                {(activeUser.id !== owner.id && true) &&
+                                                {!(owner.id === activeUser.id) && data.booking_confirmed && isBooked && data.booker == activeUser.id &&
                                                     <ReviewPopUp reviewer={activeUser} reviewedUser={owner} reviewedPost={data} />
 
                                                 }
