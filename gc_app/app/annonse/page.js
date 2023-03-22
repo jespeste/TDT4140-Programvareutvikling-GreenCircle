@@ -74,84 +74,95 @@ export default function Annonsepage() {
 	};
 
 	return (
-        
-        <div>
-            <Navbar page="posts"></Navbar>
-        
-        <div style={{ display: 'flex', justifyContent: 'center'}}>
-            
-            <Card shadow="sm" padding="lg" radius="md" withBorder 
-                style={{
-                    backgroundColor: 'rgb(0,0,0,0)',
-                    width: "80vw", maxWidth: '1150px', paddingTop: '30px', paddingBottom: '25px', marginTop: '10px', minHeight: '90vh'}}>
+		<div>
+			<Navbar page="posts"></Navbar>
 
-                <CardSection style={{ display: 'flex', justifyContent: 'center'}}>
-                    <Group position='apart' grow>
-                            <Button variant="outline" color="teal" onClick={handlePopOpen} 
-                                style={{ width: '50px', marginTop: '25px'}}>
-                                + Ny Annonse
-                            </Button>
+			<div style={{ display: 'flex', justifyContent: 'center' }}>
+				<Card
+					shadow="sm"
+					padding="lg"
+					radius="md"
+					withBorder
+					style={{
+						backgroundColor: 'rgb(0,0,0,0)',
+						width: '80vw',
+						maxWidth: '1150px',
+						paddingTop: '30px',
+						paddingBottom: '25px',
+						marginTop: '10px',
+						minHeight: '90vh'
+					}}
+				>
+					<CardSection style={{ display: 'flex', justifyContent: 'center' }}>
+						<Group position="apart" grow>
+							<Button
+								variant="outline"
+								color="teal"
+								onClick={handlePopOpen}
+								style={{ width: '50px', marginTop: '25px' }}
+							>
+								+ Ny Annonse
+							</Button>
 
-                        <Input.Wrapper label="Søk" >
-                            <Input
-                                value={search}
-                                onChange={(event) => setSearch(event.target.value)}
-                                placeholder="Søk etter utstyr her"
-                                styles={(theme) => ({
-                                    input: {
-                                    '&:focus-within': {
-                                        borderColor: theme.colors.teal[7],
-                                    },
-                                    },
-                                })}
-                                />
-                        </Input.Wrapper>
-                        <Select
-                            label="Kategorier"
-                            data={categories}
-                            onChange={setFilter}
-                            value={filter}
-                            radius="md"
-                            // size="47"
-                            styles={(theme) => ({
-                                input: {
-                                '&:focus-within': {
-                                    borderColor: theme.colors.teal[7],
-                                },
-                                },
-                            })}
-                            ></Select>
-                        <Select
-                            label="Annonsetype"
-                            data={isListingTable}
-                            onChange={setListing}
-                            value={isListing}
-                            radius="md"
-                            // size="47"
-                            styles={(theme) => ({
-                                input: {
-                                '&:focus-within': {
-                                    borderColor: theme.colors.teal[7],
-                                },
-                                },
-                            })}
-                        ></Select>
-                    </Group>
-                </CardSection>
-                <Space h={25}></Space>
-                <CardSection style={{display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Annonsecontainer data={posts} occupiedWidth={1500} />
-                </CardSection>
-            </Card>
-                <div className="popup">
-                    <div className="outercontainer">
-                        <div className="reportcontainer">
-                            {popUp && <CreatePost setPopUpClose={setPopUpClose} />}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+							<Input.Wrapper label="Søk">
+								<Input
+									value={search}
+									onChange={(event) => setSearch(event.target.value)}
+									placeholder="Søk etter utstyr her"
+									styles={(theme) => ({
+										input: {
+											'&:focus-within': {
+												borderColor: theme.colors.teal[7]
+											}
+										}
+									})}
+								/>
+							</Input.Wrapper>
+							<Select
+								label="Kategorier"
+								data={categories}
+								onChange={setFilter}
+								value={filter}
+								radius="md"
+								// size="47"
+								styles={(theme) => ({
+									input: {
+										'&:focus-within': {
+											borderColor: theme.colors.teal[7]
+										}
+									}
+								})}
+							></Select>
+							<Select
+								label="Annonsetype"
+								data={isListingTable}
+								onChange={setListing}
+								value={isListing}
+								radius="md"
+								// size="47"
+								styles={(theme) => ({
+									input: {
+										'&:focus-within': {
+											borderColor: theme.colors.teal[7]
+										}
+									}
+								})}
+							></Select>
+						</Group>
+					</CardSection>
+					<Space h={25}></Space>
+					<CardSection style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+						<Annonsecontainer data={posts} occupiedWidth={1500} showDelete={false} />
+					</CardSection>
+				</Card>
+				<div className="popup">
+					<div className="outercontainer">
+						<div className="reportcontainer">
+							{popUp && <CreatePost setPopUpClose={setPopUpClose} />}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	);
 }
