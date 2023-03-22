@@ -177,6 +177,14 @@ export default function User(props) {
 										{user.firstName + ' ' + user.lastName}{' '}
 									</Text>
 									{/* {user.firstName + ' ' + user.lastName} */}
+                                        {(user.id === activeUser.id) && (!isLoading) &&
+                                            <BookingConfirm 
+                                            data={posts.filter((post)=>(post.owner == user.id))} 
+                                            setOn={setOn} 
+                                            reject={rejectBooking} 
+                                            accept={acceptBooking}>
+                                            </BookingConfirm>
+                                        }
 									<Space w={10} />
 								</div>
 							</Group>
@@ -232,18 +240,21 @@ export default function User(props) {
 									<Annonsecontainer
 										showDelete={true}
 										occupiedWidth={2000}
+                                        fetchPosts = {fetchPosts}
 										data={posts.filter((post) => post.owner == user.id)}
 									></Annonsecontainer>
 								)}
 								{show == '2' && (
 									<Annonsecontainer
 										occupiedWidth={2000}
+                                        fetchPosts = {fetchPosts}
 										data={posts.filter((post) => user.favourites.includes(post.id))}
 									></Annonsecontainer>
 								)}
 								{show == '3' && (
 									<Annonsecontainer
 										occupiedWidth={2000}
+                                        fetchPosts = {fetchPosts}
 										data={posts.filter((post) => {
 											if (post.booker != '' && post.booking_confirmed) {
 												return post.expand.booker.id == user.id;
@@ -255,7 +266,12 @@ export default function User(props) {
 						)}
 						{!(user.id === activeUser.id) && (
 							<div>
-								<Annonsecontainer data={posts} occupiedWidth={2000}></Annonsecontainer>
+								<Annonsecontainer 
+                                    data={posts} 
+                                    occupiedWidth={2000}
+                                    fetchPosts = {fetchPosts}>
+                                    
+                                </Annonsecontainer>
 							</div>
 						)}
 					</div>

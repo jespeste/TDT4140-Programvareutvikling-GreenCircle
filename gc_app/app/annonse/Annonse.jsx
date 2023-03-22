@@ -16,7 +16,7 @@ export default function Annonse(props) {
 	let showDelete = props.showDelete;
 
 	const [isFavourite, setIsFavourite] = useState(activeUser.favourites.includes(data.id));
-	const [postExists, setPostExists] = useState(true);
+	// const [postExists, setPostExists] = useState(true);
 
 	// let phonestring = 'tel:' + owner.telephone;
 	// let messagestring = 'sms:' + owner.telephone;
@@ -41,8 +41,9 @@ export default function Annonse(props) {
 			if (confirm('Dette vil fjerne annonsen: ' + data.id)) {
 				await pb.collection('posts').delete(data.id);
 				alert('Annonse fjernet: ' + data.id);
+                props.fetchPosts();
 				// document.location.reload();
-				setPostExists(false);
+				// setPostExists(false);
 			}
 		} catch (e) {
 			alert(e);
@@ -51,7 +52,7 @@ export default function Annonse(props) {
 
 	return (
 		<>
-			{postExists && (
+			{/* {postExists && ( */}
 				<div>
 					<Card
 						shadow="sm"
@@ -146,7 +147,7 @@ export default function Annonse(props) {
 						</Group>
 					</Card>
 				</div>
-			)}
+			{/* )} */}
 		</>
 	);
 }

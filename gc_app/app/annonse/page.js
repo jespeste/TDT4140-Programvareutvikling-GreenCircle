@@ -69,6 +69,8 @@ export default function Annonsepage() {
 				$autoCancel: true,
 				expand: 'owner',
 				filter: `(title~"${search}" || description~"${search}") && booking_confirmed=false && startDate="" ${category}${isListingFilter}`
+                // code below was added for testing deletion on the posts-overview page.
+				// filter: `(title~"${search}" || description~"${search}")`
 			});
 			setPostList(data.items);
 
@@ -183,7 +185,8 @@ export default function Annonsepage() {
 					</CardSection>
 					<Space h={25}></Space>
 					<CardSection style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-						<Annonsecontainer data={posts} occupiedWidth={1500} showDelete={false} />
+						{/* <Annonsecontainer data={posts} occupiedWidth={1500} showDelete={false} fetchPosts={fetchPosts}/> */}
+						<Annonsecontainer data={posts} occupiedWidth={1500} showDelete={true} fetchPosts={fetchPosts}/>
 					</CardSection>
 				</Card>
 				<div className="popup">
