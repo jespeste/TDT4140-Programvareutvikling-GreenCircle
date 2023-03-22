@@ -24,6 +24,8 @@ export default function Annonsepage() {
 	const [popUp, setPopUp] = useState(false);
 	const [isListingFilter, setListingFilter] = useState('');
 	const [isListing, setListing] = useState('');
+	const [useDates, setUseDates] = useState(false);
+	const [switc, setSwitch] = useState(false);
 
 	// Daterange
 	const [opened, { open, close }] = useDisclosure(false);
@@ -90,14 +92,17 @@ export default function Annonsepage() {
 				expand: 'owner',
 				filter: `(title~"${search}" || description~"${search}") && booking_confirmed=false && startDate="" ${category}${isListingFilter}`
 			});
-			setPostList(data.items.filter((post)=>{
-				let start = new Date(post.availability_start);
-				let end = new Date(post.availability_end);
-				console.log(start);
-				console.log(end);
-				return (start <= state[0].startDate && end >= state[0].endDate);
-			}));
-
+			if(useDates){
+				setPostList(data.items.filter((post)=>{
+					let start = new Date(post.availability_start);
+					let end = new Date(post.availability_end);
+					console.log(start);
+					console.log(end);
+					return (start <= state[0].startDate && end >= state[0].endDate);
+				}));
+			} else {
+				setPostList(data.items);
+			}
 			// TODO: Find how to update posts when they pass a certain date, maybe backend or something.
 			//getAndUpdate();
 		} catch (err) {
@@ -118,7 +123,7 @@ export default function Annonsepage() {
 			setListingFilter('');
 		}
 		fetchPosts();
-	}, [search, filter, category, popUp, isListing, isListingFilter, state]);
+	}, [search, filter, category, popUp, isListing, isListingFilter, useDates, switc]);
 
 	const handlePopOpen = () => {
 		setPopUp(true);
@@ -127,6 +132,12 @@ export default function Annonsepage() {
 	const setPopUpClose = () => {
 		setPopUp(false);
 	};
+
+	const filterDates = (input) => {
+		setUseDates(input);
+		setSwitch(!switc);
+		close();
+	}
 
 	return (
 		<div>
@@ -223,8 +234,12 @@ export default function Annonsepage() {
 								/>
 									<Button 
 									color="teal"
-									style={{ width: '70px', marginTop: '25px' }} 
-									onClick={close}>Lukk</Button>
+									style={{ width: '110px', marginTop: '25px' }} 
+									onClick={()=>(filterDates(1))}>Sett Datoer</Button>
+									<Button 
+									color="red"
+									style={{ width: '120px', marginTop: '25px' }} 
+									onClick={()=>(filterDates(0))}>Ta vekk filter</Button>
 								</Group>
 							</Modal>
 						</Group>

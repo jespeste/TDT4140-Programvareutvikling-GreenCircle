@@ -185,8 +185,9 @@ export default function CreatePost(props) {
 							onChange={(event) => setValue(event.currentTarget.value)}
 							value={value}
 						></NativeSelect>
-						<Group>
-							<Button variant="subtle" color="green" compact onClick={open}>Sett datoer</Button>
+						<Space h='md'></Space>
+						<Group style={{justifyContent: 'center'}}>
+							<Button variant="outline" color="green" onClick={open}>Sett datoer</Button>
 						</Group>
 						<Modal opened={opened} onClose={close} title="Tilgjengelighet">
 							<DateRange className='notBig'
