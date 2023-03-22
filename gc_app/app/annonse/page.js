@@ -119,7 +119,9 @@ export default function Annonsepage() {
 						paddingTop: '30px',
 						paddingBottom: '25px',
 						marginTop: '10px',
-						minHeight: '90vh'
+						minHeight: '90vh',
+						marginBottom: '25px',
+						paddingBottom: '40px'
 					}}
 				>
 					<CardSection style={{ display: 'flex', justifyContent: 'center' }}>
