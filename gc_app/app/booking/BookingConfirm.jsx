@@ -17,7 +17,7 @@ export default function BookingConfirm(props){
         props.accept(id);
         props.setOn(opposite);
         setOpposite(!opposite);
-        close();
+        //close();
     }
 
     function handleClick(){
@@ -31,7 +31,7 @@ export default function BookingConfirm(props){
         props.reject(id);
         props.setOn(opposite);
         setOpposite(!opposite);
-        close();
+        //close();
     }
 
     // async function getPosts() {

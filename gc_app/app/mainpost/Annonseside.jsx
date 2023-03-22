@@ -9,7 +9,7 @@ import ReviewPopUp from '../reviews/review/ReviewForm';
 import Link from 'next/link';
 import { Button, Grid, Group, Card, Space,  Avatar, ActionIcon, Text} from '@mantine/core';
 import { Container, Grid, Image, Badge, UnstyledButton, CardSection, Button, Modal, ActionIcon } from '@mantine/core';
-
+import { useRouter } from 'next/navigation';
 import { DatePicker } from '../booking/datePicker';
 
 export default function Annonseside(props) {
@@ -19,7 +19,7 @@ export default function Annonseside(props) {
 	let phonestring = 'tel:' + owner.telephone;
 	console.log(data.booking_confirmed + " ER den confirmed?");
     const activeUser = getActiveUser();
-
+    const router = useRouter();
 	const [location, setLocation] = useState('');
 	const [lat, setLat] = useState(null);
 	const [long, setLong] = useState(null);
@@ -50,7 +50,7 @@ export default function Annonseside(props) {
 			if (confirm("Dette vil fjerne annonsen: " + data.id)) {
 				await pb.collection('posts').delete(data.id);
 				alert('Annonse fjernet: ' + data.id);
-				document.location.href=`/user/${activeUser.id}`
+                router.push(`/user/${activeUser.id}`);
 			}
 		} catch (e) {
 			alert(e);
@@ -253,15 +253,16 @@ export default function Annonseside(props) {
                                                 Slett annonsen
                                             </Button>
                                         }
-										{!(owner.id === activeUser) && data.booking_confirmed && data.booker == activeUser.id && isBooked
-											&& <Button color="red" onClick={()=>{handleCancellation()}}>Avbook</Button>
-										}
-										{!(owner.id === activeUser.id) && !data.booking_confirmed && !isBooked
-											&& <DatePicker handleBooking={handleBooking}></DatePicker>
-										}
+						
                                         {!(activeUser.id === owner.id) &&
                                         
                                             <Group>
+                                                {!(owner.id === activeUser) && data.booking_confirmed && data.booker == activeUser.id && isBooked
+											        && <Button variant="subtle" color="red" compact onClick={()=>{handleCancellation()}}>Avbook</Button>
+                                                }
+                                                {!(owner.id === activeUser.id) && !data.booking_confirmed && !isBooked
+                                                    && <DatePicker handleBooking={handleBooking}></DatePicker>
+                                                }
                                                 {/* Review should only be available for posts that the user has participated in (as borrower/borrowee) .
                                                     For the future: replace 'true' with the additional check that the activeUser has been a 
                                                     borrower/borrowee for the post in question.*/}
