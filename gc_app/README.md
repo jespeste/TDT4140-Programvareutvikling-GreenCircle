@@ -30,3 +30,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Location and geocoding
 We are using a free LocationIQ account to geocode our search results atm. This means that you can put in an address and it will save that adress as coordinates.
+
+## Booking
+To use the booking features you have to use ```npm install --save react-date-range``` and then ```npm install --save react date-fns```.
+
+
