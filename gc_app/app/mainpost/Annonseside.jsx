@@ -261,7 +261,7 @@ export default function Annonseside(props) {
 											        && <Button variant="subtle" color="red" compact onClick={()=>{handleCancellation()}}>Avbook</Button>
                                                 }
                                                 {!(owner.id === activeUser.id) && !data.booking_confirmed && !isBooked
-                                                    && <DatePicker handleBooking={handleBooking}></DatePicker>
+                                                    && <DatePicker handleBooking={handleBooking} avStart={data.availability_start} avEnd={data.availability_end}></DatePicker>
                                                 }
                                                 {/* Review should only be available for posts that the user has participated in (as borrower/borrowee) .
                                                     For the future: replace 'true' with the additional check that the activeUser has been a 

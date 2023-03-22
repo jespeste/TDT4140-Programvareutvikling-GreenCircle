@@ -12,13 +12,19 @@ import './date.css'
 export const DatePicker = (props) => {
     const [opened, { open, close }] = useDisclosure(false);
     const [dates, setDates] = useState([]);
+    console.log(props.avStart);
+    console.log(props.avEnd);
+    const avStartDate = new Date(props.avStart);
+    const avEndDate = new Date(props.avEnd);
+    console.log(avStartDate);
+    console.log(avEndDate);
 
     const [state, setState] = useState([
         {
-        startDate: new Date(), 
+        startDate: avStartDate,
         //Default selected start date is today
-        endDate: addDays(new Date(), 4), 
-        //Default selected end date is four days from today
+        endDate: avEndDate, 
+        //Default selected end date is the end of availability
         key: 'selection',
         color: '#17C964',
         },
@@ -35,9 +41,9 @@ export const DatePicker = (props) => {
         <>
         <Modal opened={opened} onClose={close} title="Booking">
         <DateRange className='notBig'
-            minDate={new Date()} 
+            minDate={avStartDate} 
             // Cannot select date before today.
-            maxDate={addDays(new Date(), 90)}
+            maxDate={avEndDate}
             // Cannot select days more than 3 months from now
             editableDateInputs={true}
             moveRangeOnFirstSelection={false}

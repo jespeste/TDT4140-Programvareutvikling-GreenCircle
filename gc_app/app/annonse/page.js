@@ -5,6 +5,13 @@ import Navbar from '../Navbar';
 import { useState, useEffect } from 'react';
 import { CardSection, NativeSelect } from '@mantine/core';
 import { Button, Grid, Input, Group, Card, Space, Select } from '@mantine/core';
+import { Modal } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { DateRange } from 'react-date-range';
+
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+import { addDays } from 'date-fns';
 
 import './main.css';
 import CreatePost from './createpost';
@@ -17,6 +24,19 @@ export default function Annonsepage() {
 	const [popUp, setPopUp] = useState(false);
 	const [isListingFilter, setListingFilter] = useState('');
 	const [isListing, setListing] = useState('');
+
+	// Daterange
+	const [opened, { open, close }] = useDisclosure(false);
+	const [state, setState] = useState([
+        {
+        startDate: new Date(), 
+        //Default selected start date is today
+        endDate: addDays(new Date(), 4), 
+        //Default selected end date is four days from today
+        key: 'selection',
+        color: '#17C964',
+        },
+    ]);
 
 	// For ease of implementation, these are static
 	const categories = [
@@ -70,7 +90,13 @@ export default function Annonsepage() {
 				expand: 'owner',
 				filter: `(title~"${search}" || description~"${search}") && booking_confirmed=false && startDate="" ${category}${isListingFilter}`
 			});
-			setPostList(data.items);
+			setPostList(data.items.filter((post)=>{
+				let start = new Date(post.availability_start);
+				let end = new Date(post.availability_end);
+				console.log(start);
+				console.log(end);
+				return (start <= state[0].startDate && end >= state[0].endDate);
+			}));
 
 			// TODO: Find how to update posts when they pass a certain date, maybe backend or something.
 			//getAndUpdate();
@@ -92,7 +118,7 @@ export default function Annonsepage() {
 			setListingFilter('');
 		}
 		fetchPosts();
-	}, [search, filter, category, popUp, isListing, isListingFilter]);
+	}, [search, filter, category, popUp, isListing, isListingFilter, state]);
 
 	const handlePopOpen = () => {
 		setPopUp(true);
@@ -125,6 +151,7 @@ export default function Annonsepage() {
 					<CardSection style={{ display: 'flex', justifyContent: 'center' }}>
 						<Group position="apart" grow>
 							<Button
+								miw={140}
 								variant="outline"
 								color="teal"
 								onClick={handlePopOpen}
@@ -177,6 +204,29 @@ export default function Annonsepage() {
 									}
 								})}
 							></Select>
+							<Button 
+								variant="outline"
+								color="teal"
+								style={{ width: '50px', marginTop: '25px' }}
+								onClick={open}>Ledighet</Button>
+							<Modal opened={opened} onClose={close} title="Ledighet">
+								<Group style={{justifyContent: 'center'}}>
+								<DateRange
+									minDate={new Date()} 
+									// Cannot select date before today.
+									editableDateInputs={true}
+									moveRangeOnFirstSelection={false}
+									ranges={state}
+									onChange={(item) => {
+									setState([item.selection]);
+									}}
+								/>
+									<Button 
+									color="teal"
+									style={{ width: '70px', marginTop: '25px' }} 
+									onClick={close}>Lukk</Button>
+								</Group>
+							</Modal>
 						</Group>
 					</CardSection>
 					<Space h={25}></Space>
