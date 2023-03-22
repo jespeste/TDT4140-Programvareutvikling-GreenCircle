@@ -156,6 +156,14 @@ export default function User(props) {
 									</Text>
 									{/* {user.firstName + ' ' + user.lastName} */}
 									<Space w={10} />
+									{(user.id === activeUser.id) && (!isLoading) &&
+                                    	<BookingConfirm 
+										data={posts.filter((post)=>(post.owner == user.id))} 
+										setOn={setOn} 
+										reject={rejectBooking} 
+										accept={acceptBooking}>
+										</BookingConfirm>
+                                	}
 								</div>
 							</Group>
 							<Space h={7} />
