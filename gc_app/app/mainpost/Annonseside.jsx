@@ -27,21 +27,15 @@ export default function Annonseside(props) {
     const creationDate = new Date(data.created);
     
     const [isFavourite, setIsFavourite] = useState(activeUser.favourites.includes(data.id));
+	const [curFavs, setCount] = useState(data.numfavourites);
+    
+
 
     function getActiveUser() {
         return pb.authStore.model;
     }
 
-    async function addToFavourites() {
-		activeUser.favourites.push(props.data.id);
-		const record = await pb.collection('users').update(activeUser.id, activeUser);
-        setIsFavourite(activeUser.favourites.includes(data.id));
-	}
-    async function removeFromFavourites() {
-		activeUser.favourites.pop(props.data.id);
-		const record = await pb.collection('users').update(activeUser.id, activeUser);
-        setIsFavourite(activeUser.favourites.includes(data.id));
-	}
+
     async function deletePost() {
 		try {
 			if (confirm("Dette vil fjerne annonsen: " + data.id)) {
@@ -53,15 +47,27 @@ export default function Annonseside(props) {
 			alert(e);
 		}
 	}
+
+    
     async function addToFavourites() {
 		activeUser.favourites.push(props.data.id);
 		const record = await pb.collection('users').update(activeUser.id, activeUser);
         setIsFavourite(activeUser.favourites.includes(data.id));
+		setCount(curFavs +1);
+		data.numfavourites = data.numfavourites + 1;
+		const rec  = await pb.collection('posts').update(data.id, {numfavourites: data.numfavourites});
+		console.log('true');
+
+
 	}
     async function removeFromFavourites() {
 		activeUser.favourites.pop(props.data.id);
 		const record = await pb.collection('users').update(activeUser.id, activeUser);
         setIsFavourite(activeUser.favourites.includes(data.id));
+		setCount(curFavs -1);
+		data.numfavourites = data.numfavourites - 1;
+		const rec  = await pb.collection('posts').update(data.id, {numfavourites: data.numfavourites});
+		console.log('false');
 	}
 
 	function getCity(coordinates) {
@@ -114,11 +120,7 @@ export default function Annonseside(props) {
 		iframeRef.current.style = { visibility: 'visible' };
 		setLoaded(true);
 	}
-	async function addToFavourites() {
-		let user = pb.authStore.model;
-		user.favourites.push(props.data.id);
-		const record = await pb.collection('users').update(user.id, user);
-	}
+
 
 	function goBack() {
 		window.history.back();
