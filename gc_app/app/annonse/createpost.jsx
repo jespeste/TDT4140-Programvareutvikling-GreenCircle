@@ -12,8 +12,16 @@ import { Title } from '@mantine/core';
 import { Switch } from '@mantine/core';
 import { Group } from '@mantine/core';
 import { Space } from '@mantine/core';
+// Daterange
+import { Modal, Button } from '@mantine/core';
 import { useState } from 'react';
+import { useDisclosure } from '@mantine/hooks';
+import { DateRange } from 'react-date-range';
 
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+import { addDays } from 'date-fns';
+// Daterange
 import './createpost.css';
 
 import Post from './Post';
@@ -27,6 +35,22 @@ export default function CreatePost(props) {
 	const [address, setAddress] = useState('');
 	const [lat, setLat] = useState(null);
 	const [long, setLong] = useState(null);
+	const [avStart, setAvStart] = useState(new Date());
+	const [avEnd, setAvEnd] = useState();
+
+	// Date range picker
+	const [opened, { open, close }] = useDisclosure(false);
+	const [state, setState] = useState([
+        {
+        startDate: new Date(), 
+        //Default selected start date is today
+        endDate: addDays(new Date(), 4), 
+        //Default selected end date is four days from today
+        key: 'selection',
+        color: '#17C964',
+        },
+    ]);
+
 	const geolocationAPI = navigator.geolocation;
 	const data = [
 		{ value: null, label: 'Ingen kategori' },
@@ -62,7 +86,7 @@ export default function CreatePost(props) {
 		if (address === '') {
 			getUserCoordinates();
 			let location = '' + lat + ',' + long;
-			var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
+			var post = new Post(checked, title, description, url, getOwner(), 0, value, location, state[0].startDate, state[0].endDate);
 			createPost(post);
 		} else {
 			let urlSearch = `${APP.SEARCHURL}key=${APP.TOKEN}&q=${address}&format=json`;
@@ -75,7 +99,7 @@ export default function CreatePost(props) {
 					setLat(data[0].lat);
 					setLong(data[0].lon);
 					let location = '' + data[0].lat + ',' + data[0].lon;
-					var post = new Post(checked, title, description, url, getOwner(), 0, value, location);
+					var post = new Post(checked, title, description, url, getOwner(), 0, value, location, state[0].startDate, state[0].endDate);
 					createPost(post);
 				})
 				.catch((err) => {
@@ -161,6 +185,22 @@ export default function CreatePost(props) {
 							onChange={(event) => setValue(event.currentTarget.value)}
 							value={value}
 						></NativeSelect>
+						<Space h='md'></Space>
+						<Group style={{justifyContent: 'center'}}>
+							<Button variant="outline" color="green" onClick={open}>Sett datoer</Button>
+						</Group>
+						<Modal opened={opened} onClose={close} title="Tilgjengelighet">
+							<DateRange className='notBig'
+								minDate={new Date()} 
+								// Cannot select date before today.
+								editableDateInputs={true}
+								moveRangeOnFirstSelection={false}
+								ranges={state}
+								onChange={(item) => {
+								setState([item.selection]);
+								}}
+							/>
+						</Modal>
 						<Checkbox
 							className="textinput"
 							label="Ønskes lånt"

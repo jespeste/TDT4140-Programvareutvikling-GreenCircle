@@ -30,7 +30,7 @@ class Post {
 	 * @param {date} availability_end - End date of when the item is/must be available.
 	 * @param {User} owner - The user that created and owns the post.
 	 */
-	constructor(is_listing, title, description, image, owner, favorites, category, location) {
+	constructor(is_listing, title, description, image, owner, favorites, category, location, availability_start, availability_end) {
 		this.setFavorites(favorites);
 		this.setIsListing(is_listing);
 		this.setTitle(title);
@@ -41,8 +41,8 @@ class Post {
 		// this.setReplacementCost(replacement_cost);
 		this.setLocation(location);
 		this.setImage(image);
-		//this.setAvailabilityStart(availability_start);
-		//this.setAvailabilityEnd(availability_end);
+		this.setAvailabilityStart(availability_start);
+		this.setAvailabilityEnd(availability_end);
 		this.setOwner(owner);
 	}
 
