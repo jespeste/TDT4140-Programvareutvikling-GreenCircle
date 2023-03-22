@@ -43,7 +43,7 @@ export default function ReviewView(props) {
 
 	return (
 		<div>
-            <Card shadow="sm" padding="lg" radius="md" withBorder style={{minwWidth: '100%', width: '100%'} }>
+            <Card shadow="sm" padding="lg" radius="md" withBorder style={{width: '380px'} }>
 
 			<div>
             <Group position='apart'>

@@ -179,10 +179,10 @@ export default function User(props) {
 									{/* {user.firstName + ' ' + user.lastName} */}
                                         {(user.id === activeUser.id) && (!isLoading) &&
                                             <BookingConfirm 
-                                            data={posts.filter((post)=>(post.owner == user.id))} 
-                                            setOn={setOn} 
-                                            reject={rejectBooking} 
-                                            accept={acceptBooking}>
+                                                data={posts.filter((post)=>(post.owner == user.id))} 
+                                                setOn={setOn} 
+                                                reject={rejectBooking} 
+                                                accept={acceptBooking}>
                                             </BookingConfirm>
                                         }
 									<Space w={10} />

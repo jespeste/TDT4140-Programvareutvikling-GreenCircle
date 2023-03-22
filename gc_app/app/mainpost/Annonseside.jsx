@@ -281,64 +281,64 @@ export default function Annonseside(props) {
                         </Card></Grid.Col>
                     <Grid.Col span={2}>
                     <div>
-            <Card shadow="sm" padding="lg" radius="md" withBorder style={{minwWidth: '100%', width: '100%', justifyContent: 'center', textAlign: 'center'} }>
+            <Card shadow="sm" padding="lg" radius="md" withBorder style={{minwWidth: '380px', justifyContent: 'center', textAlign: 'center'} }>
 
-			<div>
-            <Group position='center'>
+                <div>
+                <Group position='center'>
 
-                <Link href={"../user/" + owner.id}>
+                    <Link href={"../user/" + owner.id}>
 
-                    <UnstyledButton>
-                        <Group position='center'>
-                            {owner.avatar !== '' && 
-                                    <Avatar size={70} radius='xl' src={owner.avatar} href={"../user/" + owner.id} ></Avatar>
+                        <UnstyledButton>
+                            <Group position='center'>
+                                {owner.avatar !== '' && 
+                                        <Avatar size={70} radius='xl' src={owner.avatar} href={"../user/" + owner.id} ></Avatar>
+                                    }
+                                {!(owner.avatar !== '') && 
+                                    <Avatar color="blue" size={70} radius="xl"> {owner.firstName[0]}{owner.lastName[0]}</Avatar>
                                 }
-                            {!(owner.avatar !== '') && 
-                                <Avatar color="blue" size={70} radius="xl"> {owner.firstName[0]}{owner.lastName[0]}</Avatar>
-                            }
-                        </Group>
-                        {/* <Group position='right'> */}
-                            <Text size={14}>{owner.firstName + ' ' + owner.lastName} </Text>                       
-                        </UnstyledButton>
-                    </Link>
-                            {(data.is_listing) 
-                                && 
-                                <div style={{ position: "absolute", top: "10px", left: "10px"}}>
-                                    <Badge size="md" color="dimmed">  Låner </Badge>
-                                </div>
-                            }
-                            {(!data.is_listing) 
-                                &&
-                                <div style={{ position: "absolute", top: "10px", left: "10px"}}>
-                                     <Badge size="md" color="teal" >  Utlåner </Badge>
-                                </div>
-                            }
-                        {/* </Group> */}
+                            </Group>
+                            {/* <Group position='right'> */}
+                                <Text size={14}>{owner.firstName + ' ' + owner.lastName} </Text>                       
+                            </UnstyledButton>
+                        </Link>
+                                {(data.is_listing) 
+                                    && 
+                                    <div style={{ position: "absolute", top: "10px", left: "10px"}}>
+                                        <Badge size="md" color="dimmed">  Låner </Badge>
+                                    </div>
+                                }
+                                {(!data.is_listing) 
+                                    &&
+                                    <div style={{ position: "absolute", top: "10px", left: "10px"}}>
+                                        <Badge size="md" color="teal" >  Utlåner </Badge>
+                                    </div>
+                                }
+                            {/* </Group> */}
 
-            </Group>
-            {activeUser.id !== owner.id &&
-                <div style={{ position: "absolute", top: "10px", right: "10px" }}>
-                    <ReportPopUp reporter={activeUser} reportedUser={owner} reportedPost={undefined} />
-                </div>
-            }
-            
-			</div>
-            <Space h={4} />
-            <CardSection>
-                
-            </CardSection>
-			<div>
-                <Group position="center">
-                    <Button color='teal' compact variant="outline" onClick={() => (window.location = phonestring)}>
-                        Telefon
-                    </Button>
-                    <Button color='teal' compact variant="outline" onClick={() => (window.location.href = mailstring)}>
-                        E-post 
-                    </Button>
                 </Group>
-			</div>
+                {activeUser.id !== owner.id &&
+                    <div style={{ position: "absolute", top: "10px", right: "10px" }}>
+                        <ReportPopUp reporter={activeUser} reportedUser={owner} reportedPost={undefined} />
+                    </div>
+                }
+                
+                </div>
+                <Space h={4} />
+                <CardSection>
+                    
+                </CardSection>
+                <div>
+                    <Group position="center">
+                        <Button color='teal' compact variant="outline" onClick={() => (window.location = phonestring)}>
+                            Telefon
+                        </Button>
+                        <Button color='teal' compact variant="outline" onClick={() => (window.location.href = mailstring)}>
+                            E-post 
+                        </Button>
+                    </Group>
+                </div>
 
-            {/* <br /> */}
+                {/* <br /> */}
             </Card>
 		    </div>
                 <Space h={15}></Space>
