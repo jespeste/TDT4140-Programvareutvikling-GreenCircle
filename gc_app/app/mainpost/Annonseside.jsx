@@ -35,16 +35,6 @@ export default function Annonseside(props) {
         return pb.authStore.model;
     }
 
-    async function addToFavourites() {
-		activeUser.favourites.push(props.data.id);
-		const record = await pb.collection('users').update(activeUser.id, activeUser);
-        setIsFavourite(activeUser.favourites.includes(data.id));
-	}
-    async function removeFromFavourites() {
-		activeUser.favourites.pop(props.data.id);
-		const record = await pb.collection('users').update(activeUser.id, activeUser);
-        setIsFavourite(activeUser.favourites.includes(data.id));
-	}
     async function deletePost() {
 		try {
 			if (confirm("Dette vil fjerne annonsen: " + data.id)) {
@@ -116,11 +106,6 @@ export default function Annonseside(props) {
 	function iframeLoaded() {
 		iframeRef.current.style = { visibility: 'visible' };
 		setLoaded(true);
-	}
-	async function addToFavourites() {
-		let user = pb.authStore.model;
-		user.favourites.push(props.data.id);
-		const record = await pb.collection('users').update(user.id, user);
 	}
 
 	function goBack() {
