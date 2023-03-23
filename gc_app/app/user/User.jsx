@@ -267,7 +267,7 @@ export default function User(props) {
 						{!(user.id === activeUser.id) && (
 							<div>
 								<Annonsecontainer 
-                                    data={posts} 
+                                    data={posts.filter((post) => post.owner == user.id)} 
                                     occupiedWidth={2000}
                                     fetchPosts = {fetchPosts}>
                                     
