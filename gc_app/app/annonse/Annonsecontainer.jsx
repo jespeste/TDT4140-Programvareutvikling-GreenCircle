@@ -33,7 +33,7 @@ export default function Annonsecontainer(props) {
 					{props.data.map((post) => {
 						return (
 							<Grid.Col style={{ backgroundColor: '', justifyContent: 'center' }}>
-								<Annonse id={post.id} data={post} showDelete={showDelete}></Annonse>
+								<Annonse id={post.id} data={post} showDelete={showDelete} fetchPosts={props.fetchPosts}></Annonse>
 							</Grid.Col>
 						);
 					})}

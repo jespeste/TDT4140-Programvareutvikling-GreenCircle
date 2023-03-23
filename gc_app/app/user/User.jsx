@@ -19,14 +19,15 @@ function getActiveUser() {
 export default function User(props) {
 	const user = props.user;
 	const activeUser = getActiveUser();
-	let postProp = props.posts.filter((post) => post.owner === user.id);
-	const [posts, setPosts] = useState(postProp);
-	const booked = props.posts.filter((post) => {
-		if (post.booker != '' && post.booking_confirmed) {
-			return post.expand.booker.id == user.id;
-		}
-	});
-	let favourites = props.posts.filter((post) => user.favourites.includes(post.id));
+    const [posts, setPosts] = useState([]);
+	// let postProp = props.posts.filter((post) => post.owner === user.id);
+	// const [posts, setPosts] = useState(postProp);
+	// const booked = props.posts.filter((post) => {
+	// 	if (post.booker != '' && post.booking_confirmed) {
+	// 		return post.expand.booker.id == user.id;
+	// 	}
+	// });
+	// let favourites = posts.filter((post) => user.favourites.includes(post.id));
 	let mailstring = 'mailto:' + user.email;
 	let phonestring = 'tel:' + user.telephone;
 
@@ -39,6 +40,27 @@ export default function User(props) {
 	function changeView() {
 		setShow(!show);
 	}
+
+    // Fetch all posts from database with the given search parameters / filters
+	const fetchPosts = async () => {
+		try {
+			const data = await pb.collection('posts').getList(1, 100, {
+				$autoCancel: true,
+				expand: 'owner, booker'
+			});
+			setPosts(data.items);
+
+			// TODO: Find how to update posts when they pass a certain date, maybe backend or something.
+			//getAndUpdate();
+		} catch (err) {
+			console.log(err.isAbort);
+		}
+	};
+
+    // Update the post overview when any filters are applied or if a new post is created
+	useEffect(() => {
+		fetchPosts();
+	}, []);
 
 	async function rejectBooking(id) {
 		console.log('hei');
@@ -155,15 +177,15 @@ export default function User(props) {
 										{user.firstName + ' ' + user.lastName}{' '}
 									</Text>
 									{/* {user.firstName + ' ' + user.lastName} */}
+                                        {(user.id === activeUser.id) && (!isLoading) &&
+                                            <BookingConfirm 
+                                                data={posts.filter((post)=>(post.owner == user.id))} 
+                                                setOn={setOn} 
+                                                reject={rejectBooking} 
+                                                accept={acceptBooking}>
+                                            </BookingConfirm>
+                                        }
 									<Space w={10} />
-									{(user.id === activeUser.id) && (!isLoading) &&
-                                    	<BookingConfirm 
-										data={posts.filter((post)=>(post.owner == user.id))} 
-										setOn={setOn} 
-										reject={rejectBooking} 
-										accept={acceptBooking}>
-										</BookingConfirm>
-                                	}
 								</div>
 							</Group>
 							<Space h={7} />
@@ -218,18 +240,21 @@ export default function User(props) {
 									<Annonsecontainer
 										showDelete={true}
 										occupiedWidth={2000}
+                                        fetchPosts = {fetchPosts}
 										data={posts.filter((post) => post.owner == user.id)}
 									></Annonsecontainer>
 								)}
 								{show == '2' && (
 									<Annonsecontainer
 										occupiedWidth={2000}
+                                        fetchPosts = {fetchPosts}
 										data={posts.filter((post) => user.favourites.includes(post.id))}
 									></Annonsecontainer>
 								)}
 								{show == '3' && (
 									<Annonsecontainer
 										occupiedWidth={2000}
+                                        fetchPosts = {fetchPosts}
 										data={posts.filter((post) => {
 											if (post.booker != '' && post.booking_confirmed) {
 												return post.expand.booker.id == user.id;
@@ -241,7 +266,12 @@ export default function User(props) {
 						)}
 						{!(user.id === activeUser.id) && (
 							<div>
-								<Annonsecontainer data={posts} occupiedWidth={2000}></Annonsecontainer>
+								<Annonsecontainer 
+                                    data={posts} 
+                                    occupiedWidth={2000}
+                                    fetchPosts = {fetchPosts}>
+                                    
+                                </Annonsecontainer>
 							</div>
 						)}
 					</div>

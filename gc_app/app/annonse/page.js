@@ -90,7 +90,9 @@ export default function Annonsepage() {
 			const data = await pb.collection('posts').getList(1, 100, {
 				$autoCancel: true,
 				expand: 'owner',
-				filter: `(title~"${search}" || description~"${search}") && booking_confirmed=false && startDate="" ${category}${isListingFilter}`
+				filter: `(title~"${search}" || description~"${search}") ${category}${isListingFilter}`
+                // code below was added for testing deletion on the posts-overview page.
+				// filter: `(title~"${search}" || description~"${search}")`
 			});
 			if(useDates){
 				setPostList(data.items.filter((post)=>{
@@ -248,7 +250,8 @@ export default function Annonsepage() {
 					</CardSection>
 					<Space h={25}></Space>
 					<CardSection style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-						<Annonsecontainer data={posts} occupiedWidth={1500} showDelete={false} />
+						{/* <Annonsecontainer data={posts} occupiedWidth={1500} showDelete={false} fetchPosts={fetchPosts}/> */}
+						<Annonsecontainer data={posts} occupiedWidth={1500} showDelete={true} fetchPosts={fetchPosts}/>
 					</CardSection>
 				</Card>
 				<div className="popup">
