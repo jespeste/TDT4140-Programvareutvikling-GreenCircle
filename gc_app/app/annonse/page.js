@@ -250,8 +250,8 @@ export default function Annonsepage() {
 					</CardSection>
 					<Space h={25}></Space>
 					<CardSection style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-						{/* <Annonsecontainer data={posts} occupiedWidth={1500} showDelete={false} fetchPosts={fetchPosts}/> */}
-						<Annonsecontainer data={posts} occupiedWidth={1500} showDelete={true} fetchPosts={fetchPosts}/>
+						<Annonsecontainer data={posts} occupiedWidth={1500} showDelete={false} fetchPosts={fetchPosts}/>
+						{/* <Annonsecontainer data={posts} occupiedWidth={1500} showDelete={true} fetchPosts={fetchPosts}/> */}
 					</CardSection>
 				</Card>
 				<div className="popup">
