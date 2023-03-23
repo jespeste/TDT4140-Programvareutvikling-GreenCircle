@@ -90,7 +90,7 @@ export default function Annonsepage() {
 			const data = await pb.collection('posts').getList(1, 100, {
 				$autoCancel: true,
 				expand: 'owner',
-				filter: `(title~"${search}" || description~"${search}") && booking_confirmed=false && startDate="" ${category}${isListingFilter}`
+				filter: `(title~"${search}" || description~"${search}") ${category}${isListingFilter}`
                 // code below was added for testing deletion on the posts-overview page.
 				// filter: `(title~"${search}" || description~"${search}")`
 			});
