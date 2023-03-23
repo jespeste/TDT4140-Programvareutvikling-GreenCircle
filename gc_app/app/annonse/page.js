@@ -4,7 +4,7 @@ import Annonsecontainer from './Annonsecontainer';
 import Navbar from '../Navbar';
 import { useState, useEffect } from 'react';
 import { CardSection, NativeSelect } from '@mantine/core';
-import { Button, Grid, Input, Group, Card, Space, Select } from '@mantine/core';
+import { Button, Grid, Input, Group, Card, Space, Select, Flex} from '@mantine/core';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { DateRange } from 'react-date-range';
@@ -164,13 +164,15 @@ export default function Annonsepage() {
 					}}
 				>
 					<CardSection style={{ display: 'flex', justifyContent: 'center' }}>
-						<Group position="apart" grow>
+						<Group position="center">
 							<Button
-								miw={140}
+								miw={130}
+                                radius="md"
+
 								variant="outline"
 								color="teal"
 								onClick={handlePopOpen}
-								style={{ width: '50px', marginTop: '25px' }}
+								style={{ marginTop: '25px' }}
 							>
 								+ Ny Annonse
 							</Button>
@@ -178,6 +180,8 @@ export default function Annonsepage() {
 							<Input.Wrapper label="Søk">
 								<Input
 									value={search}
+								    radius="md"
+
 									onChange={(event) => setSearch(event.target.value)}
 									placeholder="Søk etter utstyr her"
 									styles={(theme) => ({
@@ -191,6 +195,7 @@ export default function Annonsepage() {
 							</Input.Wrapper>
 							<Select
 								label="Kategorier"
+                                maw={125}
 								data={categories}
 								onChange={setFilter}
 								value={filter}
@@ -205,6 +210,8 @@ export default function Annonsepage() {
 								})}
 							></Select>
 							<Select
+                                maw={125}
+
 								label="Annonsetype"
 								data={isListingTable}
 								onChange={setListing}
@@ -222,9 +229,12 @@ export default function Annonsepage() {
 							<Button 
 								variant="outline"
 								color="teal"
-								style={{ width: '50px', marginTop: '25px' }}
-								onClick={open}>Ledighet</Button>
-							<Modal opened={opened} onClose={close} title="Ledighet">
+                                radius="md"
+
+                                miw={130}
+								style={{ marginTop: '25px' }}
+								onClick={open}>Tidsperiode</Button>
+							<Modal opened={opened} onClose={close} title="Tidsperiode">
 								<Group style={{justifyContent: 'center'}}>
 								<DateRange
 									minDate={new Date()} 
@@ -237,13 +247,15 @@ export default function Annonsepage() {
 									}}
 								/>
 									<Button 
+                                    miw={90}
 									color="teal"
-									style={{ width: '110px', marginTop: '25px' }} 
-									onClick={()=>(filterDates(1))}>Sett Datoer</Button>
+									style={{ marginTop: '25px' }} 
+									onClick={()=>(filterDates(1))}>Sett tidsperiode</Button>
 									<Button 
+                                    miw={90}
 									color="red"
-									style={{ width: '120px', marginTop: '25px' }} 
-									onClick={()=>(filterDates(0))}>Ta vekk filter</Button>
+									style={{ marginTop: '25px' }} 
+									onClick={()=>(filterDates(0))}>Fjern filter</Button>
 								</Group>
 							</Modal>
 						</Group>
