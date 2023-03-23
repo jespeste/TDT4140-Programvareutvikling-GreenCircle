@@ -65,7 +65,11 @@ export default function Annonseside(props) {
 		const record = await pb.collection('users').update(activeUser.id, activeUser);
         setIsFavourite(activeUser.favourites.includes(data.id));
 		setCount(curFavs -1);
-		data.numfavourites = data.numfavourites - 1;
+		
+        data.numfavourites = data.numfavourites -1 
+        if (data.numfavourites < 0){
+            data.numfavourites = 0;
+        }
 		const rec  = await pb.collection('posts').update(data.id, {numfavourites: data.numfavourites});
 		console.log('false');
 	}
