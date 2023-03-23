@@ -219,7 +219,7 @@ export default function User(props) {
 					{/* </Grid.Col> */}
 					<Space w={30} />
 					{/* <Grid.Col span={9}> */}
-					<div style={{ justifyContent: 'center', backgroundColor: '' }}>
+					<div style={{ justifyContent: 'center', backgroundColor: '', maxWidth: '1000px' }}>
 						{user.id === activeUser.id && (
 							<div>
 								<Group position="center">
