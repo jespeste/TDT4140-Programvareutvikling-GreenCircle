@@ -17,7 +17,7 @@ export default function BookingConfirm(props){
         props.accept(id);
         props.setOn(opposite);
         setOpposite(!opposite);
-        //close();
+        close();
     }
 
     function handleClick(){
@@ -31,7 +31,7 @@ export default function BookingConfirm(props){
         props.reject(id);
         props.setOn(opposite);
         setOpposite(!opposite);
-        //close();
+        close();
     }
 
     // async function getPosts() {
@@ -95,7 +95,7 @@ export default function BookingConfirm(props){
                             <br/>
                             Fra {post.startDate.slice(0,10)} til {post.endDate.slice(0,10)}
                             <br/>
-                            <a href={"../mainpost/" + post.id}>{"Placeholder2"}</a>
+                            Annonse: <a href={"../mainpost/" + post.id}> {post.title}</a>
 
                         </Text>
                         <Group align="flex-end">
