@@ -58,7 +58,7 @@ import { ActionIcon } from '@mantine/core';
 	function getReportTitle() {
 		var title = 'Rapportér - ';
 		if (isUserReport()) {
-			title += reportedUser.email;
+			title += reportedUser.firstName + ' ' + reportedUser.lastName;
 		}
 		if (isPostReport()) {
 			title += reportedPost.title;

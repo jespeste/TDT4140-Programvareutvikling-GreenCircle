@@ -37,9 +37,9 @@ export default function User(props) {
 	const [bookRequest, setCurrentPosts] = useState([]);
 	const [showBooked, setShowBooked] = useState(false);
 
-	function changeView() {
-		setShow(!show);
-	}
+	// function changeView() {
+	// 	setShow(!show);
+	// }
 
     // Fetch all posts from database with the given search parameters / filters
 	const fetchPosts = async () => {

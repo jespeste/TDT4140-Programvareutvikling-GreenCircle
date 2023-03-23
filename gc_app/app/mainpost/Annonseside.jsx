@@ -269,7 +269,6 @@ export default function Annonseside(props) {
                                                     borrower/borrowee for the post in question.*/}
                                                 {!(owner.id === activeUser.id) && data.booking_confirmed && isBooked && data.booker == activeUser.id &&
                                                     <ReviewPopUp reviewer={activeUser} reviewedUser={owner} reviewedPost={data} />
-
                                                 }
                                                 {(activeUser.id !== owner.id) &&
                                                     <ReportPopUp reporter={activeUser} reportedUser={undefined} reportedPost={data} />

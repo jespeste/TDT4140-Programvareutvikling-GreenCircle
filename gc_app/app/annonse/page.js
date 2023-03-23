@@ -195,7 +195,7 @@ export default function Annonsepage() {
 							</Input.Wrapper>
 							<Select
 								label="Kategorier"
-                                maw={125}
+                                maw={160}
 								data={categories}
 								onChange={setFilter}
 								value={filter}
