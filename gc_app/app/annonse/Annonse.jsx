@@ -26,15 +26,27 @@ export default function Annonse(props) {
 		return activeUser;
 	}
 
-	async function addToFavourites() {
+    async function addToFavourites() {
+        
 		activeUser.favourites.push(props.data.id);
+        props.data.numfavourites = props.data.numfavourites +1 
 		const record = await pb.collection('users').update(activeUser.id, activeUser);
-		setIsFavourite(activeUser.favourites.includes(data.id));
+        
+        const rec = await pb.collection('posts').update(props.data.id, {numfavourites: props.data.numfavourites});
+        setIsFavourite(activeUser.favourites.includes(data.id));
+        
 	}
-	async function removeFromFavourites() {
+    async function removeFromFavourites() {
+        
+        data.numfavourites = data.numfavourites -1 
+        if (data.numfavourites < 0){
+            data.numfavourites = 0;
+        }
+        console.log(data.numfavourites);
+        let rec = await pb.collection('posts').update(data.id, {numfavourites: data.numfavourites});
 		activeUser.favourites.pop(props.data.id);
 		const record = await pb.collection('users').update(activeUser.id, activeUser);
-		setIsFavourite(activeUser.favourites.includes(data.id));
+        setIsFavourite(activeUser.favourites.includes(data.id));
 	}
 	async function deletePost() {
 		try {
