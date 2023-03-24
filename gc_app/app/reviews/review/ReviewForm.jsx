@@ -30,25 +30,25 @@ export default function ReviewPopUp({reviewer, reviewedUser, reviewedPost}) {
 		return activeUser;
 	}
 
-	function isUserReview() {
-		return !(reviewedUser === undefined)
-	}
+	// function isUserReview() {
+	// 	return !(reviewedUser === undefined)
+	// }
 
-	function isPostReview() {
-		return !(reviewedPost === undefined);
-	}
+	// function isPostReview() {
+	// 	return !(reviewedPost === undefined);
+	// }
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
 		var reviewedUserID = '';
-		if (isUserReview()) {
+		// if (isUserReview()) {
 			reviewedUserID = reviewedUser.id;
-		}
+		// }
 		var reviewedPostID = '';
-		if (isPostReview()) {
+		// if (isPostReview()) {
 			reviewedPostID = reviewedPost.id
-		}
+		// }
 
 		var review = new Review(
         	rating, description, getActiveUser(), reviewedUserID, reviewedPostID);
@@ -60,9 +60,9 @@ export default function ReviewPopUp({reviewer, reviewedUser, reviewedPost}) {
 		// if (isUserReview()) {
 		// 	title += reviewedUser.id;
 		// }
-		if (isPostReview()) {
-			title += reviewedPost.title;
-		}
+		// if (isPostReview()) {
+			title += reviewedUser.firstName + ' ' + reviewedUser.lastName;
+		// }
 		return title;
 	}
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Annonse from './Annonse';
 import './annonsecontainer.css';
-import { Grid, SimpleGrid } from '@mantine/core';
+import { Grid, SimpleGrid, Flex } from '@mantine/core';
 
 export default function Annonsecontainer(props) {
 	const occupiedWidth = props.occupiedWidth;
@@ -19,26 +19,29 @@ export default function Annonsecontainer(props) {
 
 	return (
 		<div>
-			<Grid style={{ maxWidth: getMaxWidth(), backgroundColor: '' }}>
-				<SimpleGrid
-					spacing={1}
-					cols={3}
-					breakpoints={[
-						{ maxWidth: occupiedWidth - itemWidth * 2, cols: 1 },
-						{ maxWidth: occupiedWidth - itemWidth, cols: 2 },
-						{ maxWidth: occupiedWidth, cols: 3 }
-					]}
-					style={{ backgroundColor: '', justifyContent: 'center' }}
-				>
+			{/* <Grid style={{ maxWidth: getMaxWidth(), backgroundColor: 'green' }}> */}
+                <Flex
+                    mih={50}
+                    bg="rgba(0, 0, 0, 0)"
+                    gap="md"
+                    justify="center"
+                    align="flex-start"
+                    direction="row"
+                    wrap="wrap"
+                >
 					{props.data.map((post) => {
 						return (
-							<Grid.Col style={{ backgroundColor: '', justifyContent: 'center' }}>
+							// <Grid.Col style={{ backgroundColor: '', justifyContent: 'center' }}>
+                            <>
 								<Annonse id={post.id} data={post} showDelete={showDelete} fetchPosts={props.fetchPosts}></Annonse>
-							</Grid.Col>
+                            </>
+							// </Grid.Col>
 						);
 					})}
-				</SimpleGrid>
-			</Grid>
+
+                </Flex>
+				{/* </SimpleGrid> */}
+			{/* </Grid> */}
 		</div>
 	);
 }
