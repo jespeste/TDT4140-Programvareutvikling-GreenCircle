@@ -5,5 +5,7 @@
 ### For MacOS:
 - For å gjøre om executablen skriver du ``` chmod +x ./pocketbase ``` og så følger du de vanlige stegene.
 
+<!--
 ## Bygge Next.js html fil og eksportere
 - Start med npm 
+-->
