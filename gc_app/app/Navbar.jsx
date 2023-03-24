@@ -82,7 +82,7 @@ export default function Navbar({page}) {
                         <Link href="/bookinger" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <Tabs.Tab value="bookings" >
                                 <Text fw={500} size={15} >
-                                    Historikk
+                                    Bookinger
                                 </Text>
                             </Tabs.Tab>
                         </Link>
