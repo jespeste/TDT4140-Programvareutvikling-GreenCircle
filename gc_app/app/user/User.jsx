@@ -22,13 +22,11 @@ export default function User(props) {
     const activeUser = getActiveUser();
 	let postProp = props.posts.filter((post) => post.owner === user.id);
     const [posts, setPosts] = useState(postProp);
-    console.log(props);
     const booked = props.posts.filter((post) => {
         if(post.booker != '' && post.booking_confirmed){
             return post.expand.booker.id == user.id;
         }
     });
-    console.log(booked);
 	let favourites = props.posts.filter((post) => user.favourites.includes(post.id));
 	const [show, setShow] = useState("1");
     const [isLoading, setloading] = useState(true);
@@ -75,7 +73,7 @@ export default function User(props) {
             async function getPosts() {
                 try {
                     const record = await pb.collection('posts').getList(1,100,{
-                        filter:`owner="${user.id}"`,
+                        // filter:`owner="${user.id}"`,
                         expand: 'owner, booker',
                     });
                     console.log(record);
@@ -90,7 +88,7 @@ export default function User(props) {
         }
         setloading(false);
         console.log(isOn + " Er på? Hei")
-    },[isOn])
+    },[isOn, show])
 
 	return (
 		<div>
@@ -139,7 +137,7 @@ export default function User(props) {
                                     <ReportPopUp reporter={getActiveUser()} reportedUser={user} reportedPost={undefined} />
                                 }
                                 {(user.id === activeUser.id) && (!isLoading) &&
-                                    <BookingConfirm data={posts} setOn={setOn} reject={rejectBooking} accept={acceptBooking}></BookingConfirm>
+                                    <BookingConfirm data={posts.filter((post)=>(post.owner == user.id))} setOn={setOn} reject={rejectBooking} accept={acceptBooking}></BookingConfirm>
                                 }
                             </div>
                         </Group>
@@ -181,6 +179,7 @@ export default function User(props) {
                                         radius="md"
                                     ></Switch> */}
                                     <Select
+                                    defaultValue='1'
                                     data={[
                                         { value: '1', label: 'Mine annonser' },
                                         { value: '2', label: 'Favoritter' },
@@ -198,9 +197,16 @@ export default function User(props) {
                                     offLabel={'Dine annonser'}
                                     size="xl"
                                 ></Switch> */}
-                                { show == '1' && <Annonsecontainer data={posts}></Annonsecontainer>}
-                                { show == '2' && <Annonsecontainer data={favourites}></Annonsecontainer>}
-                                { show == '3' && <Annonsecontainer data={booked}></Annonsecontainer>}
+                                { show == '1' && <Annonsecontainer data={posts.filter((post)=>(post.owner == user.id))}></Annonsecontainer>}
+                                { show == '2' && <Annonsecontainer data={
+                                    posts.filter((post) => user.favourites.includes(post.id))
+                                }></Annonsecontainer>}
+                                { show == '3' && <Annonsecontainer data={
+                                    posts.filter((post) => {
+                                        if(post.booker != '' && post.booking_confirmed){
+                                            return post.expand.booker.id == user.id;
+                                        }
+                                })}></Annonsecontainer>}
 
                             </div>
                         }
